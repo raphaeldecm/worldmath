@@ -1,0 +1,109 @@
+body{
+    font-family: 'Poppins', sans-serif;
+}
+nav{
+    width: 95%;
+    margin: auto;
+    background-color: #FFFFFF ;
+
+}
+nav form{
+width: 28rem;
+}
+a{
+    list-style: none;
+    text-decoration: none;
+    color: #050927;
+}
+nav input{
+    margin-left: 50px;
+}
+nav li {
+    margin: 0 28px;
+}
+nav ul button{
+    width: 180px;
+    background-color: blue;
+    color: #FFFFFF;
+    border: none;
+    margin-left: 30px;
+}
+.logo{
+    margin-right: 15px;
+}
+.nav-link{
+    color: #050927;
+}
+main{
+    color: #050927;
+}
+.main{
+    /* display: flex;
+    flex-direction: row;
+    align-items: center; */
+    width: 85%;
+    margin: auto;
+    margin-top: 60px;
+}
+.main h1{
+    padding-bottom: 20px;
+    font-weight: bold;
+}
+.main p{
+    padding-bottom: 20px;
+    font-weight: 300;
+ 
+}
+.main button{
+    width: 160px;
+    height: 50px;
+    margin-bottom: 20px ;
+    background-color: blue;
+    color: #FFFFFF;
+    border: none;
+}
+.marg{
+    margin-bottom: 16px;
+}
+footer{
+    background-color: #E4E4E4;
+    padding: 50px 0;
+}
+.p-ifrn{
+ text-align: center;
+ margin-top: 10px;
+}
+.links  {
+    list-style:none;
+    font-size: 14px;
+
+}
+.links a{
+    text-decoration: none;
+    color: #050927;
+}
+.links li{
+    margin: 5px 0;
+}
+.numero{
+    margin: 30px 0;
+}
+.border-links{
+    border-bottom: 2px solid #0318D3;
+    width: 80%;
+}
+
+
+.Espace-form {
+    width: 70%;
+    margin: auto;
+    margin-bottom: 14%;
+}
+
+main {
+    margin-top: 20px;
+}
+
+#textarea {
+    height: 300px;
+}
