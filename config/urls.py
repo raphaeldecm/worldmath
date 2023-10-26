@@ -13,7 +13,8 @@ urlpatterns = [
     # User management
     path("users/", include("worldmath.users.urls", namespace="users")),
     path("accounts/", include("allauth.urls")),
-    path('', include('worldmath.core.urls'))
+    path('', include('worldmath.core.urls')),
+    path('', include('worldmath.Postagem.urls'))
     # Your stuff: custom urls includes go here
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 

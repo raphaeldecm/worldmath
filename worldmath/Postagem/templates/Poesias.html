@@ -109,100 +109,32 @@
             </div>
         </section>
 
-        <section class="main container-fluid">
-            <div class="div-p">
-                <div class="d-flex justify-content-center">
-                    <h2>Platão e os Poliedros I</h2>
+        <div class="d-flex justify-content-center align-items-center">
+            <section class="main container-fluid">
+              {% for poesias in Poesia %}
+              
+              <div class="div-p mb-4">
+                <div class="text-center my-4">
+                  <h2 class="mb-5">{{ poesias.titulo }}</h2>
                 </div>
                 <div class="row justify-content-center">
-                    <div class="col-xl-3 col-lg-8 col-md-8">
-                        <img class="img-fluid" src="{% static 'images/aristonio.png' %}" alt="">
-                    </div>
-                    <div class="col-xl-4 col-lg-5 col-md-8">
-                        <p>Para ser considerado <br>
-                            poliedro de Platão<br>
-                            número igual de arestas<br>
-                            todas as faces terão<br>
-                            todos vértices são pontos<br>
-                            pelos quais concorrerão<br>
-                            número igual de arestas<br>
-                            falo mais, preste atenção<br>
-                            tem que ser euleriano<br>
-                            apenas cinco serão.<br>
-                            <br>
-                            Já vos disse cinco tipos <br>
-                            desses, tu vais encontrar<br>
-                            tem uma linda pirâmide<br>
-                            de base triangular<br>
-                            também é denominada<br>
-                            tetraedro regular.<br>
-                        </p>
-                        <h5>- Francisco Aristônio</h5>
-                    </div>
-                    <div class="col-xl-4 col-lg-5 col-md-8">
-                        <p>
-                            Com as seis faces quadradas<br>
-                            temos o hexaedro<br>
-                            com faces pentagonais<br>
-                            surge o dodecaedro.<br>
-                            <br>
-                            Temos também outros dois<br>
-                            com faces triangulares<br>
-                            temos o octaedro<br>
-                            também o icosaedro<br>
-                            todos eles regulares.<br>
-
-                        </p>
-                    </div>
+                  <div class="col-xl-4 col-lg-5 col-md-8">
+                    <p class="lead">{{ poesias.PrimeiraParte|linebreaksbr }}</p>
+                    <h5 class="lead">- {{ poesias.autor }} </h5>
+                  </div>
+                  <div class="col-xl-4 col-lg-5 col-md-8">
+                    <p class="lead">{{ poesias.SegundaParte|linebreaksbr }}</p>
+                  </div>
                 </div>
+              </div>
+              <div class="divisao">
+                <hr class="linha">
             </div>
-            <div>
-                <div class="">
-                    <h2 class="conjunto">Conjunto dos Naturais</h2>
-                </div>
-                <div class="row">
-
-                    <div class="col-xl-4 col-lg-5 col-md-8">
-                        <p>
-                            Vou falar dos naturais<br>
-                            um conjunto de valor.<br>
-                            Sendo o primeiro conjunto<br>
-                            que logo se estudou<br>
-                            Pela sua descoberta<br>
-                            logo se apaixonou.<br>
-                            <br>
-                            Tem na sua letra N<br>
-                            a sua simbologia<br>
-                            representa a contagem<br>
-                            para a nossa alegria<br>
-                            o zero e os positivos<br>
-                            são a sua companhia.<br>
-                        </p>
-                        <h5>- Rozanja Almeida</h5>
-                    </div>
-                    <div class="col-xl-4 col-lg-5 col-md-8">
-                        <p>
-                            Da sua reta numérica<br>
-                            é preciso se lembrar<br>
-                            tem origem é no zero<br>
-                            e para se completar<br>
-                            os positivos à direita<br>
-                            é lá que eles vão ficar.<br>
-                            <br>
-                            Esses são os naturais<br>
-                            que vem nos acompanhar<br>
-                            e no nosso dia a dia<br>
-                            estão sempre a brilhar<br>
-                            desde o dia que nascemos<br>
-                            sempre a nos auxiliar.<br>
-                        </p>
-                    </div>
-                    <div class="col-xl-3 col-lg-8 col-md-8">
-                        <img class="img-fluid" src="{% static 'images/rozanja.png' %}" alt="">
-                    </div>
-                </div>
-            </div>
-        </section>
+              {% endfor %}
+            </section>
+          </div>
+              
+          
         <div class="d-flex justify-content-center ">
             <a href="{% url 'Poesias2' %}"><button class="mostrar">Ver mais</button></a>
         </div>

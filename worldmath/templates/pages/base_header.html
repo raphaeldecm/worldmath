@@ -1,12 +1,12 @@
 {% load static  %}
 {% load static i18n %}
-{% block content %} {% endblock %}
+{% block header %}
 <header>
     <nav class="navbar navbar-expand-lg ">
         <a class="navbar-brand" href="#">
-            <a href="{% url 'index' %}"><img class="img-fluid" src="{% static 'images/logo.png' %}" alt="Logo" width="30" height="30"
+            <a href="{% url 'Postagem:index' %}"><img class="img-fluid" src="{% static 'images/logo.png' %}" alt="Logo" width="30" height="30"
                     class="d-inline-block align-top logo" alt=""></a>
-            <a href="{% url 'index' %}"> <strong>WORLDMATH </strong></a>
+            <a href="{% url 'Postagem:index' %}"> <strong>WORLDMATH </strong></a>
         </a>
         <div class="container-fluid">
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
@@ -21,7 +21,7 @@
                 </form>
                 <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                     <li class="nav-item">
-                        <a class="nav-link" href="{% url 'Poesias' %}">Poesias</a>
+                        <a class="nav-link" href="#">Poesias</a>
                     </li>
                     <li class="nav-item dropdown">
                         <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
@@ -29,21 +29,21 @@
                             Matemáticos
                         </a>
                         <ul class="dropdown-menu">
-                            <li><a class="dropdown-item" href="descartes">Descartes</a></li>
-                            <li><a class="dropdown-item" href="euler">Euler</a></li>
-                            <li><a class="dropdown-item" href="pitagoras">Pitágoras</a></li>
-                            <li><a class="dropdown-item" href="arquimedes">Arquimedes</a></li>
-                            <li><a class="dropdown-item" href="{% url 'euclides' %}">Euclides</a></li>
+                            <li><a class="dropdown-item" href="#">Descartes</a></li>
+                            <li><a class="dropdown-item" href="#">Euler</a></li>
+                            <li><a class="dropdown-item" href="#">Pitágoras</a></li>
+                            <li><a class="dropdown-item" href="Postagem:arquimedes">Arquimedes</a></li>
+                            <li><a class="dropdown-item" href="#">Euclides</a></li>
                         </ul>
 
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="exercicios.html">Exercícios</a>
+                        <a class="nav-link" href="{% url 'Postagem:exercicios' %}">Exercícios</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="matematica.html">História</a>
+                        <a class="nav-link" href="{% url 'Postagem:matematica' %}">História</a>
                     </li>
-                    <a class="d-flex align-items-center" href="faleconosco.html"><button type="button" class="">FALE
+                    <a class="d-flex align-items-center" href="#"><button type="button" class="">FALE
                             CONOSCO</button></a>
                 </ul>
 
@@ -51,4 +51,8 @@
         </div>
     </nav>
 </header>
-{% block content %} {% endblock %}
+{% endblock %}
+
+{% block main %}
+
+{% endblock }

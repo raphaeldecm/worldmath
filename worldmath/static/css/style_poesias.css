@@ -81,6 +81,21 @@ main img {
 .main h5{
     margin: 30px 0 100px 0;
 }
+
+.divisao {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 50px;
+    margin-top: 30px;
+}
+.linha {
+    width: 80%;
+    margin: 0 auto;
+    border: none;
+    height: 1px;
+    background-color: rgba(0, 0, 0, 0.9);
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.8);  
+}
 .conjunto{
     margin-left: 120px;
 }

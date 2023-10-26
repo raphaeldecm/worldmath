@@ -1,8 +1,10 @@
-{% load static  %}
-{% load static i18n %}<!DOCTYPE html>
+{% load static %}
+{% load static i18n %}
+<!DOCTYPE html>
 {% get_current_language as LANGUAGE_CODE %}
 <html lang="{{ LANGUAGE_CODE }}">
-  <head>
+
+<head>
     <meta charset="utf-8">
     <meta http-equiv="x-ua-compatible" content="ie=edge">
     <title>{% block title %}WorldMath{% endblock title %}</title>
@@ -13,41 +15,42 @@
     <link rel="icon" href="{% static 'images/favicons/favicon.ico' %}">
 
     {% block css %}
-    
-    <!-- Latest compiled and minified Bootstrap CSS -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.2.3/css/bootstrap.min.css" integrity="sha512-SbiR/eusphKoMVVXysTKG/7VseWii+Y3FdHrt0EpKgpToZeemhqHeZeLWLhJutz/2ut2Vw1uQEj2MbRF+TVBUA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
-    <!-- Your stuff: Third-party CSS libraries go here -->
 
-    <!-- This file stores project-specific CSS -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.2.3/css/bootstrap.min.css"
+        integrity="sha512-SbiR/eusphKoMVVXysTKG/7VseWii+Y3FdHrt0EpKgpToZeemhqHeZeLWLhJutz/2ut2Vw1uQEj2MbRF+TVBUA=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+
     <link href="{% static 'css/index.css' %}" rel="stylesheet">
-    
     {% endblock %}
-    <!-- Le javascript
-    ================================================== -->
+
     {# Placed at the top of the document so pages load faster with defer #}
     {% block javascript %}
-      <!-- Bootstrap JS -->
-      <script defer src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.2.3/js/bootstrap.min.js" integrity="sha512-1/RvZTcCDEUjY/CypiMz+iqqtaoQfAITmNSJY17Myp4Ms5mdxPS5UV7iOfdZoxcGhzFbOm6sntTKJppjvuhg4g==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-      <!-- Your stuff: Third-party javascript libraries go here -->
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.10.1/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
 
-      <!-- place project specific Javascript in this file -->
-      <script defer src="{% static 'js/project.js' %}"></script>
+    <script defer src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.2.3/js/bootstrap.min.js"
+        integrity="sha512-1/RvZTcCDEUjY/CypiMz+iqqtaoQfAITmNSJY17Myp4Ms5mdxPS5UV7iOfdZoxcGhzFbOm6sntTKJppjvuhg4g=="
+        crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script defer src="{% static 'js/project.js' %}"></script>
 
     {% endblock javascript %}
 
-  </head>
+</head>
+
 <body>
+    
     <header>
         <nav class="navbar navbar-expand-lg ">
             <a class="navbar-brand" href="#">
-                <a href="{% url 'index' %}"><img class="img-fluid" src="{% static 'images/logo.png' %}" alt="Logo"
-                        width="30" height="30" class="d-inline-block align-top logo" alt=""></a>
-                <a href="{% url 'index' %}"> <strong>WORLDMATH </strong></a>
+                <a href="{% url 'Postagem:index' %}"><img class="img-fluid" src="{% static 'images/logo.png' %}"
+                        alt="Logo" width="30" height="30" class="d-inline-block align-top logo" alt=""></a>
+                <a href="{% url 'Postagem:index' %}"> <strong>WORLDMATH </strong></a>
             </a>
             <div class="container-fluid">
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
-                    data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
-                    aria-label="Toggle navigation">
+                    data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
+                    aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
                 </button>
                 <div class="collapse navbar-collapse " id="navbarSupportedContent">
@@ -57,7 +60,7 @@
                     </form>
                     <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                         <li class="nav-item">
-                            <a class="nav-link" href="{% url 'Poesias' %}">Poesias</a>
+                            <a class="nav-link" href="#">Poesias</a>
                         </li>
                         <li class="nav-item dropdown">
                             <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
@@ -65,74 +68,75 @@
                                 Matemáticos
                             </a>
                             <ul class="dropdown-menu">
-                                <li><a class="dropdown-item" href="descartes">Descartes</a></li>
-                                <li><a class="dropdown-item" href="euler">Euler</a></li>
-                                <li><a class="dropdown-item" href="pitagoras">Pitágoras</a></li>
-                                <li><a class="dropdown-item" href="arquimedes">Arquimedes</a></li>
-                                <li><a class="dropdown-item" href="{% url 'euclides' %}">Euclides</a></li>
+                                <li><a class="dropdown-item" href="#">Descartes</a></li>
+                                <li><a class="dropdown-item" href="#">Euler</a></li>
+                                <li><a class="dropdown-item" href="#">Pitágoras</a></li>
+                                <li><a class="dropdown-item" href="{% url 'Postagem:arquimedes' %}">Arquimedes</a></li>
+                                <li><a class="dropdown-item" href="#">Euclides</a></li>
                             </ul>
-    
+
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="{% url 'exercicios' %}">Exercícios</a>
+                            <a class="nav-link" href="{% url 'Postagem:exercicios' %}">Exercícios</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="{% url 'matematica' %}">História</a>
+                            <a class="nav-link" href="{% url 'Postagem:matematica' %}">História</a>
                         </li>
-                        <a class="d-flex align-items-center" href="{% url 'faleconosco' %}"><button type="button" class="">FALE
+                        <a class="d-flex align-items-center" href="{% url 'Login' %}"><button type="button"
+                                class="">FALE
                                 CONOSCO</button></a>
                     </ul>
-    
+
                 </div>
             </div>
         </nav>
     </header>
-    
+
     {% block content %}
 
     {% endblock content %}
 
-  <footer class="container-fluid">
-    <div class="row d-flex justify-content-evenly">
-        <div class="col-xl-3 col-lg-8 col-md-8">
-            <img class="img-fluid" src="{% static 'images/footer.png' %}" alt="footer">
-        </div>
-        <div class="col-xl-2 col-lg-8 links">
-            <div class="border-links">
-                <h4>Links</h4>
+    <footer class="container-fluid">
+        <div class="row d-flex justify-content-evenly">
+            <div class="col-xl-3 col-lg-8 col-md-8">
+                <img class="img-fluid" src="{% static 'images/footer.png' %}" alt="footer">
             </div>
+            <div class="col-xl-2 col-lg-8 links">
+                <div class="border-links">
+                    <h4>Links</h4>
+                </div>
 
-            <li><a href="{% url 'index' %}">Home</a></li>
-            <li><a href="">Matemáticos</a></li>
-            <li><a href="{% url 'matematica' %}">História</a></li>
-            <li><a href="{% url 'Poesias' %}">Poetas</a></li>
-            <li><a href="">Sobre nós</a></li>
+                <li><a href="{% url 'Postagem:index' %}">Home</a></li>
+                <li><a href="">Matemáticos</a></li>
+                <li><a href="{% url 'Postagem:matematica' %}">História</a></li>
+                <li><a href="#">Poetas</a></li>
+                <li><a href="">Sobre nós</a></li>
 
-        </div>
-        <div class="col-xl-2 col-lg-8 d-flex flex-column align-items-center">
-
-            <img class="img-fluid" src="{% static 'images/pngs 1.png' %}" alt="pngs">
-            <p class="p-ifrn">Projetado e desenvolvido por alunos do IFRN</p>
-
-        </div>
-        <div class="col-xl-2 col-lg-8">
-            <h3 class="border-links"><strong> Contato</strong></h3>
-            <div class=" numero d-flex justify-content-around">
-                <img class="img-fluid" src="{% static 'images/Vector (3).png' %}" alt="">
-                <p>(84) 4002-8922</p>
             </div>
-            <div class=" d-flex justify-content-around">
-                <img class="img-fluid" src="{% static 'images/Vector (2).png' %}" alt="">
-                <img class="img-fluid" src="{% static 'images/Vector (1).png' %}" alt="">
-                <img class="img-fluid" src="{% static 'images/Vector.png' %}" alt="">
+            <div class="col-xl-2 col-lg-8 d-flex flex-column align-items-center">
+
+                <img class="img-fluid" src="{% static 'images/pngs 1.png' %}" alt="pngs">
+                <p class="p-ifrn">Projetado e desenvolvido por alunos do IFRN</p>
+
+            </div>
+            <div class="col-xl-2 col-lg-8">
+                <h3 class="border-links"><strong> Contato</strong></h3>
+                <div class=" numero d-flex justify-content-around">
+                    <img class="img-fluid" src="{% static 'images/Vector (3).png' %}" alt="">
+                    <p>(84) 4002-8922</p>
+                </div>
+                <div class=" d-flex justify-content-around">
+                    <img class="img-fluid" src="{% static 'images/Vector (2).png' %}" alt="">
+                    <img class="img-fluid" src="{% static 'images/Vector (1).png' %}" alt="">
+                    <img class="img-fluid" src="{% static 'images/Vector.png' %}" alt="">
+                </div>
             </div>
         </div>
-    </div>
-</footer>
+    </footer>
 
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"
-    integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN" crossorigin="anonymous">
-</script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN" crossorigin="anonymous">
+        </script>
 </body>
 
 </html>

@@ -35,32 +35,17 @@ nav ul button{
     color: #050927;
 }
 main{
-    color: #050927;
+    margin: 0;
+    padding: 0;
+    font-family: 'Times New Roman', Times, sans-serif;
+
 }
-.main{
-    /* display: flex;
-    flex-direction: row;
-    align-items: center; */
-    width: 85%;
-    margin: auto;
-    margin-top: 60px;
-}
-.main h1{
-    padding-bottom: 20px;
-    font-weight: bold;
-}
-.main p{
-    padding-bottom: 20px;
-    font-weight: 300;
- 
-}
-.main button{
-    width: 160px;
-    height: 50px;
-    margin-bottom: 20px ;
-    background-color: blue;
-    color: #FFFFFF;
-    border: none;
+section{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    width: 100%;
 }
 .marg{
     margin-bottom: 16px;
