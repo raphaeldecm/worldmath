@@ -1,47 +1,58 @@
+import uuid
+
+from django.contrib.auth import get_user_model
 from django.db import models
+from django.utils.translation import gettext_lazy as _
 
-# Create your models here.
-class Matematicos(models.Model):
-    imagem = models.ImageField(upload_to='imagens')
-    Resumo = models.CharField(max_length=300)
+from core.constants import MAX_CHAR_FIELD_NAME_LENGTH
 
-    
-    def __str__(self):
-        return self.titulo
+User = get_user_model()
 
-class Poesias(models.Model):
-    Autor = models.CharField(max_length=150)
 
-    def __str__(self):
-        return self.Autor
+def get_sentinel_user():
+    return get_user_model().objects.get_or_create(email="deleted")[0]
 
-class Historia(models.Model):
 
-    def __str__(self):
-        return self.titulo
+class UUIDModel(models.Model):
+    uuid = models.UUIDField(unique=True, editable=False, default=uuid.uuid4)
 
-class Exercicios(models.Model):
-    conteudo = models.CharField(max_length=150)
-    tipo_arquivo = models.CharField(max_length=30)
-    Url = models.CharField(max_length=150)
+    class Meta:
+        abstract = True
 
-    def __str__(self):
-        return self.conteudo
 
-class Postagem(models.Model):
-    TITULO_CHOICES = (
-        ('exercicios', 'Exercícios'),
-        ('matematicos', 'Matemáticos'),
-        ('poesias', 'Poesias'),
-        ('historia', 'História'),
+class CreationTimestampedModel(models.Model):
+    created_at = models.DateTimeField(_("Created at"), auto_now_add=True, editable=False)
+    created_by = models.ForeignKey(
+        User,
+        verbose_name=_("Created by"),
+        on_delete=models.SET(get_sentinel_user),
+        null=True,
+        related_name="created_%(app_label)s_%(class)s_set",
     )
 
-    titulo = models.CharField(max_length=150)
-    Data_postagem = models.DateField()
-    Texto = models.TextField()
-    matematicos = models.ForeignKey(Matematicos, on_delete=models.CASCADE, null=True, blank=True)
-    tipo = models.CharField(max_length=30, choices=TITULO_CHOICES)
+    class Meta:
+        abstract = True
 
-    def __str__(self):
-        return self.titulo
 
+class UpdateTimestampedModel(models.Model):
+    updated_at = models.DateTimeField(_("Updated at"), auto_now=True, editable=False)
+    updated_by = models.ForeignKey(
+        User,
+        verbose_name=_("Updated by"),
+        on_delete=models.SET(get_sentinel_user),
+        null=True,
+        related_name="updated_%(app_label)s_%(class)s_set",
+    )
+
+    class Meta:
+        abstract = True
+
+
+class TimestampedModel(CreationTimestampedModel, UpdateTimestampedModel):
+    class Meta:
+        abstract = True
+
+
+class BaseModel(UUIDModel, TimestampedModel):
+    class Meta:
+        abstract = True
