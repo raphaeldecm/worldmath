@@ -85,7 +85,7 @@ THIRD_PARTY_APPS = [
 LOCAL_APPS = [
     "worldmath.users",
     "worldmath.core",
-    "worldmath.Postagem"
+    "worldmath.Postagem",
     # Your stuff: custom apps go here
 ]
 # https://docs.djangoproject.com/en/dev/ref/settings/#installed-apps

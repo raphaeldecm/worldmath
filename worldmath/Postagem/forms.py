@@ -11,11 +11,11 @@ class MatematicosForm(forms.ModelForm):
             "placeholder": "Imagem",
         })
     )
-    Resumo = forms.TextInput(
+    Resumo = forms.CharField(
         widget=forms.TextInput(attrs={
-            "class": "form-control",
-            "placeholder": "Resumo",
-        })
+        "class": "form-control",
+        "placeholder": "Resumo",
+    })
     )
 
     class Meta:
@@ -36,32 +36,30 @@ class HistoriaForm(forms.ModelForm):
         fields = '__all__'
 
 class ExerciciosForm(forms.ModelForm):
-
-    Conteudo = forms.TextInput(
+    Conteudo = forms.CharField(
         widget=forms.TextInput(attrs={
             "class": "form-control",
             "placeholder": "Conteudo",
         })
     )
-    Formato = forms.TextInput(
+    Formato = forms.CharField(
         widget=forms.TextInput(attrs={
             "class": "form-control",
             "placeholder": "Formato",
         })
     )
-    Download = forms.TextInput(
+    Download = forms.CharField(
         widget=forms.TextInput(attrs={
             "class": "form-control",
             "placeholder": "Download",
         })
     )
-        
+
     class Meta:
-        model = Historia
+        model = Exercicios
         fields = '__all__'
 
 class DiversidadesForm(forms.ModelForm):
-
     imagem = forms.FileField(
         widget=forms.TextInput(attrs={
             "class": "form-control",
@@ -69,38 +67,46 @@ class DiversidadesForm(forms.ModelForm):
         })
     )
     categoria_diversidades = forms.ChoiceField(
-        choices=Diversidades.categoria_diversidades.choices,
-        label="Cetagoria_Diversidades",
-        widget=GovbrSelect,
+        choices=Diversidades.CategoriaDiversidades.choices,
+        label="Categoria_Diversidades",
+        widget=forms.Select(attrs={
+            "class": "form-control",
+            "placeholder": "Categoria_diversidade",
+        })
     )
 
     class Meta:
-        models: Diversidades
-        fiels = '__all__'
+        model = Diversidades
+        fields = '__all__'
+class PostagemForm(forms.ModelForm):
+    class Meta:
+        model = Postagem
+        fields = '__all__'
 
-class PostagemForm(forms.FormModel):
-
-    Titulo = forms.TextInput(
+    Titulo = forms.CharField(
         widget=forms.TextInput(attrs={
             "class": "form-control",
             "placeholder": "Titulo",
         })
     )
 
-    Texto = forms.TextInput(
+    Texto = forms.CharField(
         widget=forms.TextInput(attrs={
             "class": "form-control",
             "placeholder": "Texto",
         })
     )
 
-    categoria_diversidades = forms.ChoiceField(
-        choices=Postagem.categoria_postagem.choices,
-        label="Cetagoria_Postagem",
-        widget=GovbrSelect,
+    categoria_postagem = forms.ChoiceField(
+        choices=Postagem.CategoriaPostagem.choices,
+        label="Categoria_Postagem",
+        widget=forms.Select(attrs={
+            "class": "form-control",
+            "placeholder": "Categoria Postagem",
+        })
     )
 
-    Data_postagem = forms.DateInput(
+    Data_postagem = forms.DateField(
         widget=forms.TextInput(attrs={
             "class": "form-control",
             "placeholder": "Data_Postagem",

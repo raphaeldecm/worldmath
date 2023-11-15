@@ -1,0 +1,63 @@
+{% extends 'base_dashboard.html' %}
+
+{% block content %}
+<br>
+
+<main>
+    <div class="container px-4 px-lg-5 mt-5">
+        <section class="sct-form">
+            <div class="form">
+                <h1 style="margin-bottom: 40px;">Cadastre sua Postagem!</h1>
+
+                <form method="post" id="postagemForm">
+                    {% csrf_token %}
+
+                    <div class="mb-3">
+                        <label for="cnpj" class="form-label">Titulo da postagem</label>
+                        {{ form.Titulo }}
+                    </div>
+
+                    <div class="mb-3">
+                        <label for="nome_empresa" class="form-label">Texto</label>
+                        {{ form.Texto }}
+                    </div>
+
+                    <div class="mb-3">
+                        <label for="nome_empresa" class="form-label">Categoria da Postagem</label>
+                        {{ form.categoria_postagem }}
+                    </div>
+
+                    <div class="category-fields" id="categoryFields">
+                        <!-- Aqui é onde os campos específicos da categoria serão injetados via AJAX -->
+                    </div>
+
+                    <div class="mb-3">
+                        <label for="nome_empresa" class="form-label">Data da Postagem</label>
+                        {{ form.Data_postagem }}
+                    </div>
+
+                    <button type="submit" class="btn btn-primary">Enviar</button>
+                </form>
+            </div>
+        </section>
+    </div>
+</main>
+<script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+<script>
+    $(document).ready(function () {
+        $("#id_categoria_postagem").change(function () {
+            var category = $(this).val();
+            if (category) {
+                $.ajax({
+                    type: "GET",
+                    url: "/get_category_fields/" + category + "/",
+                    success: function (data) {
+                        $("#categoryFields").html(data);
+                    }
+                });
+            }
+        });
+    });
+</script>
+
+{% endblock %}
