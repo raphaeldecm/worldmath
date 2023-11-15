@@ -40,10 +40,14 @@ LOCALE_PATHS = [str(BASE_DIR / "locale")]
 # https://docs.djangoproject.com/en/dev/ref/settings/#databases
 
 DATABASES = {
-    "default": env.db(
-        "DATABASE_URL",
-        default="postgres://localhost/worldmath",
-    ),
+    "default": {
+    "ENGINE": "django.db.backends.postgresql",
+    "NAME": "worldmath",
+    "USER": "postgres",
+    "PASSWORD": "123456",
+    "HOST": "127.0.0.1",
+    "PORT": "5432",
+}
 }
 DATABASES["default"]["ATOMIC_REQUESTS"] = True
 # https://docs.djangoproject.com/en/stable/ref/settings/#std:setting-DEFAULT_AUTO_FIELD

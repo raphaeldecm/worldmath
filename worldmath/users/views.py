@@ -4,11 +4,12 @@ from django.contrib.messages.views import SuccessMessageMixin
 from django.urls import reverse
 from django.utils.translation import gettext_lazy as _
 from django.views.generic import DetailView, RedirectView, UpdateView
+from django.views import generic
 
 User = get_user_model()
 
 
-class UserDetailView(LoginRequiredMixin, DetailView):
+class UserDetailView(DetailView):
     model = User
     slug_field = "username"
     slug_url_kwarg = "username"
@@ -17,7 +18,7 @@ class UserDetailView(LoginRequiredMixin, DetailView):
 user_detail_view = UserDetailView.as_view()
 
 
-class UserUpdateView(LoginRequiredMixin, SuccessMessageMixin, UpdateView):
+class UserUpdateView(SuccessMessageMixin, UpdateView):
     model = User
     fields = ["name"]
     success_message = _("Information successfully updated")
@@ -33,7 +34,7 @@ class UserUpdateView(LoginRequiredMixin, SuccessMessageMixin, UpdateView):
 user_update_view = UserUpdateView.as_view()
 
 
-class UserRedirectView(LoginRequiredMixin, RedirectView):
+class UserRedirectView(RedirectView):
     permanent = False
 
     def get_redirect_url(self):
@@ -41,3 +42,9 @@ class UserRedirectView(LoginRequiredMixin, RedirectView):
 
 
 user_redirect_view = UserRedirectView.as_view()
+
+class UsersListView(LoginRequiredMixin, generic.ListView):
+    model = User
+    paginate_by = 5
+    ordering = ["name"]
+    template_name = "lista_users.html"

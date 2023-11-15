@@ -1,0 +1,159 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+    <meta name="description" content="" />
+    <meta name="author" content="" />
+    <title>FINECAP</title>
+
+    <!-- Bootstrap icons-->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css" rel="stylesheet" />
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+    {% block css %}
+    <link href="{% static 'css/style.css' %}" rel="stylesheet">
+    {% endblock %}
+
+    <!-- Fonte Rawline-->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link rel="stylesheet"
+        href="https://cdngovbr-ds.estaleiro.serpro.gov.br/design-system/fonts/rawline/css/rawline.css" />
+    <!-- Fonte Raleway-->
+    <link rel="stylesheet"
+        href="https://fonts.googleapis.com/css?family=Raleway:300,400,500,600,700,800,900&amp;display=swap" />
+    <!-- Design System de Governo-->
+    <link rel="stylesheet" href="{% static 'node_modules\@govbr-ds\core\dist\core.min.css' %}" />
+    <!-- Fontawesome-->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/css/all.min.css" />
+    <link rel="stylesheet" href="{% static 'css/global.css' %}">
+    <!-- Inclua o CSS do Bootstrap -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+
+    <!-- Inclua o jQuery -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+</head>
+
+<body>
+    <style>
+        
+    </style>
+    <!-- Navigation -->
+    <header>
+        <nav class="navbar navbar-expand-lg ">
+            <a class="navbar-brand" href="#">
+                <a style="width: 100%;" href="{% url 'Postagem:index' %}"><img class="img-fluid" src="{% static 'images/logo.png' %}"
+                        alt="Logo" width="30" height="30" class="d-inline-block align-top logo" alt=""></a>
+                <a style="text-decoration: none; color: black; margin-right: 2px;" href="{% url 'Postagem:index' %}"> <strong>WORLDMATH </strong></a>
+            </a>
+            <div class="container-fluid">
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+                    data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
+                    aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse " id="navbarSupportedContent">
+                    <form method="post" class="d-flex" role="search">
+                        <input class="form-control me-2" type="search" placeholder="O que você quer aprender hoje?"
+                            aria-label="Search">
+                    </form>
+                    <ul class="navbar-nav me-auto mb-2 mb-lg-0 ms-lg-4">
+                        <li class="nav-item">
+                            <a class="nav-link" href="#">Poesias</a>
+                        </li>
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
+                                aria-expanded="false">
+                                Matemáticos
+                            </a>
+                            <ul class="dropdown-menu">
+                                <li><a class="dropdown-item" href="#">Descartes</a></li>
+                                <li><a class="dropdown-item" href="#">Euler</a></li>
+                                <li><a class="dropdown-item" href="#">Pitágoras</a></li>
+                                <li><a class="dropdown-item" href="{% url 'Postagem:arquimedes' %}">Arquimedes</a></li>
+                                <li><a class="dropdown-item" href="#">Euclides</a></li>
+                            </ul>
+
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="{% url 'Postagem:exercicios' %}">Exercícios</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="{% url 'Postagem:matematica' %}">História</a>
+                        </li>
+                        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                            {% if request.user.is_anonymous %}
+                            <div class="btn-group" role="group" aria-label="Entrar ou Cadastrar">
+                                <a href="#" class="btn btn-primary" type="button" data-trigger="login">
+                                    <i class="fas fa-user" aria-hidden="true"></i> Entrar
+                                </a>
+                                <a href="{% url 'account_signup' %}" class="btn btn-primary" type="button">
+                                    <i class="fas fa-user-plus" aria-hidden="true"></i> Cadastrar-se
+                                </a>
+                            </div>
+                            {% endif %}
+                            {% if request.user.is_authenticated %}
+                            <div class="header-avatar text-center">
+                                <div class="avatar dropdown mx-auto">
+                                    <button class="btn btn-secondary btn-round dropdown-toggle" type="button"
+                                        id="userMenu" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                        <i class="fas fa-user" aria-hidden="true"></i>
+                                    </button>
+                                    <div class="dropdown-menu user-menu" aria-labelledby="userMenu">
+                                        <div class="row">
+                                            <div class="col-12 text-center">
+                                                <div class="user-info my-auto">
+                                                    <h4 class="text-bold">{{ request.user }}</h4>
+                                                    <small>{{ request.user.email }}</small><br />
+                                                    <small><a style="text-decoration: none;"
+                                                            href="{% url 'account_change_password' %}">Alterar
+                                                            senha</a></small>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="dropdown-divider"></div>
+                                        <div class="row">
+                                            <div class="col-12 text-center">
+                                                <form method="post" action="{% url 'account_logout' %}">
+                                                    {% csrf_token %}
+                                                    {% if redirect_field_value %}
+                                                    <input type="hidden" name="{{ redirect_field_name }}"
+                                                        value="{{ redirect_field_value }}" />
+                                                    {% endif %}
+                                                    <button class="btn btn-danger btn-round btn-block" type="submit">
+                                                        <i class="fas fa-sign-out-alt" aria-hidden="true"></i> Sair
+                                                    </button>
+                                                </form>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            {% endif %}
+                        </div>
+                    </ul>
+
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <main>
+        <div class="main-content pl-sm-3 mt-4" id="main-content">
+
+            {% block content %}
+
+            {% endblock %}
+
+        </div>
+
+    </main>
+</body>

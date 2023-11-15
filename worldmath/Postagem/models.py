@@ -4,49 +4,46 @@ from django.utils.translation import gettext_lazy as _
 from core.constants import (MAX_CHAR_FIELD_NAME_LENGTH,
                             MEDIUM_CHAR_FIELD_NAME_LENGTH,
                             SMALL_CHAR_FIELD_NAME_LENGTH)
+from core.models import BaseModel
+
 
 # Create your models here.
-class Matematicos(models.Model):
+class Matematicos(BaseModel):
     imagem = models.ImageField(upload_to='imagens')
-    Resumo = models.CharField(max_length=300)
+    Resumo = models.CharField(max_length=MAX_CHAR_FIELD_NAME_LENGTH)
 
-    
-    def __str__(self):
-        return self.titulo
+class Historia(BaseModel):
+    imagem = models.ImageField(upload_to='imagens')
 
-class Poesias(models.Model):
-    Autor = models.CharField(max_length=150)
-
-    def __str__(self):
-        return self.Autor
-
-class Historia(models.Model):
-
-    def __str__(self):
-        return self.titulo
-
-class Exercicios(models.Model):
-    conteudo = models.CharField(max_length=150)
-    tipo_arquivo = models.CharField(max_length=30)
-    Url = models.CharField(max_length=150)
+class Exercicios(BaseModel):
+    conteudo = models.CharField(max_length=MEDIUM_CHAR_FIELD_NAME_LENGTH)
+    tipo_arquivo = models.CharField(max_length=SMALL_CHAR_FIELD_NAME_LENGTH)
+    Url = models.CharField(max_length=MEDIUM_CHAR_FIELD_NAME_LENGTH)
 
     def __str__(self):
         return self.conteudo
+    
+class Diversidades(BaseModel):
+    class CategoriaDiversidades(models.TextChoices):
+        Enem = "Enem", _("Enem")
+        Novidades = "Novidades", _("Novidades")
 
-class Postagem(models.Model):
-    TITULO_CHOICES = (
-        ('exercicios', 'Exercícios'),
-        ('matematicos', 'Matemáticos'),
-        ('poesias', 'Poesias'),
-        ('historia', 'História'),
-    )
+    imagem = models.ImageField(upload_to='imagens')
+    categoria_diversidades = models.CharField(max_length=SMALL_CHAR_FIELD_NAME_LENGTH, choices=CategoriaDiversidades.choices,)    
 
-    titulo = models.CharField(max_length=150)
+
+class Postagem(BaseModel):
+    class CategoriaPostagem(models.TextChoices):
+        Exercicios = "Exercicios", _("Exercicios")
+        Matematicos = "Matematicos", _("Matematicos")
+        Historia = "Historia", _("Historia")
+        Diversidades = "Diversidades", _("Diversidades")
+
+    titulo = models.CharField(max_length=MEDIUM_CHAR_FIELD_NAME_LENGTH)
     Data_postagem = models.DateField()
     Texto = models.TextField()
-    matematicos = models.ForeignKey(Matematicos, on_delete=models.CASCADE, null=True, blank=True)
-    tipo = models.CharField(max_length=30, choices=TITULO_CHOICES)
+    categoria_postagem = models.CharField(max_length=SMALL_CHAR_FIELD_NAME_LENGTH, choices=CategoriaPostagem.choices,)
+
 
     def __str__(self):
         return self.titulo
-
