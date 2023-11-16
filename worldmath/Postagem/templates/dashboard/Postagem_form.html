@@ -13,13 +13,18 @@
                     {% csrf_token %}
 
                     <div class="mb-3">
-                        <label for="cnpj" class="form-label">Titulo da postagem</label>
-                        {{ form.Titulo }}
+                        <label for="Titulo" class="form-label">Titulo da postagem</label>
+                        {{ form.titulo }}
                     </div>
 
                     <div class="mb-3">
-                        <label for="nome_empresa" class="form-label">Texto</label>
+                        <label for="Texto" class="form-label">Texto</label>
                         {{ form.Texto }}
+                    </div>
+
+                    <div class="mb-3">
+                        <label for="data_postagem" class="form-label">Data da Postagem</label>
+                        {{ form.Data_postagem }}
                     </div>
 
                     <div class="mb-3">
@@ -27,13 +32,31 @@
                         {{ form.categoria_postagem }}
                     </div>
 
-                    <div class="category-fields" id="categoryFields">
-                        <!-- Aqui é onde os campos específicos da categoria serão injetados via AJAX -->
+                    {# Campos específicos para a categoria "Matematicos" e "Historia" #}
+                    <div class="mb-3" id="conteudo-container">
+                        <label for="conteudo" class="form-label">Conteúdo</label>
+                        {{ form.conteudo }}
                     </div>
 
-                    <div class="mb-3">
-                        <label for="nome_empresa" class="form-label">Data da Postagem</label>
-                        {{ form.Data_postagem }}
+                    <div class="mb-3" id="tipo-arquivo-container">
+                        <label for="tipo_arquivo" class="form-label">Tipo do Arquivo</label>
+                        {{ form.tipo_arquivo }}
+                    </div>
+
+                    <div class="mb-3" id="url-container">
+                        <label for="url" class="form-label">URL</label>
+                        {{ form.Url }}
+                    </div>
+
+                    {# Campos específicos para a categoria "Exercicios" #}
+                    <div class="mb-3" id="imagem-container">
+                        <label for="imagem" class="form-label">Imagem</label>
+                        {{ form.imagem }}
+                    </div>
+
+                    <div class="mb-3" id="resumo-container">
+                        <label for="resumo" class="form-label">Resumo</label>
+                        {{ form.resumo }}
                     </div>
 
                     <button type="submit" class="btn btn-primary">Enviar</button>
@@ -41,23 +64,34 @@
             </div>
         </section>
     </div>
-</main>
-<script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
-<script>
-    $(document).ready(function () {
-        $("#id_categoria_postagem").change(function () {
-            var category = $(this).val();
-            if (category) {
-                $.ajax({
-                    type: "GET",
-                    url: "/get_category_fields/" + category + "/",
-                    success: function (data) {
-                        $("#categoryFields").html(data);
-                    }
-                });
+
+    <script>
+        document.getElementById('id_categoria_postagem').addEventListener('change', function () {
+            var categoriaSelecionada = this.value;
+
+            // Oculta todos os campos específicos
+            document.getElementById('conteudo-container').style.display = 'none';
+            document.getElementById('tipo-arquivo-container').style.display = 'none';
+            document.getElementById('url-container').style.display = 'none';
+            document.getElementById('imagem-container').style.display = 'none';
+            document.getElementById('resumo-container').style.display = 'none';
+
+            // Exibe os campos específicos da categoria selecionada
+            if (categoriaSelecionada === 'Matematicos' || categoriaSelecionada === 'Historia') {
+                document.getElementById('imagem-container').style.display = 'block';
+                document.getElementById('resumo-container').style.display = 'block';
+
+            } else if (categoriaSelecionada === 'Exercicios') {
+                document.getElementById('conteudo-container').style.display = 'block';
+                document.getElementById('tipo-arquivo-container').style.display = 'block';
+                document.getElementById('url-container').style.display = 'block';
+
+            } else if (categoriaSelecionada === 'Novidades') {
+                document.getElementById('imagem-container').style.display = 'block';
+                document.getElementById('resumo-container').style.display = 'block';
             }
         });
-    });
-</script>
+    </script>
+</main>
 
 {% endblock %}

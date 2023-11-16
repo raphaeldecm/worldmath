@@ -1,9 +1,9 @@
 from django.contrib.auth import get_user_model
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.contrib.messages.views import SuccessMessageMixin
-from django.urls import reverse
+from django.urls import reverse, reverse_lazy
 from django.utils.translation import gettext_lazy as _
-from django.views.generic import DetailView, RedirectView, UpdateView
+from django.views.generic import DetailView, RedirectView, UpdateView, DeleteView
 from django.views import generic
 
 User = get_user_model()
@@ -48,3 +48,8 @@ class UsersListView(LoginRequiredMixin, generic.ListView):
     paginate_by = 5
     ordering = ["name"]
     template_name = "lista_users.html"
+
+class UserDeleteView(LoginRequiredMixin, generic.DeleteView):
+    model = User
+    success_url = reverse_lazy("users:lista_usuarios")
+    success_message = "reserva cancelada com sucesso!!"
