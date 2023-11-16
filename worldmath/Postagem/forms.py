@@ -40,7 +40,7 @@ class PostagemForm(forms.ModelForm):
                 "class": "form-control",
                 "placeholder": "Imagem",
             }),
-            'resumo': forms.TextInput(attrs={
+            'Resumo': forms.TextInput(attrs={
                 "class": "form-control",
                 "placeholder": "Resumo",
             }),
