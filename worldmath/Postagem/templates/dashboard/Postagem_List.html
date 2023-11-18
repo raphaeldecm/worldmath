@@ -20,6 +20,7 @@
           <tr>
             <th>Titulo</th>     
             <th>Categoria</th>
+            <th>Data da Postagem</th>
             <th>Ações</th>
           </tr>
       </thead>
@@ -28,6 +29,7 @@
               <tr>
                   <td>{{ object.titulo }}</td>
                   <td>{{ object.categoria_postagem }}</td>
+                  <td>{{ object.created_at }}</td>
                   <td>
                       <div class="d-flex align-items-center">
                           <a href="{% url 'Postagem:Editar_postagem' object.id %}" class="btn btn-primary btn-sm mr-2">
