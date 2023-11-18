@@ -80,6 +80,7 @@ THIRD_PARTY_APPS = [
     "allauth",
     "allauth.account",
     "allauth.socialaccount",
+    "bootstrap5"
 ]
 
 LOCAL_APPS = [

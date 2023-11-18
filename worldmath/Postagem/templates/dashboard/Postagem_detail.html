@@ -1,0 +1,24 @@
+
+<form method="post" action="{% url 'main:reservas-detail' object.id %}">
+    {% csrf_token %}
+<div class="modal fade bd-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="container my-5">
+            <a class="btn btn-outline-primary btn-sm mb-3" href="{% url 'main:Listagem' %}">
+                <i class="fas fa-arrow-left"></i> Voltar
+            </a>
+        
+            <div class="card mx-auto" style="max-width: 400px;">
+                <div class="card-body">
+                    <h3 class="card-title text-primary">{{ object.nome_empresa }}</h3>
+                    <p class="card-text"><strong>CNPJ:</strong> {{ object.cnpj }}</p>
+                    <p class="card-text"><strong>Categoria:</strong> {{ object.categoria_empresa }}</p>
+                    <p class="card-text"><strong>Quitado:</strong> {% if object.quitado %} Sim {% else %} Não {% endif %}</p>
+                    <p class="card-text"><strong>Stand:</strong> {{ object.stand }}</p>
+                    <p class="card-text"><strong>Valor do Stand:</strong> R$ {{ object.stand.valor|floatformat:2 }}</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</form>

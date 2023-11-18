@@ -15,7 +15,6 @@ def get_sentinel_user():
 
 class UUIDModel(models.Model):
     uuid = models.UUIDField(unique=True, editable=False, default=uuid.uuid4)
-
     class Meta:
         abstract = True
 
@@ -41,6 +40,7 @@ class UpdateTimestampedModel(models.Model):
         verbose_name=_("Updated by"),
         on_delete=models.SET(get_sentinel_user),
         null=True,
+
         related_name="updated_%(app_label)s_%(class)s_set",
     )
 

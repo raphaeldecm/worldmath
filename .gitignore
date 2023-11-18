@@ -262,7 +262,7 @@ GitHub.sublime-settings
 # Session
 Session.vim
 
-# Temporary
+# Temporary 
 .netrwhist
 
 # Auto-generated tag files
@@ -275,3 +275,4 @@ dump.rdb
 worldmath/media/
 
 .pytest_cache/
+.env

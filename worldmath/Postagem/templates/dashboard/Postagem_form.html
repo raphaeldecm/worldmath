@@ -1,5 +1,5 @@
 {% extends 'base_dashboard.html' %}
-
+{% load bootstrap5 %}
 {% block content %}
 <br>
 
@@ -13,53 +13,43 @@
                     {% csrf_token %}
 
                     <div class="mb-3">
-                        <label for="Titulo" class="form-label">Titulo da postagem</label>
-                        {{ form.titulo }}
+                        {% bootstrap_field form.titulo %}
                     </div>
 
                     <div class="mb-3">
-                        <label for="Texto" class="form-label">Texto</label>
-                        {{ form.Texto }}
+                        {% bootstrap_field form.categoria_postagem %}
+                        
                     </div>
 
                     <div class="mb-3">
-                        <label for="data_postagem" class="form-label">Data da Postagem</label>
-                        {{ form.Data_postagem }}
-                    </div>
-
-                    <div class="mb-3">
-                        <label for="nome_empresa" class="form-label">Categoria da Postagem</label>
-                        {{ form.categoria_postagem }}
+                        {% bootstrap_field form.Texto %}
                     </div>
 
                     {# Campos específicos para a categoria "Matematicos" e "Historia" #}
                     <div class="mb-3" id="conteudo-container">
-                        <label for="conteudo" class="form-label">Conteúdo</label>
-                        {{ form.conteudo }}
+
+                        {% bootstrap_field form.conteudo %}
                     </div>
 
                     <div class="mb-3" id="tipo-arquivo-container">
-                        <label for="tipo_arquivo" class="form-label">Tipo do Arquivo</label>
-                        {{ form.tipo_arquivo }}
+                        {% bootstrap_field form.tipo_arquivo %}
                     </div>
 
                     <div class="mb-3" id="url-container">
-                        <label for="url" class="form-label">URL</label>
-                        {{ form.Url }}
+                        {% bootstrap_field form.Url %}
                     </div>
 
                     {# Campos específicos para a categoria "Exercicios" #}
                     <div class="mb-3" id="imagem-container">
-                        <label for="imagem" class="form-label">Imagem</label>
-                        {{ form.imagem }}
+                        {% bootstrap_field form.imagem %}
                     </div>
 
                     <div class="mb-3" id="resumo-container">
-                        <label for="resumo" class="form-label">Resumo</label>
-                        {{ form.Resumo }}
+                        {% bootstrap_field form.Resumo %}
                     </div>
 
-                    <button type="submit" class="btn btn-primary">Enviar</button>
+                    <button type="submit" id="submit-btn" class="btn btn-primary">Enviar</button>
+
                 </form>
             </div>
         </section>
@@ -90,6 +80,10 @@
                 document.getElementById('imagem-container').style.display = 'block';
                 document.getElementById('resumo-container').style.display = 'block';
             }
+        });
+
+        document.getElementById('submit-btn').addEventListener('click', function () {
+            document.getElementById('postagemForm').submit();
         });
     </script>
 </main>
