@@ -6,7 +6,7 @@ app_name = "Postagem"
 
 urlpatterns = [
     path('', views.IndexView.as_view(), name='index'),
-    path('arquimedes', views.ArquimedesView.as_view(), name='arquimedes'),
+    path('Galeria/', views.GalleryView.as_view(), name='galeria'),
     path('exercicios', views.ExerciciosView.as_view(), name='exercicios'),
     path('matematica', views.MatematicaView.as_view(), name='matematica'),
     path('Cadastrar_postagem/', views.PostagemCreateView.as_view(), name='CadastroPostagem'),

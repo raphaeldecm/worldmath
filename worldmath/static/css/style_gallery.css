@@ -1,0 +1,177 @@
+:root {
+    --background: #fffff;
+    --background-border: #ffffff;
+}
+body{
+    font-family: 'Poppins', sans-serif;
+}
+.marg-nav{
+    background-color: #d9d9d9 ;
+}
+nav{
+    width: 95%;
+    margin: auto;
+}
+a{
+    list-style: none;
+    text-decoration: none;
+    color: #050927;
+}
+
+nav form{
+    width: 28rem;
+    }
+a{
+        list-style: none;
+        text-decoration: none;
+        color: #050927;
+    }
+nav input{
+        margin-left: 50px;
+    }
+nav li {
+        margin: 0 28px;
+    }
+nav ul button{
+        width: 180px;
+        background-color: blue;
+        color: #FFFFFF;
+        border: none;
+        margin-left: 30px;
+        height: 40px;
+    }
+.logo{
+    margin-right: 15px;
+}
+.nav-link{
+    color: #050927;
+}
+main {
+background-color: #FFFFFF;
+height: 100vh;
+padding: 32px;
+display: grid;
+place-items: center;
+background-color: var(--background);
+}
+
+.gallery {
+    display: flex;
+    background-color: var(--background);
+    gap: 16px;
+    margin-top: -25%;
+}
+
+.card-row {
+    display: flex;
+    gap: 16px;
+    flex-wrap: wrap;
+}
+#Text-Figcaption{
+    font-size: 15px;
+    font-weight: bold;
+    font-family: 'Poppins';
+
+}
+.card {
+/*     width: calc(20%);*/
+    position: relative;
+    left: 0px;
+    height: 160px;
+    background-color: var(--background);
+    border-radius: 5px;
+    transition: 1000ms all;
+    transform-origin: center left;
+    box-shadow: 0 5px 12px rgba(0, 0, 0, 0.5);
+    outline: 1px solid var(--background);
+    overflow: hidden;
+    margin-left: 6px;
+    margin-bottom: 10px;
+}
+
+.card img {
+    height: 160px;
+    object-fit: cover;
+    border-radius: 4px;
+    width: 100%;
+}
+
+.card:hover {
+    cursor: pointer;
+    transform: scale(1.15);
+}
+
+.card:hover figcaption {
+    font-size: 0.6rem;
+    position: absolute;
+    height: 80px;
+    width: 160px;
+    display: flex;
+    align-items: end;
+    background: linear-gradient(
+        to top,
+        rgba(0, 0, 0, 0.9) 0%,
+        rgba(0, 0, 0, 0) 100%
+    );
+    color: white;
+    left: 0px;
+    bottom: 0px;
+    padding-left: 12px;
+    padding-bottom: 10px;
+}
+
+.card:hover ~ .card {
+    font-weight: bold;
+    cursor: pointer;
+    transform: translateX(22px);
+}
+
+
+.quersaber{
+    background: rgba(0, 36, 64, 0.9);
+    border-radius: 20px;
+    color: #FFFFFF;
+    width: 95%;
+    margin: auto;
+    margin-top: 20px;
+}
+.bt-quero{
+    background: #FFFFFF;
+    border-radius: 30px;
+    border: none;
+    width: 150px;
+    height: 35px;
+    color: #050927;
+    font-weight: bold;
+    font-size: 16px;
+}
+
+
+
+footer{
+    background-color: #E4E4E4;
+    padding: 50px 0;
+}
+.p-ifrn{
+ text-align: center;
+ margin-top: 10px;
+}
+.links  {
+    list-style:none;
+    font-size: 14px;
+
+}
+.links a{
+    text-decoration: none;
+    color: #050927;
+}
+.links li{
+    margin: 5px 0;
+}
+.numero{
+    margin: 30px 0;
+}
+.border-links{
+    border-bottom: 2px solid #0318D3;
+    width: 80%;
+}

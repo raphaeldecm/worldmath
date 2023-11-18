@@ -1,4 +1,3 @@
-{% load static %}
 {% load static i18n %}
 <!DOCTYPE html>
 {% get_current_language as LANGUAGE_CODE %}
@@ -15,23 +14,26 @@
     <link rel="icon" href="{% static 'images/favicons/favicon.ico' %}">
 
     {% block css %}
-
+    <!-- Latest compiled and minified Bootstrap CSS -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.2.3/css/bootstrap.min.css"
         integrity="sha512-SbiR/eusphKoMVVXysTKG/7VseWii+Y3FdHrt0EpKgpToZeemhqHeZeLWLhJutz/2ut2Vw1uQEj2MbRF+TVBUA=="
         crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <!-- Your stuff: Third-party CSS libraries go here -->
 
-    <link href="{% static 'css/index.css' %}" rel="stylesheet">
+    <!-- This file stores project-specific CSS -->
+    <link href="{% static 'css/style_gallery.css' %}" rel="stylesheet">
     {% endblock %}
-
+    <!-- Le javascript
+    ================================================== -->
     {# Placed at the top of the document so pages load faster with defer #}
     {% block javascript %}
-    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.10.1/dist/umd/popper.min.js"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
-
+    <!-- Bootstrap JS -->
     <script defer src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.2.3/js/bootstrap.min.js"
         integrity="sha512-1/RvZTcCDEUjY/CypiMz+iqqtaoQfAITmNSJY17Myp4Ms5mdxPS5UV7iOfdZoxcGhzFbOm6sntTKJppjvuhg4g=="
         crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <!-- Your stuff: Third-party javascript libraries go here -->
+
+    <!-- place project specific Javascript in this file -->
     <script defer src="{% static 'js/project.js' %}"></script>
 
     {% endblock javascript %}
@@ -39,7 +41,6 @@
 </head>
 
 <body>
-    
     <header>
         <nav class="navbar navbar-expand-lg ">
             <a class="navbar-brand" href="#">
@@ -71,19 +72,48 @@
                         <li class="nav-item">
                             <a class="nav-link" href="{% url 'Postagem:matematica' %}">História</a>
                         </li>
-                        <a class="d-flex align-items-center" href="#"><button type="button"
-                                class="">FALE
+                        <a class="d-flex align-items-center" href="#"><button type="button" class="">FALE
                                 CONOSCO</button></a>
                     </ul>
-
                 </div>
             </div>
         </nav>
     </header>
+    <main>
+        <section class="quersaber container-fluid">
+            <div class="row d-flex justify-content-around d-flex align-items-center">
+                <div class="col-xl-2 col-lg-4 col-md-8">
+                    <h3>Quer saber mais?</h3>
+                    <button class="bt-quero">QUERO!</button>
+                </div>
+                <div class="col-xl-5 col-lg-8 col-md-8">
+                    <h3>A "Espiral de Arquimedes" e a "Alavanca" são algumas de suas invenções.</h3>
+                    <h3>Arquimedes, físico e inventor</h3>
+                </div>
+                <div class="col-xl-2 col-lg-6 col-md-8">
+                    <img class="img-fluid" src="{% static 'images/quersaer.png' %}" alt="">
+                </div>
+            </div>
+        </section>
+        <div class="gallery">
 
-    {% block content %}
+            <div class="card-row">
+                {% for postagem in object_list %}
+                {% if postagem.categoria_postagem == 'Matematicos' %}
+                <article class="card">
+                    <figure>
+                        <img style="font-size: 15px;" src="{{ postagem.imagem.url }}" alt="{{ postagem.titulo }}">
+                        <figcaption>
+                            <h3 id="Text-Figcaption">{{ postagem.titulo }}</h3>
+                        </figcaption>
+                    </figure>
+                </article>
+                {% endif %}
+                {% endfor %}
+            </div>
 
-    {% endblock content %}
+        </div>
+    </main>
 
     <footer class="container-fluid">
         <div class="row d-flex justify-content-evenly">

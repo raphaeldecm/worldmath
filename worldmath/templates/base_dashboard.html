@@ -45,7 +45,7 @@
 <body>
     <style>
         
-    </style>
+    </style>    
     <!-- Navigation -->
     <header>
         <nav class="navbar navbar-expand-lg ">
@@ -69,22 +69,11 @@
                         <li class="nav-item">
                             <a class="nav-link" href="#">Poesias</a>
                         </li>
-                        <li class="nav-item dropdown">
-                            <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
-                                aria-expanded="false">
-                                Matemáticos
-                            </a>
-                            <ul class="dropdown-menu">
-                                <li><a class="dropdown-item" href="#">Descartes</a></li>
-                                <li><a class="dropdown-item" href="#">Euler</a></li>
-                                <li><a class="dropdown-item" href="#">Pitágoras</a></li>
-                                <li><a class="dropdown-item" href="{% url 'Postagem:arquimedes' %}">Arquimedes</a></li>
-                                <li><a class="dropdown-item" href="#">Euclides</a></li>
-                            </ul>
-
-                        </li>
                         <li class="nav-item">
                             <a class="nav-link" href="{% url 'Postagem:exercicios' %}">Exercícios</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="{% url 'Postagem:galeria' %}">Matemáticos</a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link" href="{% url 'Postagem:matematica' %}">História</a>

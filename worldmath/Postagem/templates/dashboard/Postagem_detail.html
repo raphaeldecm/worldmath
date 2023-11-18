@@ -1,24 +1,44 @@
+{% extends 'base_dashboard.html' %}
+{% load static %}
+{% block content %}
 
-<form method="post" action="{% url 'main:reservas-detail' object.id %}">
-    {% csrf_token %}
-<div class="modal fade bd-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
-    <div class="modal-dialog modal-lg">
-        <div class="container my-5">
-            <a class="btn btn-outline-primary btn-sm mb-3" href="{% url 'main:Listagem' %}">
-                <i class="fas fa-arrow-left"></i> Voltar
-            </a>
-        
-            <div class="card mx-auto" style="max-width: 400px;">
-                <div class="card-body">
-                    <h3 class="card-title text-primary">{{ object.nome_empresa }}</h3>
-                    <p class="card-text"><strong>CNPJ:</strong> {{ object.cnpj }}</p>
-                    <p class="card-text"><strong>Categoria:</strong> {{ object.categoria_empresa }}</p>
-                    <p class="card-text"><strong>Quitado:</strong> {% if object.quitado %} Sim {% else %} Não {% endif %}</p>
-                    <p class="card-text"><strong>Stand:</strong> {{ object.stand }}</p>
-                    <p class="card-text"><strong>Valor do Stand:</strong> R$ {{ object.stand.valor|floatformat:2 }}</p>
-                </div>
-            </div>
-        </div>
+<div class="container my-5">
+    <div class="row">
+        <h3>Detalhes da Postagem</h3>
+        <br>
+        <table style="width: 100%;" class="table table-bordered">
+            <thead>
+                <tr>
+                    <th>Titulo</th>
+                    <th>Texto</th>
+                    <th>Imagem</th>
+                    <th>Resumo</th>
+                    <th>Conteudo</th>
+                    <th>Tipo arquivo</th>
+                    <th>Url</th>
+                    <th>Categoria da Postagem</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>{{ object.titulo }}</td>
+                    <td>{{ object.Texto }}</td>
+                    <td>
+                        {% if object.imagem %}
+                            <img src="{{ object.imagem.url }}" alt="">
+                        {% else %}
+                            Sem imagem disponível
+                        {% endif %}
+                    </td>
+                    <td>{{ object.Resumo }}</td>
+                    <td>{{ object.conteudo }}</td>
+                    <td>{{ object.tipo_arquivo }}</td>
+                    <td>{{ object.Url }}</td>
+                    <td>{{ object.categoria_postagem }}</td>
+                </tr>
+            </tbody>
+        </table>
     </div>
+</div>
 
-</form>
+{% endblock %}

@@ -9,7 +9,7 @@
             <div class="form">
                 <h1 style="margin-bottom: 40px;">Cadastre sua Postagem!</h1>
 
-                <form method="post" id="postagemForm">
+                <form method="post" id="postagemForm" enctype="multipart/form-data">
                     {% csrf_token %}
 
                     <div class="mb-3">

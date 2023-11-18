@@ -13,8 +13,9 @@ def Login(request):
 class IndexView(generic.TemplateView):
     template_name = "index.html"
 
-class ArquimedesView(generic.TemplateView):
-    template_name = "arquimedes.html"
+class GalleryView(generic.ListView):
+    model = Postagem
+    template_name = "gallery.html"
     
 class ExerciciosView(generic.TemplateView):
     template_name = "exercicios.html"
@@ -64,6 +65,7 @@ class PostagemDeleteView(LoginRequiredMixin, views.SuccessMessageMixin, generic.
 
 class PostagemDetailView(LoginRequiredMixin, generic.DetailView):
     model = Postagem
+    template_name = "dashboard/Postagem_detail.html"
 
 class PostagemUpdateView(LoginRequiredMixin, views.SuccessMessageMixin, generic.UpdateView):
     model = Postagem
