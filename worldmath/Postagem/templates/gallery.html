@@ -70,11 +70,13 @@
                             <a class="nav-link" href="{% url 'Postagem:galeria' %}">Matemáticos</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="{% url 'Postagem:matematica' %}">História</a>
+                            <a class="nav-link" href="{% url 'Postagem:Historia' %}">História</a>
                         </li>
-                        <a class="d-flex align-items-center" href="#"><button type="button" class="">FALE
+                        <a class="d-flex align-items-center" href="#"><button type="button"
+                                class="">FALE
                                 CONOSCO</button></a>
                     </ul>
+    
                 </div>
             </div>
         </nav>
@@ -124,19 +126,18 @@
                 <div class="border-links">
                     <h4>Links</h4>
                 </div>
-
+    
                 <li><a href="{% url 'Postagem:index' %}">Home</a></li>
-                <li><a href="">Matemáticos</a></li>
-                <li><a href="{% url 'Postagem:matematica' %}">História</a></li>
-                <li><a href="#">Poetas</a></li>
+                <li><a href="{% url 'Postagem:galeria' %}">Matematicos</a></li>
+                <li><a href="{% url 'Postagem:Historia' %}">História</a></li>
                 <li><a href="">Sobre nós</a></li>
-
+    
             </div>
             <div class="col-xl-2 col-lg-8 d-flex flex-column align-items-center">
-
+    
                 <img class="img-fluid" src="{% static 'images/pngs 1.png' %}" alt="pngs">
                 <p class="p-ifrn">Projetado e desenvolvido por alunos do IFRN</p>
-
+    
             </div>
             <div class="col-xl-2 col-lg-8">
                 <h3 class="border-links"><strong> Contato</strong></h3>

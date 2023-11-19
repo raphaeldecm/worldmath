@@ -5,11 +5,12 @@ from django.urls import reverse, reverse_lazy
 from django.utils.translation import gettext_lazy as _
 from django.views.generic import DetailView, RedirectView, UpdateView, DeleteView
 from django.views import generic
+from users.permissions import AdministradorPermission, SuperAdministradorPermission
 
 User = get_user_model()
 
 
-class UserDetailView(DetailView):
+class UserDetailView(SuperAdministradorPermission,LoginRequiredMixin, DetailView):
     model = User
     slug_field = "username"
     slug_url_kwarg = "username"
@@ -18,7 +19,7 @@ class UserDetailView(DetailView):
 user_detail_view = UserDetailView.as_view()
 
 
-class UserUpdateView(SuccessMessageMixin, UpdateView):
+class UserUpdateView(SuperAdministradorPermission,LoginRequiredMixin, SuccessMessageMixin, UpdateView):
     model = User
     fields = ["name"]
     success_message = _("Information successfully updated")
@@ -43,13 +44,13 @@ class UserRedirectView(RedirectView):
 
 user_redirect_view = UserRedirectView.as_view()
 
-class UsersListView(LoginRequiredMixin, generic.ListView):
+class UsersListView(SuperAdministradorPermission, LoginRequiredMixin, generic.ListView):
     model = User
     paginate_by = 5
     ordering = ["name"]
     template_name = "lista_users.html"
 
-class UserDeleteView(LoginRequiredMixin, generic.DeleteView):
+class UserDeleteView(SuperAdministradorPermission, LoginRequiredMixin, generic.DeleteView):
     model = User
     success_url = reverse_lazy("users:lista_usuarios")
     success_message = "reserva cancelada com sucesso!!"

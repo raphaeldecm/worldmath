@@ -37,14 +37,14 @@
 <header>
     <nav class="navbar navbar-expand-lg ">
         <a class="navbar-brand" href="#">
-            <a href="{% url 'Postagem:index' %}"><img class="img-fluid" src="{% static 'images/logo.png' %}" alt="Logo"
-                    width="30" height="30" class="d-inline-block align-top logo" alt=""></a>
+            <a href="{% url 'Postagem:index' %}"><img class="img-fluid" src="{% static 'images/logo.png' %}"
+                    alt="Logo" width="30" height="30" class="d-inline-block align-top logo" alt=""></a>
             <a href="{% url 'Postagem:index' %}"> <strong>WORLDMATH </strong></a>
         </a>
         <div class="container-fluid">
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
-                data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
-                aria-label="Toggle navigation">
+                data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
+                aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
             <div class="collapse navbar-collapse " id="navbarSupportedContent">
@@ -54,31 +54,19 @@
                 </form>
                 <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                     <li class="nav-item">
-                        <a class="nav-link" href="#">Poesias</a>
-                    </li>
-                    <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
-                            aria-expanded="false">
-                            Matemáticos
-                        </a>
-                        <ul class="dropdown-menu">
-                            <li><a class="dropdown-item" href=#>Descartes</a></li>
-                            <li><a class="dropdown-item" href=#>Euler</a></li>
-                            <li><a class="dropdown-item" href=#>Pitágoras</a></li>
-                            <li><a class="dropdown-item" href="{% url 'Postagem:arquimedes' %}">Arquimedes</a></li>
-                            <li><a class="dropdown-item" href=#>Euclides</a></li>
-                        </ul>
-
+                        <a class="nav-link" href="#">Novidades</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="{% url 'Postagem:exercicios' %}">Exercícios</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="{% url 'Postagem:matematica' %}">História</a>
+                        <a class="nav-link" href="{% url 'Postagem:galeria' %}">Matemáticos</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{% url 'Postagem:Historia' %}">História</a>
                     </li>
                     <a class="d-flex align-items-center" href="#"><button type="button"
-                            class="">FALE
-                            CONOSCO</button></a>
+                            class="">Sing in</button></a>
                 </ul>
 
             </div>
@@ -113,20 +101,26 @@
         <table class="table">
             <thead>
                 <tr>
-                    <th scope="col">Conteúdo</th>
-                    <th scope="col">Type</th>
-                    <th scope="col">Download</th>
-                    <th></th>
+                    <th style="width: 30%;" scope="col">Conteúdo</th>
+                    <th style="width: 30%;" scope="col">Type</th>
+                    <th style="width: 30%;" scope="col">Download</th>
+                    <th style="width: 10%;"></th>
                 </tr>
             </thead>
             <tbody>
-                {% for exercicio in Tabela %}
+                {% for postagem in object_list %}
+               {% if postagem.categoria_postagem == 'Exercicios' %}
                 <tr>
-                    <td>{{ exercicio.conteudo }}</td>
-                    <td>{{ exercicio.tipo }}</td>
-                    <td> <a target="_blank" href="{{ exercicio.link }}">Link</a></td>
-                    <td><img class="img-fluid" width="40px" src="{% static 'images/baixar.png' %}" alt=""></td>
+                    <td>{{ postagem.conteudo }}</td>
+                    <td>{{ postagem.tipo_arquivo }}</td>
+                    <td> <a target="_blank" href="{{ postagem.Url }}">Link</a></td>
+                    <td>
+                        <a target="_blank" href="{{ postagem.Url }}">
+                            <img class="img-fluid" width="40px" src="{% static 'images/baixar.png' %}" alt="">
+                        </a>
+                    </td>
                 </tr>
+                {% endif %}
                 {% endfor %}
             </tbody>
 
@@ -147,9 +141,8 @@
             </div>
 
             <li><a href="{% url 'Postagem:index' %}">Home</a></li>
-            <li><a href="">Matemáticos</a></li>
-            <li><a href="">História</a></li>
-            <li><a href="">Poetas</a></li>
+            <li><a href="{% url 'Postagem:galeria' %}">Matematicos</a></li>
+            <li><a href="{% url 'Postagem:Historia' %}">História</a></li>
             <li><a href="">Sobre nós</a></li>
 
         </div>
