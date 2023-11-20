@@ -80,7 +80,8 @@ THIRD_PARTY_APPS = [
     "allauth",
     "allauth.account",
     "allauth.socialaccount",
-    "bootstrap5"
+    "bootstrap5",
+    'django_filters',
 ]
 
 LOCAL_APPS = [

@@ -5,7 +5,10 @@ from django.urls import reverse_lazy
 from .models import *
 from .forms import *
 from django.contrib.auth.mixins import LoginRequiredMixin
-from users.permissions import AdministradorPermission
+from users.permissions import AdministradorPermission, SuperAdministradorPermission
+from django_filters.views import FilterView
+
+from .filters import PostagemFilter
 # Create your views here.
 
 def Login(request):
@@ -17,6 +20,10 @@ class IndexView(generic.TemplateView):
 class GalleryView(generic.ListView):
     model = Postagem
     template_name = "gallery.html"
+
+class MatematicosDetailView(generic.DetailView):
+    model = Postagem
+    template_name = "Math_detail.html"
     
 class ExerciciosView(generic.ListView):
     model = Postagem
@@ -60,6 +67,9 @@ class PostagemListView(AdministradorPermission,LoginRequiredMixin, generic.ListV
         context = super().get_context_data(**kwargs)
         context['num_postagem'] = Postagem.objects.count()
         return context
+
+    def get_queryset(self):
+        return Postagem.objects.filter(created_by=self.request.user)
 
 class PostagemDeleteView(AdministradorPermission, LoginRequiredMixin, views.SuccessMessageMixin, generic.DeleteView):
     model = Postagem

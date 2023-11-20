@@ -93,6 +93,7 @@ class PostagemForm(forms.ModelForm):
                 self.fields['Resumo'].widget.attrs.pop('required', None)
 
 
+
     # def clean(self):
     #     cleaned_data = super().clean()
     #     categoria = cleaned_data.get('categoria_postagem')

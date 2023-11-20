@@ -64,8 +64,8 @@ background-color: var(--background);
 
 .card-row {
     display: flex;
-    gap: 16px;
     flex-wrap: wrap;
+    justify-content: space-between;
 }
 #Text-Figcaption{
     font-size: 15px;
@@ -74,10 +74,10 @@ background-color: var(--background);
 
 }
 .card {
-/*     width: calc(20%);*/
     position: relative;
     left: 0px;
-    height: 160px;
+    height: 220px; /* Ajuste a altura conforme necessário */
+    width: calc(25% - 20px); /* Calcula 25% da largura total com uma margem de 20px entre os cards */
     background-color: var(--background);
     border-radius: 5px;
     transition: 1000ms all;
@@ -85,12 +85,12 @@ background-color: var(--background);
     box-shadow: 0 5px 12px rgba(0, 0, 0, 0.5);
     outline: 1px solid var(--background);
     overflow: hidden;
-    margin-left: 6px;
-    margin-bottom: 10px;
+    flex: 0 0 calc(25% - 16px); /* 25% com uma margem de 16px entre os cards */
+    margin-bottom: 16px;
 }
 
 .card img {
-    height: 160px;
+    height: 100%; /* Ajuste a altura da imagem */
     object-fit: cover;
     border-radius: 4px;
     width: 100%;
@@ -98,7 +98,7 @@ background-color: var(--background);
 
 .card:hover {
     cursor: pointer;
-    transform: scale(1.15);
+    transform: scale(1.1); /* Aumenta em 10% durante o hover */
 }
 
 .card:hover figcaption {
@@ -108,11 +108,7 @@ background-color: var(--background);
     width: 160px;
     display: flex;
     align-items: end;
-    background: linear-gradient(
-        to top,
-        rgba(0, 0, 0, 0.9) 0%,
-        rgba(0, 0, 0, 0) 100%
-    );
+    background: linear-gradient(to top, rgba(0, 0, 0, 0.9) 0%, rgba(0, 0, 0, 0) 100%);
     color: white;
     left: 0px;
     bottom: 0px;
@@ -125,6 +121,7 @@ background-color: var(--background);
     cursor: pointer;
     transform: translateX(22px);
 }
+
 
 
 .quersaber{
@@ -174,4 +171,16 @@ footer{
 .border-links{
     border-bottom: 2px solid #0318D3;
     width: 80%;
+}
+
+@media (max-width: 1200px) {
+    .card {
+        flex: 0 0 calc(33.333% - 16px); /* 33.333% com uma margem de 16px entre os cards em telas menores */
+    }
+}
+
+@media (max-width: 768px) {
+    .card {
+        flex: 0 0 calc(50% - 16px); /* 50% com uma margem de 16px entre os cards em telas ainda menores */
+    }
 }

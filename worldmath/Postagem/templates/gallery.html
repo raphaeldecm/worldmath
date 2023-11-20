@@ -104,9 +104,11 @@
                 {% if postagem.categoria_postagem == 'Matematicos' %}
                 <article class="card">
                     <figure>
-                        <img style="font-size: 15px;" src="{{ postagem.imagem.url }}" alt="{{ postagem.titulo }}">
+                        <img style="font-size: 15px; max-width: 200px;" src="{{ postagem.imagem.url }}" alt="{{ postagem.titulo }}">
                         <figcaption>
-                            <h3 id="Text-Figcaption">{{ postagem.titulo }}</h3>
+                            <h3 id="Text-Figcaption">
+                                <a style="color: white;" href="{% url 'Postagem:Detail_matematico' postagem.id %}">{{ postagem.titulo }}</a>
+                            </h3>
                         </figcaption>
                     </figure>
                 </article>

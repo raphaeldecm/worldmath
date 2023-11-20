@@ -14,5 +14,6 @@ urlpatterns = [
     path('Delete_postagem/<int:pk>/', views.PostagemDeleteView.as_view(), name='Delete_postagem'),
     path('Update_postagem/<int:pk>/', views.PostagemUpdateView.as_view(), name='Editar_postagem'),
     path('Detalhe_postagem/<int:pk>/', views.PostagemDetailView.as_view(), name='Detail_postagem'),
+    path('Matemaico_detalhe/<int:pk>/', views.MatematicosDetailView.as_view(), name='Detail_matematico'),
 ]+ static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 

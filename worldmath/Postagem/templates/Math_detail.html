@@ -38,14 +38,14 @@
   <header>
     <nav class="navbar navbar-expand-lg ">
         <a class="navbar-brand" href="#">
-            <a href="{% url 'index' %}"><img class="img-fluid" src="{% static 'images/logo.png' %}" alt="Logo"
-                    width="30" height="30" class="d-inline-block align-top logo" alt=""></a>
-            <a href="{% url 'index' %}"> <strong>WORLDMATH </strong></a>
+            <a href="{% url 'Postagem:index' %}"><img class="img-fluid" src="{% static 'images/logo.png' %}"
+                    alt="Logo" width="30" height="30" class="d-inline-block align-top logo" alt=""></a>
+            <a href="{% url 'Postagem:index' %}"> <strong>WORLDMATH </strong></a>
         </a>
         <div class="container-fluid">
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
-                data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
-                aria-label="Toggle navigation">
+                data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
+                aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
             <div class="collapse navbar-collapse " id="navbarSupportedContent">
@@ -55,29 +55,19 @@
                 </form>
                 <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                     <li class="nav-item">
-                        <a class="nav-link" href="{% url 'Poesias' %}">Poesias</a>
-                    </li>
-                    <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
-                            aria-expanded="false">
-                            Matemáticos
-                        </a>
-                        <ul class="dropdown-menu">
-                            <li><a class="dropdown-item" href="descartes">Descartes</a></li>
-                            <li><a class="dropdown-item" href="euler">Euler</a></li>
-                            <li><a class="dropdown-item" href="pitagoras">Pitágoras</a></li>
-                            <li><a class="dropdown-item" href="arquimedes">Arquimedes</a></li>
-                            <li><a class="dropdown-item" href="{% url 'euclides' %}">Euclides</a></li>
-                        </ul>
-
+                        <a class="nav-link" href="#">Poesias</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="{% url 'exercicios' %}">Exercícios</a>
+                        <a class="nav-link" href="{% url 'Postagem:exercicios' %}">Exercícios</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="{% url 'matematica' %}">História</a>
+                        <a class="nav-link" href="{% url 'Postagem:galeria' %}">Matemáticos</a>
                     </li>
-                    <a class="d-flex align-items-center" href="{% url 'faleconosco' %}"><button type="button" class="">FALE
+                    <li class="nav-item">
+                        <a class="nav-link" href="{% url 'Postagem:Historia' %}">História</a>
+                    </li>
+                    <a class="d-flex align-items-center" href="#"><button type="button"
+                            class="">FALE
                             CONOSCO</button></a>
                 </ul>
 
@@ -103,48 +93,18 @@
             </div>
         </section>
         <section class="main">
-            <div class="row d-flex justify-content-between ">
-                <div class="col-xl-2 col-lg-4">
-                    <img class="img-fluid" src="{% static 'images/image 5 (1).png' %}" alt="">
-                </div>
+            <div style="margin:auto;" class="row d-flex justify-content-center ">
                 <div class="col-xl-9 col-lg-10 col-md-12">
                     <div class=" euclides d-flex align-items-center">
-                        <img class="img-fluid" src="{% static 'images/image 5.png' %}" alt="">
+                        <img style="max-width: 300px; border-radius: 10px;" class="img-fluid" src="{{ postagem.imagem.url }}" alt="">
                         <div>
-                            <h2>Euclides</h2>
-                            <p>René Descartes (1596 - 1650) foi um filósofo, físico e matemático francês. Autor da
-                                frase:
-                                "Penso,
-                                logo
-                                existo". É considerado o criador do pensamento cartesiano, sistema filosófico que
-                                deu
-                                origem
-                                à
-                                Filosofia
-                                Moderna.
-                            </p>
+                            <h2>{{ postagem.titulo }}</h2>
+                            <p style="font-size: 12px; font-weight: bold; color: gray   ;">{{ postagem.created_at }}</p>
+                            <p style="margin-top: 15px;">{{ postagem.Resumo|linebreaks }}</p>
+                            
                         </div>
                     </div>
-                    <p>A grande obra de Euclides, Elementos, com 13 volumes, que constitui um dos mais notáveis
-                        compêndios de matemática de todos os tempos. Foi adotado como livro básico por gregos e
-                        romanos
-                        durante toda a Idade Média e até o Renascimento.
-                        Os Elementos foram considerados o livro por excelência para o estudo da geometria. Euclides
-                        é
-                        com razão chamado “o pai da Geometria”. Na obra, ele reuniu em um sistema coerente e
-                        compreensível, tudo o que se sabia sobre matemática em seu tempo. Todos os fragmentos
-                        surgiram
-                        da necessidade prática do uso da aritmética, geometria plana, teoria das proporções e
-                        geometria
-                        sólida. Sua contribuição não consistiu na solução de novos problemas de geometria, mas na
-                        ordenação de todos os métodos conhecidos, formando um sistema que permitia combinar todos os
-                        fatos desenvolvidos, para descobrir e provar novas ideias.
-
-
-                    </p>
-                    <div class="d-flex justify-content-center ">
-                        <button class="mostrar">Mostrar mais</button>
-                    </div>
+                    <p>{{ postagem.Texto|linebreaks }}</p>
                 </div>
             </div>
         </section>
@@ -160,10 +120,9 @@
                     <h4>Links</h4>
                 </div>
     
-                <li><a href="{% url 'index' %}">Home</a></li>
-                <li><a href="">Matemáticos</a></li>
-                <li><a href="">História</a></li>
-                <li><a href="">Poetas</a></li>
+                <li><a href="{% url 'Postagem:index' %}">Home</a></li>
+                <li><a href="{% url 'Postagem:galeria' %}">Matematicos</a></li>
+                <li><a href="{% url 'Postagem:Historia' %}">História</a></li>
                 <li><a href="">Sobre nós</a></li>
     
             </div>
