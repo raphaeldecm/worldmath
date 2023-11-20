@@ -56,3 +56,5 @@ class TimestampedModel(CreationTimestampedModel, UpdateTimestampedModel):
 class BaseModel(UUIDModel, TimestampedModel):
     class Meta:
         abstract = True
+
+        

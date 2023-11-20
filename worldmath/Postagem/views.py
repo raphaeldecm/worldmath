@@ -14,7 +14,8 @@ from .filters import PostagemFilter
 def Login(request):
     return render(request, 'Login.html')
 
-class IndexView(generic.TemplateView):
+class IndexView(generic.ListView):
+    model = Postagem
     template_name = "index.html"
 
 class GalleryView(generic.ListView):
