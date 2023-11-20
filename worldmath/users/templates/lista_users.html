@@ -6,37 +6,54 @@
   <h3 class="mb-4">Lista de Usuários</h3>
 
   <table class="table table-striped mt-3">
-      <thead class="thead-primary">
-          <tr>
-            <th>Nome</th>
-            <th>Email</th>
-            <th>Ações</th>
-          </tr>
-      </thead>
-      <tbody>
-          {% for object in object_list %}
-              <tr>
-                  <td>{{ object.username }}</td>
-                  <td>{{ object.email }}</td>
-                  <td>
-                      <div class="d-flex align-items-center">
-                          <a href="#" class="btn btn-primary btn-sm mr-2">
-                              <i class="fas fa-edit"></i>
-                          </a>
-                          <a href="{% url 'users:delete_users' object.id %}" class="btn btn-danger btn-sm">
-                            <i class="fas fa-trash"></i>
-                        </a>
-                      </div>
-                  </td>
-              </tr>
-          {% empty %}
-              <tr>
-                  <td colspan="6">
-                      <p>Não existem reservas cadastradas.</p>
-                  </td>
-              </tr>
-          {% endfor %}
-      </tbody>
+<!-- ... Cabeçalho da tabela ... -->
+<!-- ... Cabeçalho da tabela ... -->
+<thead class="thead-primary">
+    <tr>
+        <th>Nome</th>
+        <th>Email</th>
+        <th>Grupo Atual</th>
+        <th>Ações</th>
+    </tr>
+</thead>
+<tbody>
+    {% for object in object_list %}
+        <tr>
+            <td>{{ object.username }}</td>
+            <td>{{ object.email }}</td>
+            <td>
+                {% for group in object.groups.all %}
+                    {{ group.name }}
+                {% empty %}
+                    <p>Não pertence a nenhum grupo.</p>
+                {% endfor %}
+            </td>
+            
+            <td>
+                <div class="btn-group">
+                    <a href="#" class="btn btn-primary btn-sm mr-2">
+                        <i class="fas fa-edit"></i>
+                    </a>
+                    <a href="{% url 'users:delete_users' object.id %}" class="btn btn-danger btn-sm mr-2">
+                        <i class="fas fa-trash"></i>
+                    </a>
+                    <form method="post" action="{% url 'users:atualizar_grupo_administrador' object.id %}" class="d-inline">
+                        {% csrf_token %}
+                        <button type="submit" class="btn btn-success btn-sm">
+                            Tornar Administrador
+                        </button>
+                    </form>
+                </div>
+            </td>
+        </tr>
+    {% empty %}
+        <tr>
+            <td colspan="6">
+                <p>Não existem reservas cadastradas.</p>
+            </td>
+        </tr>
+    {% endfor %}
+</tbody>
   </table>
 </div>
 <span class="br-divider my-3"></span>

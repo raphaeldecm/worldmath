@@ -2,11 +2,14 @@ from django.contrib.auth import get_user_model
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.contrib.messages.views import SuccessMessageMixin
 from django.urls import reverse, reverse_lazy
+from django.http import HttpResponseRedirect
 from django.utils.translation import gettext_lazy as _
 from django.views.generic import DetailView, RedirectView, UpdateView, DeleteView
 from django.views import generic
+from django.contrib.auth.models import Group
 from users.permissions import AdministradorPermission, SuperAdministradorPermission
-
+from django.views import View
+from django.shortcuts import get_object_or_404
 User = get_user_model()
 
 
@@ -54,3 +57,16 @@ class UserDeleteView(SuperAdministradorPermission, LoginRequiredMixin, generic.D
     model = User
     success_url = reverse_lazy("users:lista_usuarios")
     success_message = "reserva cancelada com sucesso!!"
+
+
+class AtualizarGrupoAdministradorView(LoginRequiredMixin, View):
+    def post(self, request, *args, **kwargs):
+        user = get_object_or_404(User, id=kwargs['pk'])
+        grupo_administrador = Group.objects.get(name='Administrador')
+
+        # Adiciona o usuário ao grupo "Administrador"
+        user.groups.add(grupo_administrador)
+
+        return HttpResponseRedirect(reverse('users:lista_usuarios'))
+
+

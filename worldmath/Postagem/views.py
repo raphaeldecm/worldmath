@@ -57,12 +57,10 @@ class PostagemCreateView(AdministradorPermission, LoginRequiredMixin, views.Succ
         context['form'] = PostagemForm(initial={'categoria_postagem': self.request.POST.get('categoria_postagem')})
         return context
 
-class PostagemListView(AdministradorPermission,LoginRequiredMixin, generic.ListView):
+class PostagemListView(AdministradorPermission, LoginRequiredMixin, generic.ListView):
     model = Postagem
     template_name = "dashboard/Postagem_List.html"
-    
-    def get_queryset(self):
-        return Postagem.objects.all()
+
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
