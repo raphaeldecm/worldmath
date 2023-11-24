@@ -1,76 +1,62 @@
 {% extends "base_dashboard.html" %}
 {% load i18n %}
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
 
 {% block content %}
 <div class="container mt-4">
-    <h3 class="mb-4">Lista de Usuários</h3>
+  <h3 class="mb-4">Lista de Usuários</h3>
 
-    <table class="table table-striped mt-3">
-        <thead class="thead-primary">
-            <tr>
-                <th>Nome</th>
-                <th>Email</th>
-                <th>Grupo Atual</th>
-                <th>Ações</th>
-            </tr>
-        </thead>
-        <tbody>
-            {% for object in object_list %}
+  <table class="table table-striped mt-3">
+    <thead class="thead-primary">
+        <tr>
+            <th>Nome</th>
+            <th>Email</th>
+            <th>Grupo Atual</th>
+            <th>Ativo</th>
+            <th>Ações</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for object in object_list %}
             <tr>
                 <td>{{ object.username }}</td>
                 <td>{{ object.email }}</td>
                 <td>
                     {% for group in object.groups.all %}
-                    {{ group.name }}
+                        {{ group.name }}
                     {% empty %}
-                    <p>Não pertence a nenhum grupo.</p>
+                        <p>Não pertence a nenhum grupo.</p>
                     {% endfor %}
                 </td>
                 <td>
+                    {% if object.is_active %}
+                      <span class="badge bg-success">Ativo</span>
+                    {% else %}
+                      <span class="badge bg-danger">Inativo</span>
+                    {% endif %}
+                  </td>
+                <td>
                     <div class="btn-group">
-                        <a href="{% url 'users:delete_users' object.id %}" class="btn btn-danger btn-sm mr-2">
+                        <a href="#"><i class="fas fa-eye" aria-hidden="true"></i></a>
+                        <a href="{% url 'users:edit' object.id %}"
+                           type="button"
+                           aria-label="editar"
+                           title="editar">
+                          <i class="fas fa-edit" aria-hidden="true"></i></a>
+                          <a href="{% url 'users:delete_users' object.id %}" class="btn btn-danger btn-sm mr-2">
                             <i class="fas fa-trash"></i>
                         </a>
-                        {% if not object.groups.exists %}
-                        <form method="post" action="{% url 'users:atualizar_grupo_administrador' object.id %}" class="d-inline">
-                            {% csrf_token %}
-                            <button type="submit" class="btn btn-success btn-sm">
-                                Tornar Administrador
-                            </button>
-                        </form>
-                    {% else %}
-                        {% for group in object.groups.all %}
-                            {% if group.name == "Administrador" %}
-                                <form method="post" action="{% url 'users:remover_grupo_administrador' object.id %}" class="d-inline">
-                                    {% csrf_token %}
-                                    <button type="submit" class="btn btn-danger btn-sm">
-                                        Remover do grupo
-                                    </button>
-                                </form>
-                            {% else %}
-                                <form method="post" action="{% url 'users:atualizar_grupo_administrador' object.id %}" class="d-inline">
-                                    {% csrf_token %}
-                                    <button type="submit" class="btn btn-success btn-sm">
-                                        Tornar Administrador
-                                    </button>
-                                </form>
-                            {% endif %}
-                        {% endfor %}
-                    {% endif %}
-
                     </div>
                 </td>
             </tr>
-            {% empty %}
+        {% empty %}
             <tr>
                 <td colspan="6">
                     <p>Não existem reservas cadastradas.</p>
                 </td>
             </tr>
-            {% endfor %}
-        </tbody>
-    </table>
+        {% endfor %}
+    </tbody>
+  </table>
 </div>
 <span class="br-divider my-3"></span>
 

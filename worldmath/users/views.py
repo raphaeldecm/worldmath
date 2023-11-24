@@ -3,13 +3,15 @@ from django.contrib.auth.mixins import LoginRequiredMixin
 from django.contrib.messages.views import SuccessMessageMixin
 from django.urls import reverse, reverse_lazy
 from django.http import HttpResponseRedirect
+from django.contrib.messages import views
 from django.utils.translation import gettext_lazy as _
-from django.views.generic import DetailView, RedirectView, UpdateView, DeleteView
+from django.views.generic import DetailView, RedirectView, UpdateView, DeleteView, CreateView
 from django.views import generic
 from django.contrib.auth.models import Group
 from users.permissions import AdministradorPermission, SuperAdministradorPermission
 from django.views import View
 from django.shortcuts import get_object_or_404
+from .forms import UserAdminCreationForm, UserSignupForm
 User = get_user_model()
 
 
@@ -37,7 +39,6 @@ class UserUpdateView(SuperAdministradorPermission,LoginRequiredMixin, SuccessMes
 
 user_update_view = UserUpdateView.as_view()
 
-
 class UserRedirectView(RedirectView):
     permanent = False
 
@@ -59,6 +60,15 @@ class UserDeleteView(SuperAdministradorPermission, LoginRequiredMixin, generic.D
     success_message = "reserva cancelada com sucesso!!"
 
 
+class RemoveGrupoAdministradorView(LoginRequiredMixin, View):
+    def post(self, request, *args, **kwargs):
+        user = get_object_or_404(User, id=kwargs['pk'])
+        grupo_administrador = Group.objects.get(name='Administrador')
+
+        # Remove o usuário do grupo "Administrador"
+        user.groups.remove(grupo_administrador)
+
+        return HttpResponseRedirect(reverse('users:lista_usuarios'))
 class AtualizarGrupoAdministradorView(LoginRequiredMixin, View):
     def post(self, request, *args, **kwargs):
         user = get_object_or_404(User, id=kwargs['pk'])
@@ -70,3 +80,18 @@ class AtualizarGrupoAdministradorView(LoginRequiredMixin, View):
         return HttpResponseRedirect(reverse('users:lista_usuarios'))
 
 
+class ThirdUserUpdateView(LoginRequiredMixin, views.SuccessMessageMixin, UpdateView):
+    model = User
+    form_class = UserAdminCreationForm
+    success_url = reverse_lazy("users:list")
+    success_message = _("Usuário atualizado com sucesso!")
+    template_name = "account/signup.html"
+
+
+
+class UserCreateView(LoginRequiredMixin, views.SuccessMessageMixin, CreateView):
+    model = User
+    form_class = UserSignupForm
+    success_url = reverse_lazy("users:list")
+    success_message = _("Usuário cadastrado com sucesso!")
+    template_name = "account/signup.html"

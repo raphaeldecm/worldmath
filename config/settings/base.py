@@ -45,7 +45,7 @@ DATABASES = {
     "NAME": "worldmath",
     "USER": "postgres",
     "PASSWORD": "123456",
-    "HOST": "127.0.0.1",
+    "HOST": "postgres",
     "PORT": "5432",
 }
 }
@@ -78,10 +78,9 @@ THIRD_PARTY_APPS = [
     "crispy_forms",
     "crispy_bootstrap5",
     "allauth",
+    "bootstrap5",
     "allauth.account",
     "allauth.socialaccount",
-    "bootstrap5",
-    'django_filters',
 ]
 
 LOCAL_APPS = [
@@ -97,7 +96,7 @@ INSTALLED_APPS = DJANGO_APPS + THIRD_PARTY_APPS + LOCAL_APPS
 # ------------------------------------------------------------------------------
 # https://docs.djangoproject.com/en/dev/ref/settings/#migration-modules
 MIGRATION_MODULES = {"sites": "worldmath.contrib.sites.migrations"}
-
+CSRF_TRUSTED_ORIGINS = ['http://localhost:83']
 # AUTHENTICATION
 # ------------------------------------------------------------------------------
 # https://docs.djangoproject.com/en/dev/ref/settings/#authentication-backends

@@ -34,7 +34,7 @@ class HistoriaView(generic.ListView):
     model = Postagem
     template_name = "historia.html"
 
-class PostagemCreateView(AdministradorPermission, LoginRequiredMixin, views.SuccessMessageMixin, generic.CreateView):
+class PostagemCreateView( SuperAdministradorPermission,AdministradorPermission, LoginRequiredMixin, views.SuccessMessageMixin, generic.CreateView):
     model = Postagem
     form_class = PostagemForm
     template_name = "dashboard/Postagem_form.html"
@@ -57,7 +57,7 @@ class PostagemCreateView(AdministradorPermission, LoginRequiredMixin, views.Succ
         context['form'] = PostagemForm(initial={'categoria_postagem': self.request.POST.get('categoria_postagem')})
         return context
 
-class PostagemListView(AdministradorPermission, LoginRequiredMixin, generic.ListView):
+class PostagemListView(SuperAdministradorPermission, AdministradorPermission, LoginRequiredMixin, generic.ListView):
     model = Postagem
     template_name = "dashboard/Postagem_List.html"
 
@@ -79,7 +79,7 @@ class PostagemDetailView(AdministradorPermission, LoginRequiredMixin, generic.De
     model = Postagem
     template_name = "dashboard/Postagem_detail.html"
 
-class PostagemUpdateView(AdministradorPermission, LoginRequiredMixin, views.SuccessMessageMixin, generic.UpdateView):
+class PostagemUpdateView(SuperAdministradorPermission, AdministradorPermission, LoginRequiredMixin, views.SuccessMessageMixin, generic.UpdateView):
     model = Postagem
     form_class = PostagemForm
     success_url = reverse_lazy("Postagem:Lista_postagem")
