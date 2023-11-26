@@ -6,7 +6,7 @@ from . import views
 
 app_name = "core"
 urlpatterns = [
-    path('Login/', Login, name='Login'),
+    path('home/', views.HomeView.as_view(), name='home'),
 #    path('', views.HomeView.as_view(), name='home'),
 ]+ static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 

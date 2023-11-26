@@ -1,63 +1,122 @@
 {% extends "base.html" %}
-{% load i18n %}
-{% load account socialaccount %}
-{% load static %}
 
-{% block css %}
-<link rel="stylesheet" href="{% static 'css/style.css' %}">
-{% endblock %}
-
+{% load i18n %} {% load account socialaccount %} {% load static %}
 {% block head_title %}{% translate "Sign In" %}{% endblock %}
 
 {% block content %}
+<style>
+    .login-container {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 70vh;
+    }
 
-<div class="main-content pl-sm-3 mt-4 d-flex justify-content-center align-items-center">
-  <div class="col-md-5 col-lg-5 col-xl-5 col-12">
-    <h1 class="text-h1 text-center">{% translate "Acesso ao Sistema" %}</h1>
-    <form class="login" method="POST" action="{% url 'account_login' %}">
-      {% csrf_token %}
-      <div class="form-group">
-        <label for="id_login">{% translate "Username:" %}</label>
-        <div class="input-group">
-          <div class="input-group-prepend">
-            <span class="input-group-text"><i class="fas fa-user" aria-hidden="true"></i></span>
-          </div>
-          <input type="text" name="login" class="form-control" placeholder="Digite seu nome de usuário">
-        </div>
-      </div>
-      <div class="form-group input-button">
-        <label for="id_password">{% translate "Senha:" %}</label>
-        <div class="input-group">
-          <div class="input-group-prepend">
-            <span class="input-group-text"><i class="fas fa-lock" aria-hidden="true"></i></span>
-          </div>
-          <input type="password" name="password" class="form-control toggle-password" placeholder="Digite sua senha de segurança">
-          <div id="show-password-button" class="input-group-append">
-            <button type="button" id="toggle-password" class="btn btn-outline-secondary toggle-button" aria-label="Mostrar Senha">
-                <i class="fas fa-eye" aria-hidden="true"></i>
-            </button>
-          </div>
-        </div>
-      </div>
-      {% if redirect_field_value %}
-      <input type="hidden" name="{{ redirect_field_name }}" value="{{ redirect_field_value }}" />
-      {% endif %}
-      <div class="form-group">
-        <div class="form-check">
-          <input class="form-check-input" id="keep_connected_checkbox" name="keep_connected_checkbox"
-            type="checkbox" aria-label="Manter-me conectado" />
-          <label class="form-check-label" for="keep_connected_checkbox">
-            {% translate "Manter-me conectado" %}
-          </label>
-        </div>
-      </div>
-      <button class="btn btn-primary btn-block" type="submit">{% translate "Sign In" %}</button>
-    </form>
-    <hr>
-    <p class="first-access-href text-center">
-      <a style="text-decoration-line: none" href="{% url 'account_reset_password' %}">{% translate "Esqueceu a senha?" %}</a>
-    </p>
-  </div>
-</div>
+    .login-form {
+        background-color: #ffffff;
+        padding: 40px;
+        border: 1px solid #e0e0e0;
+        border-radius: 10px;
+        box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+        width: 60%;
+        max-width: 500px;
+        margin: auto;
+    }
 
+    .login-form h1 {
+        font-size: 24px;
+        text-align: center;
+        margin-bottom: 30px;
+    }
+
+    .login-form label {
+        font-weight: bold;
+        margin-bottom: 5px;
+    }
+
+    .login-form .form-group {
+        margin-bottom: 20px;
+    }
+
+    .login-form .form-control {
+        border-radius: 5px;
+    }
+
+    .login-form .btn-primary {
+        background-color: #007bff;
+        border: none;
+        border-radius: 5px;
+        padding: 12px;
+        width: 100%;
+    }
+
+    .login-form .btn-primary:hover {
+        background-color: #0056b3;
+    }
+
+    .show-password-button {
+        cursor: pointer;
+    }
+</style>
+
+<main>
+    <div class="login-container">
+        <form class="login-form" method="POST" action="{% url 'account_login' %}">
+            {% csrf_token %}
+            <h1>{% translate "Faça seu Login" %}</h1>
+            <div class="form-group">
+                <label for="id_login">{% translate "Username:" %}</label>
+                <div class="input-group">
+                    <span class="input-group-text">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-person-fill" viewBox="0 0 16 16">
+                            <path d="M3 14s-1 0-1-1 1-4 6-4 6 3 6 4-1 1-1 1zm5-6a3 3 0 1 0 0-6 3 3 0 0 0 0 6"/>
+                        </svg>
+                    </span>
+                    <input type="text" id="id_login" name="login" class="form-control" placeholder="{% translate 'Digite seu nome de usuário' %}" required>
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="id_password">{% translate "Senha:" %}</label>
+                <div class="input-group">
+                    <span class="input-group-text">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-lock-fill" viewBox="0 0 16 16">
+                            <path d="M8 1a2 2 0 0 1 2 2v4H6V3a2 2 0 0 1 2-2m3 6V3a3 3 0 0 0-6 0v4a2 2 0 0 0-2 2v5a2 2 0 0 0 2 2h6a2 2 0 0 0 2-2V9a2 2 0 0 0-2-2"/>
+                        </svg>
+                    </span>
+                    <input type="password" id="id_password" name="password" class="form-control" placeholder="{% translate 'Digite sua senha de segurança' %}" required>
+                    <span class="input-group-text show-password-button" onclick="togglePasswordVisibility()">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-eye-fill" viewBox="0 0 16 16">
+                            <path d="M10.5 8a2.5 2.5 0 1 1-5 0 2.5 2.5 0 0 1 5 0"/>
+                            <path d="M0 8s3-5.5 8-5.5S16 8 16 8s-3 5.5-8 5.5S0 8 0 8m8 3.5a3.5 3.5 0 1 0 0-7 3.5 3.5 0 0 0 0 7"/>
+                        </svg>
+                    </span>
+                </div>
+            </div>
+            {% if redirect_field_value %}
+            <input type="hidden" name="{{ redirect_field_name }}" value="{{ redirect_field_value }}" />
+            {% endif %}
+            <div class="form-group form-check">
+                <input class="form-check-input" id="keep_connected_checkbox" name="keep_connected_checkbox" type="checkbox" aria-label="{% translate 'Manter-me conectado' %}" />
+                <label class="form-check-label" for="keep_connected_checkbox">{% translate "Manter-me conectado" %}</label>
+            </div>
+            <button class="btn btn-primary" type="submit">{% translate "Sign In" %}</button>
+        </form>
+    </div>
+    <script>
+        function togglePasswordVisibility() {
+            var passwordInput = document.getElementById('id_password');
+            var eyeIcon = document.querySelector('.show-password-button svg');
+
+            if (passwordInput.type === 'password') {
+                passwordInput.type = 'text';
+                eyeIcon.classList.remove('bi-eye');
+                eyeIcon.classList.add('bi-eye-slash');
+            } else {
+                passwordInput.type = 'password';
+                eyeIcon.classList.remove('bi-eye-slash');
+                eyeIcon.classList.add('bi-eye-fill');
+            }
+        }
+    </script>
+</main>
 {% endblock %}

@@ -14,48 +14,34 @@
                 </div>
             </div>
         </section>
+        
         <section class="mais-vistos-bk container-fluid">
             <section class="exercicios row align-items-stretch">
 
                 <div class="col-xl-8 col-lg-9 container-fluid">
-
+                    {% if first_object %}
                     <h2>Mais vistos da semana...</h2>
                     <div class="row">
                         <div class="col-xl-9 col-lg-8 col-md-10 pitagoras">
                             
                             <div class="row d-flex align-items-center">
                                 
-                                <img class="col-3" src="{% static 'images/pitagoras.png' %}" alt="Pitagoras" alt="">
+                                <img style="width: 30%;" class="col-3" src="{{ first_object.imagem.url }}" alt="Pitagoras" alt="">
                          
                                 <div class="col-3">
-                                    <h3>Pitágoras</h3>
-
-                                    <p class="ano"> 570 a.C.</p>
+                                    <h3>{{ first_object.titulo }}</h3>
+                                    
                                 </div>
                             </div>
-                            <p class="p-pitagoras">Pitágoras nasceu na ilha grega de Samos em 570 a.C. e faleceu por
-                                volta de 496 a.C. O
-                                pensador
-                                grego,
-                                além de filósofo e exímio matemático e astrônomo, deixou significativas contribuições
-                                para a
-                                Música
-                                ao
-                                descobrir relações matemáticas entre os sons emitidos por cordas tensionadas que deram
-                                origem a
-                                uma
-                                nova
-                                escala tonal grega. Foi na Magna Grécia, região onde hoje está o território italiano,
-                                que o
-                                pensador
-                                antigo fundou a sua escola e passou boa parte de sua vida.</p>
+                            <p class="p-pitagoras">{{ first_object.Resumo }}</p>
                             <div class="d-flex justify-content-end ">
-                                <a href="#"><button type="button" class="conheca">Conheça
+                                <a href="{% url 'Postagem:Detail_matematico' first_object.id %}"><button type="button" class="conheca">Conheça
                                         mais...</button></a>
                             </div>
                         </div>
                   
                     </div>
+                    {% endif %}
                 </div>
                 <div class="col-xl-4 col-lg-8 border-ex">
                     <h2>Exercícios</h2>

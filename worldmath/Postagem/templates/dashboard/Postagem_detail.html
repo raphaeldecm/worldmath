@@ -2,11 +2,11 @@
 {% load static %}
 {% block content %}
 
-<div class="container my-5">
+<div style="padding-left: 50px;" class="container my-5">
     <div class="row">
         <h3>Detalhes da Postagem</h3>
         <br>
-        <table style="width: 100%;" class="table table-bordered">
+        <table style="width: 90%; height: 50px;" class="table table-bordered">
             <thead>
                 <tr>
                     <th>Titulo</th>
@@ -21,7 +21,7 @@
             </thead>
             <tbody>
                 <tr>
-                    <td>{{ object.titulo }}</td>
+                    <td>{{ object.titulo|truncatewords_html:100|linebreaks }}</td>
                     <td>{{ object.Texto }}</td>
                     <td>
                         {% if object.imagem %}

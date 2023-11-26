@@ -14,5 +14,5 @@ urlpatterns = [
     path("edit/<int:pk>/", view=ThirdUserUpdateView.as_view(), name="edit"),
     path('atualizar-grupo-administrador/<int:pk>/', views.AtualizarGrupoAdministradorView.as_view(), name='atualizar_grupo_administrador'),
     path('remover-grupo-administrador/<int:pk>/', views.RemoveGrupoAdministradorView.as_view(), name='remover_grupo_administrador'),
-
+    
 ]

@@ -7,13 +7,18 @@ from django.contrib.messages import views
 from django.utils.translation import gettext_lazy as _
 from django.views.generic import DetailView, RedirectView, UpdateView, DeleteView, CreateView
 from django.views import generic
-from django.contrib.auth.models import Group
+from django.contrib.auth.models import Group, Permission
 from users.permissions import AdministradorPermission, SuperAdministradorPermission
 from django.views import View
 from django.shortcuts import get_object_or_404
 from .forms import UserAdminCreationForm, UserSignupForm
 User = get_user_model()
 
+
+class HomeView(LoginRequiredMixin, generic.ListView):
+    model = User
+    template_name = "base_dashboard.html"
+    
 
 class UserDetailView(SuperAdministradorPermission,LoginRequiredMixin, DetailView):
     model = User
@@ -53,6 +58,7 @@ class UsersListView(SuperAdministradorPermission, LoginRequiredMixin, generic.Li
     paginate_by = 5
     ordering = ["name"]
     template_name = "lista_users.html"
+
 
 class UserDeleteView(SuperAdministradorPermission, LoginRequiredMixin, generic.DeleteView):
     model = User
