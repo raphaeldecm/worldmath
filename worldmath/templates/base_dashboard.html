@@ -277,8 +277,8 @@
             display: none;
             position: absolute;
             background-color: #f9f9f9;
-            height: 40px;
-            min-width: 150px;
+            height: 20px;
+            width: 80%;
             box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
             z-index: 1;
             border-radius: 10px;
@@ -335,10 +335,13 @@
                 <i class="bx bx-chevron-right arrow-left"></i>
             </button>
             <div class="dropdown-content" id="myDropdown">
-                <button class="btn_logout">
-                    <a href="{% url 'account_logout' %}">Sair</a>
-                </button>
-               
+                    <form style="text-align: center; width: 100%;" method="post" action="{% url 'account_logout' %}">
+                        {% csrf_token %}
+                        {% if redirect_field_value %}
+                        <input type="hidden" name="{{ redirect_field_name }}" value="{{ redirect_field_value }}"/>
+                        {% endif %}
+                        <button style="width: 100%;" class="btn_logout" type="submit">Sair</button>
+                      </form>
             </div>
         </div>
     </nav>

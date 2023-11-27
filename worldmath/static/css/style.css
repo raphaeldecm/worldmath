@@ -126,6 +126,7 @@ main {
   padding: 25px;
   background-color: #FFFFFF;
   border-radius: 15px;
+  
 }
 
 .p-pitagoras {
@@ -134,6 +135,7 @@ main {
 }
 
 .pitagoras h3 {
+  font-size: 180%;
   border-bottom: 3px solid #050927;
   padding-bottom: 14px;
 }

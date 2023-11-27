@@ -22,11 +22,11 @@
                     {% if first_object %}
                     <h2>Mais vistos da semana...</h2>
                     <div class="row">
-                        <div class="col-xl-9 col-lg-8 col-md-10 pitagoras">
+                        <div style="height: 500px;" class="col-xl-9 col-lg-8 col-md-10 pitagoras">
                             
                             <div class="row d-flex align-items-center">
                                 
-                                <img style="width: 30%;" class="col-3" src="{{ first_object.imagem.url }}" alt="Pitagoras" alt="">
+                                <img style="width: 30%; border-radius: 20%;" class="col-3" src="{{ first_object.imagem.url }}" alt="Pitagoras" alt="">
                          
                                 <div class="col-3">
                                     <h3>{{ first_object.titulo }}</h3>

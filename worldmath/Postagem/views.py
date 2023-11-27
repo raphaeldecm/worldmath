@@ -27,7 +27,7 @@ class IndexView(generic.ListView):
         context['first_object'] = first_object
         return context
 
-class GalleryView(generic.ListView):
+class GalleryView(generic.ListView):    
     model = Postagem
     template_name = "gallery.html"
 
@@ -66,8 +66,9 @@ class PostagemCreateView(AdministradorPermission, LoginRequiredMixin, views.Succ
         context['form'] = PostagemForm(initial={'categoria_postagem': self.request.POST.get('categoria_postagem')})
         return context
 
-class PostagemListView(AdministradorPermission,LoginRequiredMixin, generic.ListView):
+class PostagemListView(AdministradorPermission, LoginRequiredMixin, generic.ListView):
     model = Postagem
+    paginate_by = 5
     template_name = "dashboard/Postagem_List.html"
 
 
