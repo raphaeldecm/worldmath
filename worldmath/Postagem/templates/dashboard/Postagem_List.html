@@ -1,6 +1,35 @@
 {% extends 'base_dashboard.html' %}
 {% load i18n %}
 {% block content %}
+
+<style>
+    .filter-form {
+        display: flex;
+        justify-content: start;
+        align-items: center;
+        margin-bottom: 10px;
+        margin-top: 10px;
+    }
+
+    .form-group {
+        margin-right: 20px;
+    }
+
+    .filter-label {
+        margin-right: 10px;
+    }
+
+    .filter-button {
+        padding: 6px 10px;
+        background-color: #007bff;
+        color: #fff;
+        border: none;
+        cursor: pointer;
+        align-self: flex-end;
+    }
+
+</style>
+
 <div style="padding-left: 50px;" class="container mt-4">
   <h3 class="mb-4">Lista de Postagens</h3>
   <div class="d-flex align-items-center">
@@ -15,7 +44,24 @@
         </div>
     </div>
 </div>
+<div style="left: 0;" class="form-container"> 
+    <form method="get" action="{% url 'Postagem:Lista_postagem' %}" class="filter-form">
+      <div class="form-group">
+        <label style="margin-left: 5px;" for="modelo" class="filter-label"> Filtrar por Titulo:</label>
+        <input type="text" name="titulo" id="titulo" class="form-control money" value="{{ request.GET.titulo }}">
+    </div>
+        <div class="form-group">
+            <label style="margin-left: 5px;" for="preco_min" class="filter-label"> Categoria da Postagem</label>
+            <div class="input-group">
+                <input type="text" name="categoria_postagem" id="categoria_postagem" class="form-control money" value="{{ request.GET.categoria_postagem }}">
 
+            </div>
+        </div>
+
+
+        <button style="margin-bottom: 15px;" type="submit" class="btn btn-primary filter-button">Filtrar</button>
+    </form>
+</div>
 
   <table class="table table-striped mt-3">
       <thead class="thead-primary">
@@ -34,10 +80,10 @@
                   <td>{{ object.created_at }}</td>
                   <td>
                       <div class="d-flex align-items-center">
-                          <a href="{% url 'Postagem:Editar_postagem' object.id %}" class="btn btn-primary btn-sm mr-2">
+                          <a  href="{% url 'Postagem:Editar_postagem' object.id %}" class="btn btn-primary btn-sm mr-2">
                               <i class="fas fa-edit"></i>
                           </a>
-                          <a style="margin-right: 5px;" href="{% url 'Postagem:Detail_postagem' object.id %}" ><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-eye-fill" viewBox="0 0 16 16">
+                          <a style="margin: 0px 6px;" href="{% url 'Postagem:Detail_postagem' object.id %}" ><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-eye-fill" viewBox="0 0 16 16">
                             <path d="M10.5 8a2.5 2.5 0 1 1-5 0 2.5 2.5 0 0 1 5 0z"/>
                             <path d="M0 8s3-5.5 8-5.5S16 8 16 8s-3 5.5-8 5.5S0 8 0 8zm8 3.5a3.5 3.5 0 1 0 0-7 3.5 3.5 0 0 0 0 7z"/>
                           </svg></a>

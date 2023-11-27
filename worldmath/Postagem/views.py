@@ -8,7 +8,7 @@ from django.contrib.auth.mixins import LoginRequiredMixin
 from users.permissions import AdministradorPermission, SuperAdministradorPermission
 from django_filters.views import FilterView
 
-from .filters import PostagemFilter
+
 # Create your views here.
 
 def Login(request):
@@ -71,14 +71,24 @@ class PostagemListView(AdministradorPermission, LoginRequiredMixin, generic.List
     paginate_by = 5
     template_name = "dashboard/Postagem_List.html"
 
-
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         context['num_postagem'] = Postagem.objects.count()
         return context
 
     def get_queryset(self):
-        return Postagem.objects.filter(created_by=self.request.user)
+        queryset = super().get_queryset()
+        titulo = self.request.GET.get('titulo')
+        categoria_postagem = self.request.GET.get('categoria_postagem')
+
+        if titulo:
+            queryset = queryset.filter(titulo__icontains=titulo)
+
+        if categoria_postagem:
+            queryset = queryset.filter(categoria_postagem__icontains=categoria_postagem)
+
+        return queryset.filter(created_by=self.request.user)
+
 
 class PostagemDeleteView(AdministradorPermission, LoginRequiredMixin, views.SuccessMessageMixin, generic.DeleteView):
     model = Postagem
@@ -87,7 +97,7 @@ class PostagemDeleteView(AdministradorPermission, LoginRequiredMixin, views.Succ
 
 class PostagemDetailView(AdministradorPermission, LoginRequiredMixin, generic.DetailView):
     model = Postagem
-    
+    template_name = "dashboard/Postagem_detail.html"
 
 class PostagemUpdateView(AdministradorPermission, LoginRequiredMixin, views.SuccessMessageMixin, generic.UpdateView):
     model = Postagem

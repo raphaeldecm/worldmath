@@ -75,7 +75,7 @@
                                 id="navbarDropdown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                 Usuário
                             </button>
-                            <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                            <div style="display: flex; justify-content: center; flex-direction: column;" class="dropdown-menu" aria-labelledby="navbarDropdown">
                                 {% if user.is_authenticated %}  
                                 <a class="dropdown-item" href="{% url 'core:home' %}">Dashboard</a>
                                 <a class="dropdown-item" href="{% url 'account_logout' %}">Sair</a>
