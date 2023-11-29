@@ -1,0 +1,87 @@
+{% extends 'base.html' %}
+{% load static i18n %}
+{% get_current_language as LANGUAGE_CODE %}
+
+{% block content %}
+<style>
+    main {
+        margin-top: 50px;
+        font-family: 'Arial', sans-serif;
+    }
+
+    .post-container {
+        max-width: 850px;
+        margin: 0 auto;
+        padding: 20px;
+        border-radius: 5px;
+        box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.1);
+        background-color: #fff;
+    }
+
+    hr {
+        margin-top: 20px;
+        margin-bottom: 20px;
+        border: 0;
+        border-top: 1px solid #dfe0e2;
+        width: 100%;
+        max-width: 100%;
+    }
+
+    h1 {
+        font-size: 30px;
+        color: #333;
+        margin-bottom: 10px;
+    }
+
+    p {
+        font-size: 16px;
+        color: #555;
+    }
+
+    img {
+        max-width: 100%;
+        height: auto;
+        margin-bottom: 20px;
+    }
+
+    a {
+        font-size: 16px;
+        text-decoration: none;
+        color: #007bff;
+        font-weight: bold;
+    }
+
+    a:hover {
+        text-decoration: underline;
+    }
+
+    footer{
+        position: absolute;
+        bottom: 0;
+    }
+</style>
+
+
+
+<main class="container-fluid">
+    <div class="container">
+        {% for object in object_list %}
+            {% if object.categoria_postagem == 'Novidades' %}
+                <div class="card" style="display: flex; flex-direction: row; align-items: center;">
+                    {% if object.imagem %}
+                        <img style="max-width: 312px;" class="card-img-left" src="{{ object.imagem.url }}" alt="Imagem">
+                    {% endif %}
+                    <div class="card-body">
+                        <h5 class="card-title" style="color: #0318D3;">{{ object.titulo }}</h5>
+                        <p class="card-text mb-1">{{ object.created_by }} | {{ object.created_at }}</p>
+                        <p class="card-text" style="text-align: justify;">{{ object.Resumo }}</p>
+                    </div>
+                </div>
+                <hr style="border: 1px solid #dfe0e2; box-shadow: 0px 0px 5px 0px rgba(0, 0, 0, 0.1); margin: 15px 0;">
+            {% endif %}
+        {% endfor %}
+    </div>
+    
+</main>
+
+{% endblock %}

@@ -43,6 +43,10 @@ class HistoriaView(generic.ListView):
     model = Postagem
     template_name = "historia.html"
 
+class NovidadesView(generic.ListView):
+    model = Postagem
+    template_name = "Novidades.html"
+
 class PostagemCreateView(AdministradorPermission, LoginRequiredMixin, views.SuccessMessageMixin, generic.CreateView):
     model = Postagem
     form_class = PostagemForm

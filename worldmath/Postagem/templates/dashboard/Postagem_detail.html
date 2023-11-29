@@ -1,44 +1,106 @@
-{% extends 'base_dashboard.html' %}
+{% extends 'base.html' %}
 {% load static %}
 {% block content %}
 
-<div style="padding-left: 50px;" class="container my-5">
-    <div class="row">
-        <h3>Detalhes da Postagem</h3>
-        <br>
-        <table style="width: 90%; height: 50px;" class="table table-bordered">
-            <thead>
-                <tr>
-                    <th>Titulo</th>
-                    <th>Texto</th>
-                    <th>Imagem</th>
-                    <th>Resumo</th>
-                    <th>Conteudo</th>
-                    <th>Tipo arquivo</th>
-                    <th>Url</th>
-                    <th>Categoria da Postagem</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr>
-                    <td>{{ object.titulo|truncatewords_html:100|linebreaks }}</td>
-                    <td>{{ object.Texto }}</td>
-                    <td>
-                        {% if object.imagem %}
-                            <img src="{{ object.imagem.url }}" alt="">
-                        {% else %}
-                            Sem imagem disponível
-                        {% endif %}
-                    </td>
-                    <td>{{ object.Resumo }}</td>
-                    <td>{{ object.conteudo }}</td>
-                    <td>{{ object.tipo_arquivo }}</td>
-                    <td>{{ object.Url }}</td>
-                    <td>{{ object.categoria_postagem }}</td>
-                </tr>
-            </tbody>
-        </table>
-    </div>
-</div>
+<style>
 
-{% endblock %}
+#breadcrumbs {
+  background-color: #f3f5fa;
+  padding: 20px 0;
+}
+
+
+.portfolio-details-slider img {
+  width: 100%;
+  border-radius: 8px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.portfolio-info {
+  background-color: #f8f9fa;
+  width: 800px;
+  height: 100%;
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  margin-top: 20px;
+}
+
+.portfolio-info h3 {
+  color: #333;
+}
+
+.portfolio-info ul {
+  list-style: none;
+  padding: 0;
+}
+
+.portfolio-info li {
+  margin-bottom: 10px;
+}
+
+.portfolio-description {
+  margin-top: 20px;
+}
+
+.portfolio-description h2 {
+  color: #333;
+}
+
+.portfolio-description p {
+  color: #666;
+}
+
+</style>
+
+<main style="margin-bottom: 50px;" id="main">
+    <div class="container">
+        <h1 class="text-center mt-4">Detalhes da Postagem</h1>
+        <hr>
+
+        <section style="display: flex; justify-content: center;" id="portfolio-details" class="portfolio-details">
+            <div class="row gy-4">
+
+
+                <div class="col-lg-4">
+                    <div class="portfolio-info">
+                        <h3 style="margin-bottom: 10x;">Detalhes</h3>
+                        <div style="width: 300px; margin: 0 auto;" class="col-lg-8">
+                            <div  class="portfolio-details-slider swiper">
+                                <div  class="swiper-wrapper align-items-center">
+                                    {% if object.imagem %}
+                                    <div class="swiper-slide">
+                                        <img src="{{ object.imagem.url }}">
+                                    </div>
+                                    {% endif %}
+                                </div>
+                                <div class="swiper-pagination"></div>
+                            </div>
+                        </div>
+                        <ul style="margin-top: 20px;">
+                            <li><strong>Titulo</strong>: {{ object.titulo }}</li>
+                            <li><strong>Texto</strong>: {{ object.Texto }}</li>
+                            {% if object.Resumo %}
+                            <li><strong>Resumo</strong>: {{ object.Resumo }}</li>
+                            {% endif %}
+                            {% if object.conteudo %}
+                            <li><strong>Conteúdo</strong>: {{ object.conteudo }}</a></li>
+                            {% endif %}
+                            {% if object.Url %}
+                            <li><strong>Url</strong>: {{ object.Url }}</a></li>
+                            {% endif %}
+                            {% if object.tipo_arquivo %}
+                            <li><strong>Tipo de arquivo</strong>: {{ object.tipo_arquivo }}</a></li>
+                            {% endif %}
+                        </ul>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+
+    </div>
+</main>
+
+
+    {% endblock %}

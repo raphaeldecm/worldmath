@@ -9,6 +9,7 @@ urlpatterns = [
     path('Galeria/', views.GalleryView.as_view(), name='galeria'),
     path('exercicios', views.ExerciciosView.as_view(), name='exercicios'),
     path('Historia/', views.HistoriaView.as_view(), name='Historia'),
+    path('Novidades/', views.NovidadesView.as_view(), name='Novidades'),
     path('Cadastrar_postagem/', views.PostagemCreateView.as_view(), name='CadastroPostagem'),
     path('Lista_postagem/', views.PostagemListView.as_view(), name='Lista_postagem'),
     path('Delete_postagem/<int:pk>/', views.PostagemDeleteView.as_view(), name='Delete_postagem'),
