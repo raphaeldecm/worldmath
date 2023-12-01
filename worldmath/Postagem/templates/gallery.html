@@ -3,55 +3,12 @@
 {% get_current_language as LANGUAGE_CODE %}
 {% block content %}
     <main style="width: 100%; ">
-        <style>
-            :root {
+<style>
+:root {
     --background: #fffff;
     --background-border: #ffffff;
 }
-body{
-    font-family: 'Poppins', sans-serif;
-}
-.marg-nav{
-    background-color: #d9d9d9 ;
-}
-nav{
-    width: 95%;
-    margin: auto;
-}
-a{
-    list-style: none;
-    text-decoration: none;
-    color: #050927;
-}
 
-nav form{
-    width: 28rem;
-    }
-a{
-        list-style: none;
-        text-decoration: none;
-        color: #050927;
-    }
-nav input{
-        margin-left: 50px;
-    }
-nav li {
-        margin: 0 28px;
-    }
-nav ul button{
-        width: 180px;
-        background-color: blue;
-        color: #FFFFFF;
-        border: none;
-        margin-left: 30px;
-        height: 40px;
-    }
-.logo{
-    margin-right: 15px;
-}
-.nav-link{
-    color: #050927;
-}
 main {
 background-color: #FFFFFF;
 height: 100vh;
@@ -65,7 +22,7 @@ background-color: var(--background);
     display: flex;
     background-color: var(--background);
     gap: 16px;
-    margin-top: -25%;
+    margin-top: -30%;
 }
 
 .card-row {
@@ -84,6 +41,7 @@ background-color: var(--background);
     position: relative;
     left: 0px;
     height: 160px;
+    width: 200px;
     background-color: var(--background);
     border-radius: 5px;
     transition: 1000ms all;
@@ -93,6 +51,7 @@ background-color: var(--background);
     overflow: hidden;
     margin-left: 6px;
     margin-bottom: 10px;
+    
 }
 
 .card img {
@@ -151,36 +110,6 @@ background-color: var(--background);
     font-weight: bold;
     font-size: 16px;
 }
-
-
-
-footer{
-    background-color: #E4E4E4;
-    padding: 50px 0;
-}
-.p-ifrn{
- text-align: center;
- margin-top: 10px;
-}
-.links  {
-    list-style:none;
-    font-size: 14px;
-
-}
-.links a{
-    text-decoration: none;
-    color: #050927;
-}
-.links li{
-    margin: 5px 0;
-}
-.numero{
-    margin: 30px 0;
-}
-.border-links{
-    border-bottom: 2px solid #0318D3;
-    width: 80%;
-}
         </style>
 
         
@@ -190,7 +119,7 @@ footer{
                     <img style="max-width: 160px;" class="img-fluid" src="{% static 'images/Socrates2.png' %}" alt="">
                 </div>
                 <div style="align-items: center;" class="col-xl-5 col-lg-8 col-md-8">
-                    <h3 style="margin-left: 70px;">Galeria dos Matemáticos</h3>
+                    <h2 style="margin-left: 55px;">Galeria dos Matemáticos</h2>
                     <h3>Físicos, filosos, inventores e muito mais!</h3>
                 </div>
                 <div class="col-xl-2 col-lg-6 col-md-8">
@@ -199,7 +128,7 @@ footer{
             </div>
         </section>
         <section style="margin-top: 400px; display: flex; justify-content: center;">
-        <div class="gallery col-8 justify-content-center">
+        <div  class="gallery col-8 justify-content-center">
 
             <div class="card-row">
                 {% for postagem in object_list %}
@@ -220,9 +149,7 @@ footer{
             
         </div>
     </section>
-        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"
-        integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN" crossorigin="anonymous">
-        </script>
     </main>
+    
 {% endblock %}
 

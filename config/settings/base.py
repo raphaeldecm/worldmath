@@ -48,11 +48,11 @@ DATABASES = {
     "HOST": "127.0.0.1",
     "PORT": "5432",
 }
-}
+}   
 DATABASES["default"]["ATOMIC_REQUESTS"] = True
 # https://docs.djangoproject.com/en/stable/ref/settings/#std:setting-DEFAULT_AUTO_FIELD
 DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
-CSRF_TRUSTED_ORIGINS = ['http://localhost:83']
+CSRF_TRUSTED_ORIGINS = ['http://localhost:83','http://127.0.0.1:83']
 # URLS
 # ------------------------------------------------------------------------------
 # https://docs.djangoproject.com/en/dev/ref/settings/#root-urlconf
@@ -220,6 +220,13 @@ EMAIL_BACKEND = env(
     "DJANGO_EMAIL_BACKEND",
     default="django.core.mail.backends.smtp.EmailBackend",
 )
+EMAIL_HOST = 'smtp.gmail.com'
+EMAIL_PORT = 587
+EMAIL_USE_TLS = True
+EMAIL_USER_SSL = False
+EMAIL_HOST_USER = "kadsonalmeida14@gmail.com"
+EMAIL_HOST_PASSWORD = "mlzdkkxmqlvdncof"
+
 # https://docs.djangoproject.com/en/dev/ref/settings/#email-timeout
 EMAIL_TIMEOUT = 5
 

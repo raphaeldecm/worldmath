@@ -7,7 +7,7 @@
                 <div class="col-xl-6 col-lg-8">
                     <h1>Entre em uma aventura pelo mundo da matemática. </h1>
                     <p>Conheça as grandes mentes da matemática!</p>
-                    <a href="{% url 'Postagem:Historia' %}"><button type="button" class="">EMBARCAR!</button></a>
+                    <a style="border-radius: 30px;" href="{% url 'Postagem:Historia' %}"><button type="button" style="border-radius: 30px;" class="">EMBARCAR!</button></a>
                 </div>
                 <div class="col-xl-6 col-lg-8">
                     <img class="img-fluid" src="{% static 'images/Mathematics-bro (1) 1.png' %}" alt="Mathematics bro">
@@ -36,7 +36,7 @@
                             <p class="p-pitagoras">{{ first_object.Resumo }}</p>
                             <div class="d-flex justify-content-end ">
                                 <a href="{% url 'Postagem:Detail_matematico' first_object.id %}"><button type="button" class="conheca">Conheça
-                                        mais...</button></a>
+                                        mais</button></a>
                             </div>
                         </div>
                   

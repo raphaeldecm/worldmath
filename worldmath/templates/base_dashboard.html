@@ -342,6 +342,12 @@
                         {% endif %}
                         <button style="width: 100%;" class="btn_logout" type="submit">Sair</button>
                       </form>
+
+                      <form method="POST" style="text-align: center; width: 100%;" action="{% url 'account_reset_password' %}" class="password_reset">
+                        {% csrf_token %}
+                        {{ form|crispy }}  
+                        <input style="width: 100%; margin-top: 3px; font-size: 12px;"  class="btn btn-primary" type="submit" value="Reset My Password"  />
+                    </form>
             </div>
         </div>
     </nav>
