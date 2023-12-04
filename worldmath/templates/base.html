@@ -81,14 +81,14 @@
                                     </svg>
                                     {{ user.username }}
                                 </button>
-                                <div style="position: absolute; right: -20px;" class="dropdown-menu text-center" id="customDropdown" aria-labelledby="navbarDropdown">
+                                <div style="margin-left: 50px;" class="dropdown-menu text-center" id="customDropdown" aria-labelledby="navbarDropdown">
                                     <a class="dropdown-item" href="{% url 'core:home' %}">Dashboard</a>
-                                    <form method="post" action="{% url 'account_logout' %}">
+                                    <form method="post" action="{% url 'account_logout' %}" style="width: 50%;">
                                         {% csrf_token %}
                                         {% if redirect_field_value %}
                                             <input type="hidden" name="{{ redirect_field_name }}" value="{{ redirect_field_value }}" />
                                         {% endif %}
-                                        <button style="width: 100%;" class="btn_logout" type="submit">Sair</button>
+                                        <button style="width: 50%; background-color: white; color: black;" class="" type="submit">Sair</button>
                                     </form>
                                 </div>
                             {% else %}
@@ -120,7 +120,7 @@
                 <li><a href="{% url 'Postagem:index' %}">Home</a></li>
                 <li><a href="{% url 'Postagem:galeria' %}">Matemáticos</a></li>
                 <li><a href="{% url 'Postagem:Historia' %}">História</a></li>
-                <li><a href="#">Novidades</a></li>
+                <li><a href="{% url 'Postagem:Novidades'  %}">Novidades</a></li>
 
             </div>
             <div class="col-xl-2 col-lg-8 d-flex flex-column align-items-center">
@@ -137,7 +137,7 @@
                 </div>
                 <div class=" d-flex justify-content-around">
                     <img class="img-fluid" src="{% static 'images/Vector (2).png' %}" alt="">
-                    <img class="img-fluid" src="{% static 'images/Vector (1).png' %}" alt="">
+                    <a href=""><img class="img-fluid" src="{% static 'images/Vector (1).png' %}" alt=""></a>
                     <img class="img-fluid" src="{% static 'images/Vector.png' %}" alt="">
                 </div>
             </div>

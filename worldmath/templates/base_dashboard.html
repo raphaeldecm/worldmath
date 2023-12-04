@@ -1,5 +1,5 @@
 {% load static %}
-
+{% load crispy_forms_tags %}
 <!DOCTYPE html>
 <html lang="pt-br">
 
@@ -305,11 +305,29 @@
             border-style: none;
             border-radius: 10px;
         }
+        .btn_setpassword {
+            display: flex;
+            background-color: rgb(65, 76, 220);
+            color: white;
+            text-decoration: none;
+            display: block;
+            width: 100%;
+            height: 102%;
+            text-align: center;
+            border-style: none;
+            border-radius: 10px;
+            margin-top: 5px;
+        }
 
         .btn_logout a {
             color: black;
             text-align: center;
             padding: 5px 16px;
+        }
+        .btn_setpassword a {
+            color: white;
+            text-align: center;
+            padding: 0.3px 16px;
         }
     </style>
     <nav class="navbar">
@@ -342,12 +360,10 @@
                         {% endif %}
                         <button style="width: 100%;" class="btn_logout" type="submit">Sair</button>
                       </form>
-
-                      <form method="POST" style="text-align: center; width: 100%;" action="{% url 'account_reset_password' %}" class="password_reset">
-                        {% csrf_token %}
-                        {{ form|crispy }}  
-                        <input style="width: 100%; margin-top: 3px; font-size: 12px;"  class="btn btn-primary" type="submit" value="Reset My Password"  />
-                    </form>
+                      <button class="btn_setpassword">
+                        <a href="{% url 'account_set_password' %}">Alterar Senha</a>
+                      </button>
+                      
             </div>
         </div>
     </nav>

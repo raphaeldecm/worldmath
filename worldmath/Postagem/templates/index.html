@@ -19,23 +19,23 @@
             <section class="exercicios row align-items-stretch">
 
                 <div class="col-xl-8 col-lg-9 container-fluid">
-                    {% if first_object %}
+                    {% if first_object_matematicos %}
                     <h2>Mais vistos da semana...</h2>
                     <div class="row">
                         <div style="height: 500px;" class="col-xl-9 col-lg-8 col-md-10 pitagoras">
                             
                             <div class="row d-flex align-items-center">
                                 
-                                <img style="width: 30%; border-radius: 20%;" class="col-3" src="{{ first_object.imagem.url }}" alt="Pitagoras" alt="">
+                                <img style="width: 30%; border-radius: 20%;" class="col-3" src="{{ first_object_matematicos.imagem.url }}" alt="Pitagoras" alt="">
                          
                                 <div class="col-3">
-                                    <h3>{{ first_object.titulo }}</h3>
+                                    <h3>{{ first_object_matematicos.titulo }}</h3>
                                     
                                 </div>
                             </div>
-                            <p class="p-pitagoras">{{ first_object.Resumo }}</p>
+                            <p class="p-pitagoras">{{ first_object_matematicos.Resumo }}</p>
                             <div class="d-flex justify-content-end ">
-                                <a href="{% url 'Postagem:Detail_matematico' first_object.id %}"><button type="button" class="conheca">Conheça
+                                <a href="{% url 'Postagem:Detail_matematico' first_object_matematicos.id %}"><button type="button" class="conheca">Conheça
                                         mais</button></a>
                             </div>
                         </div>
@@ -62,78 +62,27 @@
         </section>
 
         <section class="poesia">
-            <h2>Venha conhecer também um pouco sobre os poetas matemáticos...</h2>
-            <div class="row">
-                <div class="col-xl-6 col-lg-8">
-                    <div class="row rozanja d-flex justify-content-around">
-                        <div class="col-4 ">
-                            <img class="img-fluid" src="{% static 'images/rozanja.png' %}" alt="rozanja">
-                        </div>
-                        <div class="col-6">
-                            <h4>Rozanja Almeida</h4>
-                            <p>Professora do IFRN, poetisa, potiguar e grande amiga!</p>
-                            <div class="d-flex justify-content-end ">
-                                <button type="button" class="conheca-peq">Conheça mais...</button>
+            <h2 style="margin-bottom: 20px;">Venha conhecer também as novidades do mundo!</h2>
+            <div class="row w-100">
+                <div class="col-xl-6 col-lg-8 d-flex justify-content-around flex-wrap w-100">
+                    {% for postagem in latest_objects_novidades %}
+                    <div class="card mb-3 border rounded" style="width: 25rem; box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);">
+                        <img class="card-img-top img-fluid" src="{{ postagem.imagem.url }}" alt="{{ postagem.titulo }}">
+                        <div class="card-body">
+                            <h4 class="card-title">{{ postagem.titulo }}</h4>
+                            <p class="card-text">{{ postagem.Resumo }}</p>
+                            <div class="d-flex justify-content-end">
+                                <a href="{% url 'Postagem:Detail_matematico' postagem.id %}" class="btn btn-primary">Conheça mais...</a>
                             </div>
                         </div>
                     </div>
-                    <hr>
-                    <div class="row aristonio d-flex justify-content-around">
-                        <div class="col-6">
-                            <h4>Francisco Aristônio</h4>
-                            <p>Professor do IFRN, poeta, potiguar e grande amigo!</p>
-                            <div class="d-flex justify-content-start ">
-                                <button type="button" class="conheca-peq">Conheça mais...</button>
-                            </div>
-                        </div>
-                        <div class="col-4">
-                            <img class=" img-fluid" src="{% static 'images/aristonio.png' %}" alt="aristonio">
-                        </div>
-                    </div>
-                </div>
-                <div class="col-xl-6 col-lg-8 perimetro">
-                    <div class="d-flex justify-content-center ">
-                        <h3>Perímetro</h3>
-                    </div>
-                    <div class="row poesia-perimetro d-flex justify-content-evenly">
-                        <div class="col-xl-5 col-lg-8">
-                            <p>Se você quer calcular <br>
-                                o perímetro pra valer <br>
-                                tenha calma nessa hora <br>
-                                ensinarei com prazer <br>
-                                com rimas e poesias <br>
-                                você vai compreender. <br>
-
-                                O perímetro de um polígono <br>
-                                é fácil de calcular <br>
-                                juntando todos os lados <br>
-                                tu consegues decifrar <br>
-                                se você assim fizer <br>
-                                é só adicionar.</p>
-                        </div>
-                        <div class="col-xl-5 col-lg-8">
-                            <p>O perímetro é assim <br>
-                                o contorno é só juntar <br>
-                                não importa quantos lados <br>
-                                nele vamos encontrar. <br>
-                                coloque todos unidos <br>
-                                e depois é só somar. <br>
-
-                                Se você assim fizer <br>
-                                sempre irá acertar <br>
-                                e o seu conhecimento <br>
-                                pode socializar <br>
-                                agradeço os matemáticos <br>
-                                que sempre vão pesquisar.</p>
-                            <h6>-Rozanja Almeida</h6>
-                        </div>
-                    </div>
-                    <div class="d-flex justify-content-center ">
-                        <a href="#"><button type="button" class="ler-mais">Ler mais...</button></a>
-                    </div>
+                    {% endfor %}
                 </div>
             </div>
         </section>
+        
+        
+        
 
     </main>
     {% endblock %}

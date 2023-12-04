@@ -32,7 +32,7 @@ class PostagemForm(forms.ModelForm):
                 self.fields['tipo_arquivo'].widget.attrs.pop('required', None)
                 self.fields['Url'].widget.attrs.pop('required', None)
             elif categoria == 'Novidades':
-                self.fields['conteudo'].widget.attrs.pop('disabled', None)
+                self.fields['conteudo'].widget.attrs.pop('required', None)
                 self.fields['tipo_arquivo'].widget.attrs.pop('disabled', None)
                 self.fields['Url'].widget.attrs.pop('disabled', None)
                 self.fields['imagem'].widget.attrs.pop('required', None)

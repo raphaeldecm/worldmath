@@ -22,9 +22,12 @@ class IndexView(generic.ListView):
         context = super().get_context_data(**kwargs)
         
         # Obtenha o objeto mais recente da categoria 'Matematicos'
-        first_object = Postagem.objects.filter(categoria_postagem='Matematicos').order_by('-created_at').first()
+        first_object_matematicos = Postagem.objects.filter(categoria_postagem='Matematicos').order_by('-created_at').first()
+        context['first_object_matematicos'] = first_object_matematicos
         
-        context['first_object'] = first_object
+        latest_objects_novidades = Postagem.objects.filter(categoria_postagem='Novidades').order_by('-created_at')[:2]
+        context['latest_objects_novidades'] = latest_objects_novidades
+
         return context
 
 class GalleryView(generic.ListView):    
@@ -46,6 +49,54 @@ class HistoriaView(generic.ListView):
 class NovidadesView(generic.ListView):
     model = Postagem
     template_name = "Novidades.html"
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        
+        # Obtenha o objeto mais recente da categoria 'Matematicos'
+        first_object = Postagem.objects.filter(categoria_postagem='Novidades').order_by('-created_at').first()
+        
+        context['first_object'] = first_object
+        return context
+
+    def get_queryset(self):
+        queryset = super().get_queryset()
+        titulo = self.request.GET.get('titulo')
+        conteudo = self.request.GET.get('conteudo')
+        Resumo = self.request.GET.get('Resumo')
+
+        if titulo:
+            queryset = queryset.filter(titulo__icontains=titulo)
+
+        if conteudo:
+            queryset = queryset.filter(conteudo__icontains=conteudo)
+
+        if Resumo:
+            queryset = queryset.filter(Resumo__icontains=conteudo)
+
+        return queryset.filter(created_by=self.request.user)
+
+class ResultadoNovidadesView(generic.ListView):
+    model = Postagem
+    template_name = 'Resultado_Novidades.html'
+    context_object_name = 'resultados'
+
+    def get_queryset(self):
+        queryset = Postagem.objects.filter(categoria_postagem='Novidades')
+        titulo = self.request.GET.get('titulo')
+        conteudo = self.request.GET.get('conteudo')
+        Resumo = self.request.GET.get('Resumo')
+
+        if titulo:
+            queryset = queryset.filter(titulo__icontains=titulo)
+
+        if conteudo:
+            queryset = queryset.filter(conteudo__icontains=conteudo)
+
+        if Resumo:
+            queryset = queryset.filter(Resumo__icontains=Resumo)
+
+        return queryset
 
 class PostagemCreateView(AdministradorPermission, LoginRequiredMixin, views.SuccessMessageMixin, generic.CreateView):
     model = Postagem
