@@ -108,13 +108,13 @@
     {% endblock content %}
 
     <footer class="container-fluid">
-        <div class="row d-flex justify-content-evenly">
-            <div class="col-xl-3 col-lg-8 col-md-8">
+        <div class="row d-flex justify-content-around">
+            <div style="margin-left: -75px;" class="col-xl-3 col-lg-8 col-md-8">
                 <img class="img-fluid" src="{% static 'images/footer.png' %}" alt="footer">
             </div>
-            <div class="col-xl-2 col-lg-8 links">
+            <div class="col-xl-2 col-lg-8 links" style="margin-left: -160px;">
                 <div class="border-links">
-                    <h4>Links</h4>
+                    <h4> <strong>Links</strong> </h4>
                 </div>
 
                 <li><a href="{% url 'Postagem:index' %}">Home</a></li>
@@ -123,21 +123,21 @@
                 <li><a href="{% url 'Postagem:Novidades'  %}">Novidades</a></li>
 
             </div>
-            <div class="col-xl-2 col-lg-8 d-flex flex-column align-items-center">
+            <div style="margin-right: -80px;" class="col-xl-2 col-lg-8 d-flex flex-column align-items-center">
 
                 <img class="img-fluid" src="{% static 'images/pngs 1.png' %}" alt="pngs">
                 <p class="p-ifrn">Projetado e desenvolvido por alunos do IFRN</p>
 
             </div>
             <div class="col-xl-2 col-lg-8">
-                <h3 class="border-links"><strong> Contato</strong></h3>
-                <div class=" numero d-flex justify-content-around">
-                    <img class="img-fluid" src="{% static 'images/Vector (3).png' %}" alt="">
+                <h4 class="border-links"><strong> Contato</strong></h4>
+                <div style="margin-left: -35px;" class=" numero d-flex justify-content-around">
+                    <img style="margin-right: -75px;" class="img-fluid" src="{% static 'images/Vector (3).png' %}" alt="">
                     <p>(84) 4002-8922</p>
                 </div>
-                <div class=" d-flex justify-content-around">
-                    <img class="img-fluid" src="{% static 'images/Vector (2).png' %}" alt="">
-                    <a href=""><img class="img-fluid" src="{% static 'images/Vector (1).png' %}" alt=""></a>
+                <div class=" d-flex justify-content-center">
+                    <img style="margin-right: 25px; margin-left: -50px;" class="img-fluid" src="{% static 'images/Vector (2).png' %}" alt="">
+                    <a href="" style="margin-right: 25px;"><img class="img-fluid" src="{% static 'images/Vector (1).png' %}" alt=""></a>
                     <img class="img-fluid" src="{% static 'images/Vector.png' %}" alt="">
                 </div>
             </div>

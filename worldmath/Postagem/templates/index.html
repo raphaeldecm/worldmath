@@ -7,7 +7,7 @@
                 <div class="col-xl-6 col-lg-8">
                     <h1>Entre em uma aventura pelo mundo da matemática. </h1>
                     <p>Conheça as grandes mentes da matemática!</p>
-                    <a style="border-radius: 30px;" href="{% url 'Postagem:Historia' %}"><button type="button" style="border-radius: 30px;" class="">EMBARCAR!</button></a>
+                    <a style="border-radius: 30px;" href="{% url 'Postagem:Historia' %}"><button type="button" style="border-radius: 30px;" class=""><strong>EMBARCAR</strong></button></a>
                 </div>
                 <div class="col-xl-6 col-lg-8">
                     <img class="img-fluid" src="{% static 'images/Mathematics-bro (1) 1.png' %}" alt="Mathematics bro">
@@ -20,7 +20,7 @@
 
                 <div class="col-xl-8 col-lg-9 container-fluid">
                     {% if first_object_matematicos %}
-                    <h2>Mais vistos da semana...</h2>
+                    <h2>Mais recentes da semana...</h2>
                     <div class="row">
                         <div style="height: 500px;" class="col-xl-9 col-lg-8 col-md-10 pitagoras">
                             
@@ -34,10 +34,12 @@
                                 </div>
                             </div>
                             <p class="p-pitagoras">{{ first_object_matematicos.Resumo }}</p>
-                            <div class="d-flex justify-content-end ">
-                                <a href="{% url 'Postagem:Detail_matematico' first_object_matematicos.id %}"><button type="button" class="conheca">Conheça
-                                        mais</button></a>
+                            <div style="display: flex; justify-content: center;">
+                                <a href="{% url 'Postagem:Detail_matematico' first_object_matematicos.id %}">
+                                    <button type="button" class="conheca" style="margin-top: 60px;">Conheça mais</button>
+                                </a>
                             </div>
+                            
                         </div>
                   
                     </div>

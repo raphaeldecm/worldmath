@@ -97,7 +97,7 @@ class ThirdUserUpdateView(LoginRequiredMixin, views.SuccessMessageMixin, UpdateV
 
 class UserCreateView(LoginRequiredMixin, views.SuccessMessageMixin, CreateView):
     model = User
-    form_class = UserSignupForm
+    form_class = UserAdminCreationForm
     success_url = reverse_lazy("users:list")
     success_message = _("Usuário cadastrado com sucesso!")
     template_name = "account/signup.html"

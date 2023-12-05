@@ -105,7 +105,7 @@
 
 
 <main>
-    <h1 style="font-size: 30px; margin-bottom: 10px;">#EnTendencia</h1>
+    <h1 style="font-size: 30px; margin-bottom: 10px;">#NewNotices</h1>
 
     <div class="row">
         <div class="col-xl-2 filtros-side">
@@ -140,9 +140,9 @@
                 <img src="{{ first_object.imagem.url }}" class="card-img-top" alt="...">
                 <div class="card-body corpo">
                     <div class="d-flex align-items-center justify-content-between mb-3">
-                        <h2 class="card-title">{{ first_object.titulo }}</h2>
-                        <p class="data">{{ first_object.created_at }}</p>
+                        <h3 class="card-title">{{ first_object.titulo }}</h3>
                     </div>
+                    <p style="margin-top: -15px; margin-bottom: 25px;font-size: 15px;" class="data">{{ first_object.created_at }}</p>
                     <p class="card-text">{{ first_object.Resumo }}</p>
                     <div style="display: flex; justify-content: end;  ;bottom: 10px;">
                         <button style="border-radius: 10px;" class="btn btn-primary"><a style="color: white;" href="{% url 'Postagem:Detail_matematico' first_object.id %}">Postagem completa</a></button>
@@ -156,9 +156,9 @@
                 {% if postagem.categoria_postagem == "Novidades" and postagem != first_object %}
                 <div class="col-lg-6 col-md-6 col-sm-12">
                     <div class="d-flex cards-menores justify-content-center flex-container" style="margin-left: -50px;">
-                        <div class="card" style="width: 25rem; margin-left: -5px;">
+                        <div class="card" style="max-width: 25rem;height: 40rem ;margin-left: -5px;">
                             {% if postagem.imagem %}
-                            <img src="{{ postagem.imagem.url }}" class="card-img-top" alt="...">
+                            <img style="height: 300px;" src="{{ postagem.imagem.url }}" class="card-img-top" alt="...">
                             {% endif %}
                             <div class="card-body corpo">
                                 <div class="d-flex align-items-center justify-content-between mb-3">
@@ -168,9 +168,10 @@
                                     <p class="data">{{ postagem.created_at }}</p>
                                 </div>
                                 <p class="card-text">{{ postagem.Resumo }}</p>
-                                <div style="display: flex; justify-content: end;  ;bottom: 10px;">
-                                    <button style="border-radius: 10px;" class="btn btn-primary"><a style="color: white;" href="{% url 'Postagem:Detail_matematico' postagem.id %}">Postagem completa</a></button>
-                                </div>
+    
+                            </div>
+                            <div style="display: flex; justify-content: end;  ;margin-bottom: 10px; margin-right: 10px;">
+                                <button style="border-radius: 10px;" class="btn btn-primary"><a style="color: white;" href="{% url 'Postagem:Detail_matematico' postagem.id %}">Postagem completa</a></button>
                             </div>
                         </div>
                     </div>

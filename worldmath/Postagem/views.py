@@ -74,8 +74,7 @@ class NovidadesView(generic.ListView):
         if Resumo:
             queryset = queryset.filter(Resumo__icontains=conteudo)
 
-        return queryset.filter(created_by=self.request.user)
-
+        return queryset
 class ResultadoNovidadesView(generic.ListView):
     model = Postagem
     template_name = 'Resultado_Novidades.html'
