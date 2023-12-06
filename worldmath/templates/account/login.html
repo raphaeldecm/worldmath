@@ -282,7 +282,7 @@ input[type="checkbox"]:checked::before {
           </div>
 
           <h2 style="margin-top: 60px;">Bem vindo! 👋🏻</h2>
-          <p style="margin-bottom: 20px;">Insira suas credenciais para acessar sua conta.</p>
+          <p style="margin-bottom: 20px;">Se for um Redator, insira suas credenciais para acessar sua conta.</p>
 
           <div class="input-container">
             <div class="form-group">
@@ -304,7 +304,7 @@ input[type="checkbox"]:checked::before {
               <label class="form-check-label" for="remember-me">Manter conectado</label>
             </div>
 
-            <a href="#">Esqueceu a senha?</a>
+            <a href="{% url 'account_reset_password' %}">Esqueceu a senha?</a>
           </div>
 
           <button style="margin-top: 40px;" class="login-btn" type="submit">Log In</button>

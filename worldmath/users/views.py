@@ -8,7 +8,7 @@ from django.utils.translation import gettext_lazy as _
 from django.views.generic import DetailView, RedirectView, UpdateView, DeleteView, CreateView
 from django.views import generic
 from django.contrib.auth.models import Group, Permission
-from users.permissions import AdministradorPermission, SuperAdministradorPermission
+from users.permissions import RedatorPermission, AdministradorPermission
 from django.views import View
 from django.shortcuts import get_object_or_404
 from .forms import UserAdminCreationForm, UserSignupForm
@@ -20,7 +20,7 @@ class HomeView(LoginRequiredMixin, generic.ListView):
     template_name = "base_dashboard.html"
     
 
-class UserDetailView(SuperAdministradorPermission,LoginRequiredMixin, DetailView):
+class UserDetailView(AdministradorPermission,LoginRequiredMixin, DetailView):
     model = User
     slug_field = "username"
     slug_url_kwarg = "username"
@@ -29,7 +29,7 @@ class UserDetailView(SuperAdministradorPermission,LoginRequiredMixin, DetailView
 user_detail_view = UserDetailView.as_view()
 
 
-class UserUpdateView(SuperAdministradorPermission,LoginRequiredMixin, SuccessMessageMixin, UpdateView):
+class UserUpdateView(AdministradorPermission,LoginRequiredMixin, SuccessMessageMixin, UpdateView):
     model = User
     fields = ["name"]
     success_message = _("Information successfully updated")
@@ -53,14 +53,14 @@ class UserRedirectView(RedirectView):
 
 user_redirect_view = UserRedirectView.as_view()
 
-class UsersListView(SuperAdministradorPermission, LoginRequiredMixin, generic.ListView):
+class UsersListView(AdministradorPermission, LoginRequiredMixin, generic.ListView):
     model = User
     paginate_by = 5
     ordering = ["name"]
     template_name = "lista_users.html"
 
 
-class UserDeleteView(SuperAdministradorPermission, LoginRequiredMixin, generic.DeleteView):
+class UserDeleteView(AdministradorPermission, LoginRequiredMixin, generic.DeleteView):
     model = User
     success_url = reverse_lazy("users:lista_usuarios")
     success_message = "reserva cancelada com sucesso!!"

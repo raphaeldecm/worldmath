@@ -407,7 +407,7 @@
                         <span class="navlink">postagens</span>
                     </a>
                 </li>
-                {% if user.groups.all.0.name == 'SuperAdministrador' %}
+                {% if user.groups.all.0.name == 'Administrador' %}
                 <li class="item">
                     <a href="{% url 'users:lista_usuarios' %}" class="nav_link">
                         <span class="navlink_icon">

@@ -7,7 +7,7 @@ from django.urls import reverse_lazy
 from .models import *
 from .forms import *
 from django.contrib.auth.mixins import LoginRequiredMixin
-from users.permissions import AdministradorPermission, SuperAdministradorPermission
+from users.permissions import RedatorPermission, AdministradorPermission
 from django_filters.views import FilterView
 
 
@@ -99,7 +99,7 @@ class ResultadoNovidadesView(generic.ListView):
 
         return queryset
 
-class PostagemCreateView(AdministradorPermission, LoginRequiredMixin, views.SuccessMessageMixin, generic.CreateView):
+class PostagemCreateView(RedatorPermission, LoginRequiredMixin, views.SuccessMessageMixin, generic.CreateView):
     model = Postagem
     form_class = PostagemForm
     template_name = "dashboard/Postagem_form.html"
@@ -122,7 +122,7 @@ class PostagemCreateView(AdministradorPermission, LoginRequiredMixin, views.Succ
         context['form'] = PostagemForm(initial={'categoria_postagem': self.request.POST.get('categoria_postagem')})
         return context
 
-class PostagemListView(AdministradorPermission, LoginRequiredMixin, generic.ListView):
+class PostagemListView(RedatorPermission, LoginRequiredMixin, generic.ListView):
     model = Postagem
     paginate_by = 5
     template_name = "dashboard/Postagem_List.html"
@@ -146,16 +146,16 @@ class PostagemListView(AdministradorPermission, LoginRequiredMixin, generic.List
         return queryset.filter(created_by=self.request.user)
 
 
-class PostagemDeleteView(AdministradorPermission, LoginRequiredMixin, views.SuccessMessageMixin, generic.DeleteView):
+class PostagemDeleteView(RedatorPermission, LoginRequiredMixin, views.SuccessMessageMixin, generic.DeleteView):
     model = Postagem
     success_url = reverse_lazy("Postagem:Lista_postagem")
     success_message = "Reserva deletada com sucesso"
 
-class PostagemDetailView(AdministradorPermission, LoginRequiredMixin, generic.DetailView):
+class PostagemDetailView(RedatorPermission, LoginRequiredMixin, generic.DetailView):
     model = Postagem
     template_name = "dashboard/Postagem_detail.html"
 
-class PostagemUpdateView(AdministradorPermission, LoginRequiredMixin, views.SuccessMessageMixin, generic.UpdateView):
+class PostagemUpdateView(RedatorPermission, LoginRequiredMixin, views.SuccessMessageMixin, generic.UpdateView):
     model = Postagem
     form_class = PostagemForm
     success_url = reverse_lazy("Postagem:Lista_postagem")
