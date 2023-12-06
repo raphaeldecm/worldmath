@@ -1,4 +1,6 @@
 from django.shortcuts import render
+from django.core.mail import send_mail
+from django.views.generic.edit import FormView
 from django.views import generic
 from django.contrib.messages import views
 from django.urls import reverse_lazy
@@ -159,3 +161,23 @@ class PostagemUpdateView(AdministradorPermission, LoginRequiredMixin, views.Succ
     success_url = reverse_lazy("Postagem:Lista_postagem")
     template_name = "dashboard/Postagem_form.html"
     success_message = "Reserva atualizada com sucesso"
+
+    
+class ContatoView(views.SuccessMessageMixin, FormView):
+    template_name = 'FormContact.html'
+    form_class = FormularioContato
+    success_url = reverse_lazy('Postagem:contato')
+    success_message = "Mensagem enviada com sucesso!"
+
+    def form_valid(self, form):
+        form.save()
+
+        # Envie o e-mail
+        assunto = 'Nova mensagem de contato'
+        mensagem = f'Nome: {form.cleaned_data["nome"]}\nE-mail: {form.cleaned_data["email"]}\nMensagem: {form.cleaned_data["mensagem"]}'
+        remetente = settings.DEFAULT_FROM_EMAIL
+        destinatario = ['kadsonalmeida14@gmail.com']  # Lista de e-mails para receber a mensagem
+
+        send_mail(assunto, mensagem, remetente, destinatario, fail_silently=False)
+
+        return super().form_valid(form)

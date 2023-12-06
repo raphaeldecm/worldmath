@@ -7,7 +7,7 @@ set -o nounset
 python manage.py collectstatic --noinput
 
 #npm ci
-# python manage.py makemigrations core users Postagem
+python manage.py makemigrations core users Postagem
 python manage.py migrate
 
 

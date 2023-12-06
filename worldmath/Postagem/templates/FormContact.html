@@ -1,0 +1,47 @@
+{% extends 'base.html' %}
+{% load i18n %}
+{% load crispy_forms_tags %}
+{% block content %}
+
+<style>
+    main{
+    /* display: flex;
+    flex-direction: row;
+    align-items: center; */
+    width: 50%;
+    height: 500px;
+    margin: auto;
+    margin-top: 60px;
+}
+</style>
+<main class="signup-container">
+    {% for message in messages %}
+<div class="alert alert-{{ message.tags }}">
+    {{ message }}
+</div>
+{% endfor %}
+    <div class="signup-form">
+        {% include "layouts/alerts.html" %}
+        <h1>{% trans "Contato" %}</h1>
+        <form class="login" method="post">
+            {% csrf_token %}
+            <div style="margin-bottom: 20px;" class="form-group">
+                <label for="id_nome">{% trans "Nome:" %}</label>
+                <input type="text" name="nome" class="form-control" id="id_nome" placeholder="{% trans 'Digite seu nome' %}">
+            </div>
+            <div style="margin-bottom: 20px;" class="form-group">
+                <label for="id_email">{% trans "Email:" %}</label>
+                <input type="email" name="email" class="form-control" id="id_email" placeholder="{% trans 'name@example.com' %}">
+            </div>
+            <div style="margin-bottom: 20px;" class="form-group">
+                <label for="id_mensagem">{% trans "Deixe sua mensagem!" %}</label>
+                <textarea id="id_mensagem" class="form-control" name="mensagem" rows="3"></textarea>
+            </div>
+            <div class="form-group">
+                <button class="btn btn-primary" type="submit">{% trans "Enviar" %}</button>
+            </div>
+        </form>
+    </div>
+</main>
+
+{% endblock %}

@@ -17,6 +17,7 @@ urlpatterns = [
     path('Matemaico_detalhe/<int:pk>/', views.MatematicosDetailView.as_view(), name='Detail_matematico'),
     path('resultado_novidades/', views.ResultadoNovidadesView.as_view(), name='resultado_novidades'),
     path('Novidades/', views.NovidadesView.as_view(), name='Novidades'),
+    path('contato/', views.ContatoView.as_view(), name='contato'),
 ]+ static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 
 

@@ -1,5 +1,5 @@
 from django import forms
-from .models import Postagem
+from .models import Postagem, MensagemContato
 
 class PostagemForm(forms.ModelForm):
     CATEGORIAS = [
@@ -39,20 +39,7 @@ class PostagemForm(forms.ModelForm):
                 self.fields['Resumo'].widget.attrs.pop('required', None)
 
 
-
-    # def clean(self):
-    #     cleaned_data = super().clean()
-    #     categoria = cleaned_data.get('categoria_postagem')
-
-    #     if categoria == 'Historia' or categoria == 'Matematicos':
-    #         cleaned_data['conteudo'] = ''
-    #         cleaned_data['tipo_arquivo'] = ''
-    #         if 'Url' in self.fields:
-    #             self.fields['Url'].widget.attrs['disabled'] = True
-    #     elif categoria == 'Exercicios':
-    #         cleaned_data['imagem'] = None
-    #         cleaned_data['Resumo'] = ''
-    #     elif categoria == 'Diversidades':
-    #         cleaned_data['conteudo'] = ''
-    #         cleaned_data['tipo_arquivo'] = ''
-    #         cleaned_data['Url'] = ''
+class FormularioContato(forms.ModelForm):
+    class Meta:
+        model = MensagemContato
+        fields = ['nome', 'email', 'mensagem']
