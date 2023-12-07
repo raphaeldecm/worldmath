@@ -27,7 +27,7 @@ class IndexView(generic.ListView):
         first_object_matematicos = Postagem.objects.filter(categoria_postagem='Matematicos').order_by('-created_at').first()
         context['first_object_matematicos'] = first_object_matematicos
         
-        latest_objects_novidades = Postagem.objects.filter(categoria_postagem='Novidades').order_by('-created_at')[:2]
+        latest_objects_novidades = Postagem.objects.filter(categoria_postagem='Novidades').order_by('-created_at')[:3]
         context['latest_objects_novidades'] = latest_objects_novidades
 
         return context
@@ -39,6 +39,10 @@ class GalleryView(generic.ListView):
 class MatematicosDetailView(generic.DetailView):
     model = Postagem
     template_name = "Math_detail.html"
+
+class NovidadesDetailView(generic.DetailView):
+    model = Postagem
+    template_name = "Novidades_detalhe.html"
     
 class ExerciciosView(generic.ListView):
     model = Postagem

@@ -15,6 +15,7 @@ urlpatterns = [
     path('Update_postagem/<int:pk>/', views.PostagemUpdateView.as_view(), name='Editar_postagem'),
     path('Detalhe_postagem/<int:pk>/', views.PostagemDetailView.as_view(), name='Detail_postagem'),
     path('Matemaico_detalhe/<int:pk>/', views.MatematicosDetailView.as_view(), name='Detail_matematico'),
+    path('Novidades_detalhe/<int:pk>/', views.NovidadesDetailView.as_view(), name='Detail_novidades'),
     path('resultado_novidades/', views.ResultadoNovidadesView.as_view(), name='resultado_novidades'),
     path('Novidades/', views.NovidadesView.as_view(), name='Novidades'),
     path('contato/', views.ContatoView.as_view(), name='contato'),

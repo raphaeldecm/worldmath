@@ -90,7 +90,27 @@
                                     </form>
                                 </div>
                             {% else %}
-                                <a style="padding: 8px 20px;" class="btn btn-primary rounded-pill" href="{% url 'account_login' %}">Entrar</a>
+                            <div style="position: relative; display: inline-block;">
+                                <button class="btn btn rounded-pill" type="button" onclick="toggleDropdown()" style="background-color: blue; color: white; margin-right: -40px;">
+                                    <svg style="margin-right: 5px;" xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="currentColor" class="bi bi-person-circle" viewBox="0 0 16 16">
+                                        <path d="M11 6a3 3 0 1 1-6 0 3 3 0 0 1 6 0" />
+                                        <path fill-rule="evenodd" d="M0 8a8 8 0 1 1 16 0A8 8 0 0 1 0 8m8-7a7 7 0 0 0-5.468 11.37C3.242 11.226 4.805 10 8 10s4.757 1.225 5.468 2.37A7 7 0 0 0 8 1" />
+                                    </svg>
+                                    Usuário
+                                </button>
+                                
+                                <div style="margin-left: 50px;" class="dropdown-menu text-center" id="customDropdown" aria-labelledby="navbarDropdown">
+                                    <a class="dropdown-item" href="{% url 'account_login' %}">Entrar</a>
+                                    <a class="dropdown-item" href="{% url 'account_signup' %}">
+                                        <i class="fas fa-user-plus" aria-hidden="true"></i> Cadastrar-se
+                                    </a>
+                                    
+                                </div>
+                            </div>
+                               
+                                
+                            </div>
+        
                             {% endif %}
                         </li>   
                     </ul>
@@ -107,10 +127,10 @@
 
     <footer class="container-fluid">
         <div class="row d-flex justify-content-around">
-            <div style="margin-left: -75px;" class="col-xl-3 col-lg-8 col-md-8">
+            <div style="margin-left: -55px;" class="col-xl-3 col-lg-8 col-md-8">
                 <img class="img-fluid" src="{% static 'images/footer.png' %}" alt="footer">
             </div>
-            <div class="col-xl-2 col-lg-8 links" style="margin-left: -160px;">
+            <div class="col-xl-2 col-lg-8 links" style="margin-left: -200px;">
                 <div class="border-links">
                     <h4> <strong>Links</strong> </h4>
                 </div>

@@ -45,7 +45,7 @@
                         {% else %}
                         {% for group in object.groups.all %}
                         {% if group.name == "Redator" %}
-                        <form method="post" action="{% url 'users:remover_grupo_administrador' object.id %}"
+                        <form  style="margin-right: 5px;" method="post" action="{% url 'users:remover_grupo_administrador' object.id %}"
                             class="d-inline">
                             {% csrf_token %}
                             <button type="submit" class="btn btn-danger btn-sm">
@@ -129,7 +129,4 @@
     </ul>
 </nav>
 {% endif %}
-<a style="margin-left: 40px;" href="{% url 'users:create_users' %}" class="btn btn-primary" type="button">
-    <i class="fas fa-user-plus" aria-hidden="true"></i> Cadastrar-se
-  </a>
 {% endblock %}

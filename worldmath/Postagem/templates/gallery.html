@@ -2,143 +2,148 @@
 {% load static i18n %}
 {% get_current_language as LANGUAGE_CODE %}
 {% block content %}
-    <main style="width: 100%; ">
-<style>
-:root {
-    --background: #fffff;
-    --background-border: #ffffff;
-}
+<main style="width: 100%; ">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;700&display=swap');
 
-main {
-background-color: #FFFFFF;
-height: 100vh;
-padding: 32px;
-display: grid;
-place-items: center;
-background-color: var(--background);
-}
+        :root {
+            --background: #fffff;
+            --background-border: #ffffff;
+        }
 
-.gallery {
-    display: flex;
-    background-color: var(--background);
-    gap: 16px;
-    margin-top: -30%;
-}
+        main {
+            background-color: #FFFFFF;
+            height: 100vh;
+            padding: 32px;
+            display: grid;
+            place-items: center;
+            background-color: var(--background);
+        }
 
-.card-row {
-    display: flex;
-    gap: 16px;
-    flex-wrap: wrap;
-}
-#Text-Figcaption{
-    font-size: 15px;
-    font-weight: bold;
-    font-family: 'Poppins';
+        .gallery {
+            display: flex;
+            background-color: var(--background);
+            gap: 16px;
+            margin-top: -30%;
+        }
 
-}
-.card {
-/*     width: calc(20%);*/
-    position: relative;
-    left: 0px;
-    height: 160px;
-    width: 200px;
-    background-color: var(--background);
-    border-radius: 5px;
-    transition: 1000ms all;
-    transform-origin: center left;
-    box-shadow: 0 5px 12px rgba(0, 0, 0, 0.5);
-    outline: 1px solid var(--background);
-    overflow: hidden;
-    margin-left: 6px;
-    margin-bottom: 10px;
-    
-}
+        .card-row {
+            display: flex;
+            gap: 16px;
+            flex-wrap: wrap;
+        }
 
-.card img {
-    height: 160px;
-    object-fit: cover;
-    border-radius: 4px;
-    width: 100%;
-}
+        #Text-Figcaption {
+            font-size: 15px;
+            font-weight: bold;
+            font-family: 'Poppins';
 
-.card:hover {
-    cursor: pointer;
-    transform: scale(1.15);
-}
+        }
 
-.card:hover figcaption {
-    font-size: 0.6rem;
-    position: absolute;
-    height: 80px;
-    width: 160px;
-    display: flex;
-    align-items: end;
-    background: linear-gradient(
-        to top,
-        rgba(0, 0, 0, 0.9) 0%,
-        rgba(0, 0, 0, 0) 100%
-    );
-    color: white;
-    left: 0px;
-    bottom: 0px;
-    padding-left: 12px;
-    padding-bottom: 10px;
-}
+        .card {
+            /*     width: calc(20%);*/
+            position: relative;
+            left: 0px;
+            height: 160px;
+            width: 200px;
+            background-color: var(--background);
+            border-radius: 5px;
+            transition: 1000ms all;
+            transform-origin: center left;
+            box-shadow: 0 5px 12px rgba(0, 0, 0, 0.5);
+            outline: 1px solid var(--background);
+            overflow: hidden;
+            margin-left: 6px;
+            margin-bottom: 10px;
 
-.card:hover ~ .card {
-    font-weight: bold;
-    cursor: pointer;
-    transform: translateX(22px);
-}
+        }
+
+        .card img {
+            height: 160px;
+            object-fit: cover;
+            border-radius: 4px;
+            width: 100%;
+        }
+
+        .card:hover {
+            cursor: pointer;
+            transform: scale(1.15);
+        }
+
+        .card:hover figcaption {
+            font-size: 0.6rem;
+            position: absolute;
+            height: 80px;
+            width: 160px;
+            display: flex;
+            align-items: end;
+            background: linear-gradient(to top,
+                    rgba(0, 0, 0, 0.9) 0%,
+                    rgba(0, 0, 0, 0) 100%);
+            color: white;
+            left: 0px;
+            bottom: 0px;
+            padding-left: 12px;
+            padding-bottom: 10px;
+        }
+
+        .card:hover~.card {
+            font-weight: bold;
+            cursor: pointer;
+            transform: translateX(22px);
+        }
 
 
-.quersaber{
-    background: rgba(0, 36, 64, 0.9);
-    border-radius: 20px;
-    color: #FFFFFF;
-    width: 95%;
-    margin: auto;
-    margin-top: 20px;
-}
-.bt-quero{
-    background: #FFFFFF;
-    border-radius: 30px;
-    border: none;
-    width: 150px;
-    height: 35px;
-    color: #050927;
-    font-weight: bold;
-    font-size: 16px;
-}
-        </style>
+        .quersaber {
+            background: rgba(0, 36, 64, 0.9);
+            border-radius: 20px;
+            color: #FFFFFF;
+            width: 95%;
+            margin: auto;
+            margin-top: 20px;
+        }
 
-        
-        <section class="quersaber container-fluid">
-            <div class="row d-flex justify-content-around d-flex align-items-center">
-                <div class="col-xl-2 col-lg-6 col-md-8">
-                    <img style="max-width: 160px;" class="img-fluid" src="{% static 'images/Socrates2.png' %}" alt="">
-                </div>
-                <div style="align-items: center;" class="col-xl-5 col-lg-8 col-md-8">
-                    <h2 style="margin-left: 55px;">Galeria dos Matemáticos</h2>
-                    <h3>Físicos, filosos, inventores e muito mais!</h3>
-                </div>
-                <div class="col-xl-2 col-lg-6 col-md-8">
-                    <img class="img-fluid" src="{% static 'images/quersaer.png' %}" alt="">
-                </div>
+        .bt-quero {
+            background: #FFFFFF;
+            border-radius: 30px;
+            border: none;
+            width: 150px;
+            height: 35px;
+            color: #050927;
+            font-weight: bold;
+            font-size: 16px;
+        }
+    </style>
+
+
+    <section class="quersaber container-fluid">
+        <div class="row d-flex justify-content-around d-flex align-items-center">
+            <div class="col-xl-2 col-lg-6 col-md-8">
+                <img style="max-width: 160px;" class="img-fluid" src="{% static 'images/Socrates2.png' %}" alt="">
             </div>
-        </section>
-        <section style="margin-top: 400px; display: flex; justify-content: center;">
-        <div  class="gallery col-8 justify-content-center">
+            <div style="align-items: center;" class="col-xl-5 col-lg-8 col-md-8">
+                <h2 style="margin-left: 55px;">Galeria dos Matemáticos</h2>
+                <h3>Físicos, filosos, inventores e muito mais!</h3>
+            </div>
+            <div class="col-xl-2 col-lg-6 col-md-8">
+                <img class="img-fluid" src="{% static 'images/quersaer.png' %}" alt="">
+            </div>
+        </div>
+    </section>
+    <section style="margin-top: 400px; display: flex; justify-content: center;">
+        <div class="gallery col-8 justify-content-center">
 
             <div class="card-row">
                 {% for postagem in object_list %}
                 {% if postagem.categoria_postagem == 'Matematicos' %}
                 <article class="card">
                     <figure>
-                        <img style="font-size: 15px; max-width: 200px;" src="{{ postagem.imagem.url }}" alt="{{ postagem.titulo }}">
+                        <img style="font-size: 15px; max-width: 200px;" src="{{ postagem.imagem.url }}"
+                            alt="{{ postagem.titulo }}">
                         <figcaption>
                             <h3 id="Text-Figcaption">
-                                <a style="color: white;" href="{% url 'Postagem:Detail_matematico' postagem.id %}">{{ postagem.titulo }}</a>
+                                <a style="color: white;" href="{% url 'Postagem:Detail_matematico' postagem.id %}">{{
+                                    postagem.titulo }}</a>
                             </h3>
                         </figcaption>
                     </figure>
@@ -146,10 +151,9 @@ background-color: var(--background);
                 {% endif %}
                 {% endfor %}
             </div>
-            
+
         </div>
     </section>
-    </main>
-    
-{% endblock %}
+</main>
 
+{% endblock %}

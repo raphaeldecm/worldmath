@@ -1,6 +1,79 @@
 {% extends "base.html" %}
 {% load static i18n %}
 {% block content %}
+
+<style>
+    @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;700&display=swap');
+
+    :root {
+        --primary: #646565;
+        --secondary: #261E5A;
+    }
+
+    .card {
+        cursor: pointer;
+        position: relative;
+        display: flex;
+        flex-direction: column;
+        transition: all 0.4s ease-in-out;
+        overflow: hidden;
+        border-radius: 18px; /* Ajustei o raio da borda */
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        max-width: 22rem; /* Ajustei o tamanho máximo */
+        width: 100%; /* Garante que o card se ajuste ao contêiner pai */
+        margin: 0 auto; /* Centraliza o card no contêiner pai */
+    }
+
+    .card img {
+        max-width: 100%;
+        height: 220px; /* Ajuste a altura conforme necessário */
+        object-fit: cover; /* Mantém proporções da imagem */
+    }
+
+    .card-body {
+        padding: 18px; /* Ajustei o padding */
+        background: white;
+        display: flex;
+        flex-direction: column;
+        flex-grow: 1; /* Adicionado para garantir que a altura do card se ajuste ao conteúdo */
+        font-family: 'Poppins', sans-serif; /* Usando a fonte Poppins */
+    }
+
+    .card-title {
+        margin: 0 0 12px 0; /* Ajustei a margem */
+        font-size: 1.8rem; /* Ajustei o tamanho da fonte */
+        color: var(--secondary);
+        transition: color 0.3s ease-out;
+    }
+
+    .card-text {
+        color: var(--secondary);
+        flex-grow: 1;
+    }
+
+    .card-buttons {
+        margin-top: auto; /* Move os botões para o final do card */
+        display: flex;
+        justify-content: flex-end;
+        align-items: flex-end;
+    }
+
+    .card-buttons a {
+        margin-right: 12px; /* Ajustei a margem */
+        margin-bottom: 12px; /* Ajustei a margem */
+        border-radius: 20px;
+    }
+
+    .card:hover .card-title {
+        color: var(--primary);
+    }
+
+    .card:hover .card-text {
+        color: var(--primary);
+    }
+</style>
+
+
     <main>
         <section class="main container-fluid">
             <div class="row d-flex align-items-center">
@@ -64,7 +137,7 @@
         </section>
 
         <section class="poesia">
-            <h2 style="margin-bottom: 20px;">Venha conhecer também as novidades do mundo!</h2>
+            <h2 style="margin-bottom: 20px; white-space: nowrap;">Venha conhecer também as novidades do mundo!</h2>
             <div class="row w-100">
                 <div class="col-xl-6 col-lg-8 d-flex justify-content-around flex-wrap w-100">
                     {% for postagem in latest_objects_novidades %}
@@ -73,9 +146,9 @@
                         <div class="card-body">
                             <h4 class="card-title">{{ postagem.titulo }}</h4>
                             <p class="card-text">{{ postagem.Resumo }}</p>
-                            <div class="d-flex justify-content-end">
-                                <a href="{% url 'Postagem:Detail_matematico' postagem.id %}" class="btn btn-primary">Conheça mais...</a>
-                            </div>
+                        </div>
+                        <div class="d-flex justify-content-end" style="margin-right: 10px; margin-bottom: 10px;">
+                            <a style="border-radius: 20px;" href="{% url 'Postagem:Detail_novidades' postagem.id %}" class="btn btn-primary">Postagem completa</a>
                         </div>
                     </div>
                     {% endfor %}
@@ -83,8 +156,6 @@
             </div>
         </section>
         
-        
-        
-
+               
     </main>
     {% endblock %}

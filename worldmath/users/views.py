@@ -69,7 +69,7 @@ class UserDeleteView(AdministradorPermission, LoginRequiredMixin, generic.Delete
 class RemoveGrupoAdministradorView(LoginRequiredMixin, View):
     def post(self, request, *args, **kwargs):
         user = get_object_or_404(User, id=kwargs['pk'])
-        grupo_administrador = Group.objects.get(name='Administrador')
+        grupo_administrador = Group.objects.get(name='Redator')
 
         # Remove o usuário do grupo "Administrador"
         user.groups.remove(grupo_administrador)
@@ -78,7 +78,7 @@ class RemoveGrupoAdministradorView(LoginRequiredMixin, View):
 class AtualizarGrupoAdministradorView(LoginRequiredMixin, View):
     def post(self, request, *args, **kwargs):
         user = get_object_or_404(User, id=kwargs['pk'])
-        grupo_administrador = Group.objects.get(name='Administrador')
+        grupo_administrador = Group.objects.get(name='Redator')
 
         # Adiciona o usuário ao grupo "Administrador"
         user.groups.add(grupo_administrador)
@@ -97,7 +97,7 @@ class ThirdUserUpdateView(LoginRequiredMixin, views.SuccessMessageMixin, UpdateV
 
 class UserCreateView(LoginRequiredMixin, views.SuccessMessageMixin, CreateView):
     model = User
-    form_class = UserAdminCreationForm
+    form_class = UserSignupForm
     success_url = reverse_lazy("users:list")
     success_message = _("Usuário cadastrado com sucesso!")
     template_name = "account/signup.html"

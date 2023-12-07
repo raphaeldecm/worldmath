@@ -1,93 +1,235 @@
-{% extends "account/base.html" %}
+{% extends 'base.html' %}
 
 {% load i18n %}
-{% load crispy_forms_tags %}
-
-{% block head_title %}{% translate "Signup" %}{% endblock %}
+{% load account socialaccount %}
+{% load static %}
 
 {% block content %}
-<div class="main-content pl-sm-3 mt-4 d-flex justify-content-center align-items-center">
-  <div class="col-md-5 col-lg-5 col-xl-5 col-12">
-    {% include "layouts/alerts.html" %}
-    <h1 class="text-h1 text-center">{% trans "Sign Up" %}</h1>
-    <form class="login" method="POST" action="{% url 'account_signup' %}">
-      {% csrf_token %}
-      <div class="mb-3">
-        <label for="id_username" class="form-label">{% trans "Nome de usuário:" %}</label>
-        <div class="input-group">
-          <span class="input-group-text"><i class="fas fa-user" aria-hidden="true">
-            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-person" viewBox="0 0 16 16">
-              <path d="M8 8a3 3 0 1 0 0-6 3 3 0 0 0 0 6m2-3a2 2 0 1 1-4 0 2 2 0 0 1 4 0m4 8c0 1-1 1-1 1H3s-1 0-1-1 1-4 6-4 6 3 6 4m-1-.004c-.001-.246-.154-.986-.832-1.664C11.516 10.68 10.289 10 8 10c-2.29 0-3.516.68-4.168 1.332-.678.678-.83 1.418-.832 1.664z"/>
-            </svg>
-          </i></span>
-          <input type="text" name="username" class="form-control" id="id_username" placeholder="{% trans 'Username' %}">
-        </div>
-      </div>
-      <div class="mb-3">
-        <label for="id_email" class="form-label">{% trans "Email:" %}</label>
-        <div class="input-group">
-          <span class="input-group-text"><i class="fas fa-envelope" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-envelope" viewBox="0 0 16 16">
-            <path d="M0 4a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2zm2-1a1 1 0 0 0-1 1v.217l7 4.2 7-4.2V4a1 1 0 0 0-1-1zm13 2.383-4.708 2.825L15 11.105zm-.034 6.876-5.64-3.471L8 9.583l-1.326-.795-5.64 3.47A1 1 0 0 0 2 13h12a1 1 0 0 0 .966-.741M1 11.105l4.708-2.897L1 5.383z"/>
-          </svg></i></span>
-          <input type="email" name="email" class="form-control" id="id_email" placeholder="{% trans 'Email' %}">
-        </div>
-      </div>
-      <div class="mb-3">
-        <label for="id_password1" class="form-label">{% trans "Senha:" %}</label>
-        <div class="input-group">
-          <span class="input-group-text"><i class="fas fa-lock" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-lock" viewBox="0 0 16 16">
-            <path d="M8 1a2 2 0 0 1 2 2v4H6V3a2 2 0 0 1 2-2m3 6V3a3 3 0 0 0-6 0v4a2 2 0 0 0-2 2v5a2 2 0 0 0 2 2h6a2 2 0 0 0 2-2V9a2 2 0 0 0-2-2M5 8h6a1 1 0 0 1 1 1v5a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1V9a1 1 0 0 1 1-1"/>
-          </svg></i></span>
-          <input type="password" name="password1" class="form-control toggle-password" placeholder="{% trans 'Password' %}">
-          <button type="button" class="btn btn-outline-secondary toggle-button" aria-label="Mostrar Senha">
-            <i class="fas fa-eye" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-eye-slash-fill" viewBox="0 0 16 16">
-              <path d="m10.79 12.912-1.614-1.615a3.5 3.5 0 0 1-4.474-4.474l-2.06-2.06C.938 6.278 0 8 0 8s3 5.5 8 5.5a7.029 7.029 0 0 0 2.79-.588M5.21 3.088A7.028 7.028 0 0 1 8 2.5c5 0 8 5.5 8 5.5s-.939 1.721-2.641 3.238l-2.062-2.062a3.5 3.5 0 0 0-4.474-4.474L5.21 3.089z"/>
-              <path d="M5.525 7.646a2.5 2.5 0 0 0 2.829 2.829l-2.83-2.829zm4.95.708-2.829-2.83a2.5 2.5 0 0 1 2.829 2.829zm3.171 6-12-12 .708-.708 12 12z"/>
-            </svg></i>
-          </button>
-        </div>
-      </div>
-      <div class="mb-3">
-        <label for="id_password2" class="form-label">{% trans "Confimar senha:" %}</label>
-        <div class="input-group">
-          <span class="input-group-text"><i class="fas fa-lock" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-lock" viewBox="0 0 16 16">
-            <path d="M8 1a2 2 0 0 1 2 2v4H6V3a2 2 0 0 1 2-2m3 6V3a3 3 0 0 0-6 0v4a2 2 0 0 0-2 2v5a2 2 0 0 0 2 2h6a2 2 0 0 0 2-2V9a2 2 0 0 0-2-2M5 8h6a1 1 0 0 1 1 1v5a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1V9a1 1 0 0 1 1-1"/>
-          </svg></i></span>
-          <input type="password" name="password2" class="form-control toggle-password" placeholder="{% trans 'Confirm Password' %}">
-          <button type="button" class="btn btn-outline-secondary toggle-button" aria-label="Mostrar Senha">
-            <i class="fas fa-eye" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-eye-slash-fill" viewBox="0 0 16 16">
-              <path d="m10.79 12.912-1.614-1.615a3.5 3.5 0 0 1-4.474-4.474l-2.06-2.06C.938 6.278 0 8 0 8s3 5.5 8 5.5a7.029 7.029 0 0 0 2.79-.588M5.21 3.088A7.028 7.028 0 0 1 8 2.5c5 0 8 5.5 8 5.5s-.939 1.721-2.641 3.238l-2.062-2.062a3.5 3.5 0 0 0-4.474-4.474L5.21 3.089z"/>
-              <path d="M5.525 7.646a2.5 2.5 0 0 0 2.829 2.829l-2.83-2.829zm4.95.708-2.829-2.83a2.5 2.5 0 0 1 2.829 2.829zm3.171 6-12-12 .708-.708 12 12z"/>
-            </svg></i>
-          </button>
-        </div>
-      </div>
-      {% if redirect_field_value %}
-      <input type="hidden" name="{{ redirect_field_name }}" value="{{ redirect_field_value }}" />
-      {% endif %}
-      <div class="mb-3">
-        <button class="btn btn-primary btn-block" type="submit">{% trans "Sign Up" %}</button>
-      </div>
-    </form>
-    <hr>
-  </div>
-</div>
-<script>
-  document.addEventListener("DOMContentLoaded", function() {
-    const toggleButtons = document.querySelectorAll(".toggle-button");
-    const passwordInputs = document.querySelectorAll(".toggle-password");
-    
-    toggleButtons.forEach(function(button, index) {
-      togglePassword(button, passwordInputs[index]);
-    });
+<style>
+     @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;700&display=swap');
 
-    function togglePassword(button, passwordInput) {
-      button.addEventListener("click", function() {
-        const type = passwordInput.getAttribute("type") === "password" ? "text" : "password";
-        passwordInput.setAttribute("type", type);
-        button.innerHTML = type === "password" ? '<i class="fas fa-eye" aria-hidden="true"></i>' : '<i class="fas fa-eye-slash" aria-hidden="true"></i>';
-      });
-    }
-  });
-</script>
+  :root {
+    --text-dark: hsl(240, 54%, 15%);
+    --text-light: hsl(242, 18%, 64%);
+    --primary: hsl(222, 98%, 60%);
+    --primary-lighter: hsl(240, 33%, 86%);
+    --primary-gradient: linear-gradient(to right, #3671fd, #6f31ff);
+  }
+
+  body,
+  nav,
+  footer {
+    background-color: #f5f9ff;
+  }
+
+  main {
+    font-family: Poppins, sans-serif;
+    min-height: 100vh;
+    background-color: #f5f9ff;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .container {
+    max-width: 1070px;
+    width: 100%;
+    display: flex;
+    margin-inline: 1rem;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .form-section {
+    width: 90%;
+    background-color: white;
+    padding: 2.5rem 1rem;
+    display: flex;
+    align-items: center;
+    margin-top: 60px;
+    margin-bottom: 50px;
+  }
+
+  .form-wrapper {
+    width: 75%;
+    margin: 0 auto;
+  }
+
+  .logo-container {
+    width: 3rem;
+    height: 3rem;
+    margin-bottom: 2.2rem;
+  }
+
+  .form-wrapper > h2 {
+    margin-bottom: 0.1rem;
+  }
+
+  .form-wrapper > p {
+    font-size: 0.875rem;
+    font-weight: 500;
+    color: var(--text-light);
+    margin-bottom: 2rem;
+  }
+
+  .input-container {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    margin-bottom: 1rem;
+  }
+
+  .form-group {
+    display: flex;
+    flex-direction: column;
+    gap: 0.2rem;
+  }
+
+  .form-group label {
+    font-size: 0.9375rem;
+    font-weight: 600;
+    color: #16164d;
+  }
+
+  .form-group input {
+    font-size: 0.875rem;
+    font-weight: 500;
+    color: var(--text-dark);
+    padding: 0.5rem;
+    border: 2px solid var(--primary-lighter);
+    border-radius: 0.3rem;
+  }
+
+  .form-group input:focus {
+    border: 2px solid #16164d;
+  }
+
+  .remember-forgot {
+    display: flex;
+    justify-content: space-between;
+    font-size: 0.875rem;
+    font-weight: 500;
+    margin-bottom: 1rem;
+  }
+
+  .remember-me {
+    display: grid;
+    grid-template-columns: 1rem auto;
+    gap: 0.6rem;
+  }
+
+  input[type="checkbox"] {
+    -webkit-appearance: none;
+    appearance: none;
+    display: grid;
+    place-content: center;
+  }
+
+  .remember-me input {
+    width: 1rem;
+    height: 1rem;
+    margin-right: 0.3rem;
+    border: 1px solid var(--text-light);
+    border-radius: 2px;
+  }
+
+  input[type="checkbox"]::before {
+    content: "";
+    width: 0.65em;
+    height: 0.65em;
+    background-color: white;
+    transform: scale(0);
+    transform-origin: bottom left;
+    clip-path: polygon(14% 44%, 0 65%, 50% 100%, 100% 16%, 80% 0%, 43% 62%);
+    transition: 120ms transform ease-in-out;
+    box-shadow: inset 1em 1em var(--form-control-color);
+  }
+
+  input[type="checkbox"]:checked::before {
+    transform: scale(1);
+  }
+
+  .remember-me input:checked {
+    background: var(--primary-gradient);
+  }
+
+  .remember-me label {
+    color: var(--text-dark);
+    user-select: none;
+  }
+
+  .remember-forgot a {
+    color: var(--primary);
+  }
+
+  .remember-forgot a:hover {
+    text-decoration: underline;
+    text-decoration-color: var(--primary);
+  }
+
+  .signup-form {
+    /* Adaptação do formulário de signup */
+    margin-top: 60px;
+  }
+
+  .btn-signup {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 0.6rem;
+    font-weight: 500;
+    padding: 0.5rem 0;
+    border-radius: 0.5rem;
+    background: var(--primary-gradient);
+    color: white;
+  }
+
+  .btn-signup:hover {
+    opacity: 0.9;
+  }
+</style>
+
+<main> 
+  <section class="container">
+    <div class="form-section" style="border-radius: 20px;">
+      <div class="form-wrapper">
+        <!-- Adicione a lógica de signup aqui -->
+        <form class="signup-form" method="POST" action="{% url 'account_signup' %}">
+          {% csrf_token %}
+
+          <div style="margin-bottom: 60px; margin: 0 auto;" class="logo-container">
+            <a href="#" class="logo-container a">
+              <img src="{% static 'images/logoLogin.png' %}" alt="Logo">
+            </a>
+          </div>
+
+          <h2 style="margin-top: 60px;">Bem vindo! 👋🏻</h2>
+          <p style="margin-bottom: 20px;">Crie sua conta e nos <strong>contate</strong> para ser um <strong>Redator!</strong> </p>
+          <div class="input-container">
+            <div class="form-group">
+              <label for="username">Username</label>
+              <input type="text" id="username" name="username" class="form-control" placeholder="Nome do usuário" required>
+            </div>
+            <div class="form-group">
+              <label for="email">Email</label>
+              <input type="email" id="email" name="email" class="form-control" placeholder="Seu email" required>
+            </div>
+            <div class="form-group">
+              <label for="password">Password</label>
+              <input type="password" id="password" name="password1" class="form-control" placeholder="Senha do usuário" required>
+            </div>
+            <div class="form-group">
+              <label for="confirm-password">Confirm Password</label>
+              <input type="password" id="confirm-password" name="password2" class="form-control" placeholder="Confirme sua senha" required>
+            </div>
+          </div>
+
+          <button class="btn-signup a" type="submit">Sign Up</button>
+        </form>
+        <!-- Fim da lógica de signup -->
+      </div>
+    </div>
+  </section>
+</main>
 {% endblock %}

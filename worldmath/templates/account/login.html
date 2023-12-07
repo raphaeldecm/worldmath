@@ -5,7 +5,7 @@
 
 {% block content %}
 <style>
-  @import url("https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap");
+     @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;700&display=swap');
 
 :root {
   --text-dark: hsl(240, 54%, 15%);
@@ -23,8 +23,8 @@
   box-sizing: border-box;
 }
 
-a,
-button {
+.a,
+.button {
   all: unset;
   cursor: pointer;
 }
@@ -276,7 +276,7 @@ input[type="checkbox"]:checked::before {
         <form class="login-form" method="POST" action="{% url 'account_login' %}">
           {% csrf_token %}
           <div style="margin-bottom: 60px; margin: 0 auto;" class="logo-container">
-            <a href="#" class="logo-container">
+            <a href="#" class="logo-container a">
               <img src="{% static 'images/logoLogin.png' %}" alt="Logo">
             </a>
           </div>
@@ -304,10 +304,10 @@ input[type="checkbox"]:checked::before {
               <label class="form-check-label" for="remember-me">Manter conectado</label>
             </div>
 
-            <a href="{% url 'account_reset_password' %}">Esqueceu a senha?</a>
+            <a class="a" href="{% url 'account_reset_password' %}">Esqueceu a senha?</a>
           </div>
 
-          <button style="margin-top: 40px;" class="login-btn" type="submit">Log In</button>
+          <button style="margin-top: 40px;" class="login-btn a" type="submit">Log In</button>
         </form> 
         <!-- Fim da lógica de login -->
 
