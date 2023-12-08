@@ -59,6 +59,9 @@ class UsersListView(AdministradorPermission, LoginRequiredMixin, generic.ListVie
     ordering = ["name"]
     template_name = "lista_users.html"
 
+    def get_queryset(self):
+        return User.objects.exclude(username='').order_by('name')    
+
 
 class UserDeleteView(AdministradorPermission, LoginRequiredMixin, generic.DeleteView):
     model = User

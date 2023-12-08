@@ -120,6 +120,10 @@
         </nav>
     </header>
     
+    <div class="main-content pl-sm-3 mt-4" id="main-content">
+        {% if messages %}
+        {% include "layouts/messages.html" %}
+      {% endif %}
 
     {% block content %}
 

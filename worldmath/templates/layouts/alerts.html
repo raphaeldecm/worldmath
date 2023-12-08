@@ -1,25 +1,36 @@
 {% if form.errors %}
-<div class="alert alert-warning alert-dismissible fade show" role="alert">
-  <div class="d-flex align-items-center">
-    <i class="fas fa-exclamation-triangle fa-lg" aria-hidden="true"></i>
-    <div class="ml-3">
-      <strong>Atenção.</strong>
-      <ul class="mb-0">
-        {% for error in form.non_field_errors %}
-        <li>{{ error }}</li>
-        {% endfor %}
-        {% if form.errors %}
-          {% for field in form %}
-            {% for error in field.errors %}
-              <li><strong>{{ field.label }}:</strong> {{ error|escape }}</li>
-            {% endfor %}
-          {% endfor %}
-        {% endif %}
-      </ul>
+    <div class="alert alert-warning d-flex align-items-center justify-content-between mb-3" role="alert" data-alert-id="form-errors">
+        <div class="d-flex align-items-center">
+            <div class="icon me-2 align-middle"><i class="fas fa-exclamation-triangle fa-lg" aria-hidden="true"></i></div>
+            <div class="content" style="margin-top: 15px; margin-left: 10px;">
+                <strong>Atenção.</strong>
+                <ul class="mb-0">
+                    {% for error in form.non_field_errors %}
+                        <li>{{ error }}</li>
+                    {% endfor %}
+                    {% if form.errors %}
+                        {% for field in form %}
+                            {% for error in field.errors %}
+                                <li><strong>{{ field.label }}:</strong> {{ error|escape }}</li>
+                            {% endfor %}
+                        {% endfor %}
+                    {% endif %}
+                </ul>
+            </div>
+        </div>
+        <div class="close">
+            <button class="btn btn-outline-danger small" type="button" aria-label="Fechar" onclick="fecharAlerta('form-errors')">
+                <i class="fas fa-times" aria-hidden="true"></i> X
+            </button>
+        </div>
     </div>
-  </div>
-  <button type="button" class="close" data-dismiss="alert" aria-label="Fechar">
-    <span aria-hidden="true">&times;</span>
-  </button>
-</div>
 {% endif %}
+
+<script>
+    function fecharAlerta(alertId) {
+        const alerta = document.querySelector(`[data-alert-id="${alertId}"]`);
+        if (alerta) {
+            alerta.remove();
+        }
+    }
+</script>

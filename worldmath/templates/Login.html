@@ -54,8 +54,9 @@
 
 {% block head_title %}{% translate "Sign In" %}{% endblock %}
 
-{% block main %}
+{% block content %}
 <div class="login-container">
+  {% include "layouts/alerts.html" %}
     <form class="login-form" method="POST" action="{% url 'account_login' %}">
         {% csrf_token %}
         <h1>{% translate "Faça seu Login" %}</h1>

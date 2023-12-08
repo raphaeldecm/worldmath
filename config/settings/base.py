@@ -44,9 +44,9 @@ DATABASES = {
     "ENGINE": "django.db.backends.postgresql",
     "NAME": "worldmath",
     "USER": "postgres",
-    "PASSWORD": "123456",
+    "PASSWORD": "12345",
     "HOST": "127.0.0.1",
-    "PORT": "5432",
+    "PORT": "5433",
 }
 }   
 DATABASES["default"]["ATOMIC_REQUESTS"] = True
