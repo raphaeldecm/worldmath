@@ -174,13 +174,18 @@ class ContatoView(views.SuccessMessageMixin, FormView):
     success_message = "Mensagem enviada com sucesso!"
 
     def form_valid(self, form):
-        form.save()
+        # Salvando o formulário
+        mensagem_contato = form.save(commit=False)
 
-        # Envie o e-mail
+        # Obtendo o endereço de e-mail do usuário que está enviando a mensagem
+        remetente = form.cleaned_data['email']
+
+        # Salvando o restante do formulário e enviando o e-mail
+        mensagem_contato.save()
+
         assunto = 'Nova mensagem de contato'
-        mensagem = f'Nome: {form.cleaned_data["nome"]}\nE-mail: {form.cleaned_data["email"]}\nMensagem: {form.cleaned_data["mensagem"]}'
-        remetente = settings.DEFAULT_FROM_EMAIL
-        destinatario = ['kadsonalmeida14@gmail.com']  # Lista de e-mails para receber a mensagem
+        mensagem = f'Nome: {mensagem_contato.nome}\nE-mail: {mensagem_contato.email}\nMensagem: {mensagem_contato.mensagem}'
+        destinatario = ['worldmath34@gmail.com']
 
         send_mail(assunto, mensagem, remetente, destinatario, fail_silently=False)
 

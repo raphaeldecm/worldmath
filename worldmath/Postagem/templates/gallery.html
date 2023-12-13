@@ -123,7 +123,7 @@
             </div>
             <div style="align-items: center;" class="col-xl-5 col-lg-8 col-md-8">
                 <h2 style="margin-left: 55px;">Galeria dos Matemáticos</h2>
-                <h3>Físicos, filosos, inventores e muito mais!</h3>
+                <h3 style="font-size: 20px;margin-left: 55px;">Físicos, filosos, inventores e muito mais!</h3>
             </div>
             <div class="col-xl-2 col-lg-6 col-md-8">
                 <img class="img-fluid" src="{% static 'images/quersaer.png' %}" alt="">
@@ -142,8 +142,7 @@
                             alt="{{ postagem.titulo }}">
                         <figcaption>
                             <h3 id="Text-Figcaption">
-                                <a style="color: white;" href="{% url 'Postagem:Detail_matematico' postagem.id %}">{{
-                                    postagem.titulo }}</a>
+                                <a style="color: white;" href="{% url 'Postagem:Detail_matematico' postagem.id %}">{{ postagem.titulo }}</a>
                             </h3>
                         </figcaption>
                     </figure>

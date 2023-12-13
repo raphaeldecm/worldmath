@@ -44,9 +44,9 @@ DATABASES = {
     "ENGINE": "django.db.backends.postgresql",
     "NAME": "worldmath",
     "USER": "postgres",
-    "PASSWORD": "12345",
+    "PASSWORD": "123456",
     "HOST": "127.0.0.1",
-    "PORT": "5433",
+    "PORT": "5432",
 }
 }   
 DATABASES["default"]["ATOMIC_REQUESTS"] = True
@@ -224,8 +224,8 @@ EMAIL_HOST = 'smtp.gmail.com'
 EMAIL_PORT = 587
 EMAIL_USE_TLS = True
 EMAIL_USER_SSL = False
-EMAIL_HOST_USER = "kadsonalmeida14@gmail.com"
-EMAIL_HOST_PASSWORD = "mlzdkkxmqlvdncof"
+EMAIL_HOST_USER = "worldmath34@gmail.com"
+EMAIL_HOST_PASSWORD = "alumjrsvkjiinwpu"
 
 # https://docs.djangoproject.com/en/dev/ref/settings/#email-timeout
 EMAIL_TIMEOUT = 5
