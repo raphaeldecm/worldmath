@@ -2,28 +2,42 @@
 {% load i18n %}
 {% block content %}
 <div style="padding-left: 40px;" class="container mt-4">
+
 <h2 class="mt-3">Dashboard</h2>
-
-<div class="row mt-3">
-  <div class="col-md-4">
-    <div href="{% url 'Postagem:Lista_postagem' %}" class="card text-white bg-primary mb-3" style="text-decoration: none;">
-      <div class="card-header">Postagens</div>
-      <div class="card-body">
-        <h5 class="card-title">Total de Postagens:</h5>
-        <p class="card-text">{{ num_postagem }}</p> 
-      </div>
+<div style="margin-top: 20px; margin-bottom: 35px;">
+    {% if not user.groups.all.0.name %}
+    <div class="d-flex flex-column align-items-center justify-content-center mt-5">
+      <h4 class="mt-3">Bem-vindo ao sistema Worldmath, {{ user.get_username }}!</h4>
+      <h5>Você não é um redator</h5>
+      <h6>Para se tornar um, entre em <a href="{% url 'Postagem:contato' %}">contato</a> conosco</h6>
     </div>
-  </div>
-
-  <div class="col-md-4">
-    <div  class="card text-white bg-success mb-3" style="text-decoration: none;">
-      <div class="card-header">Usuários</div>
-      <div class="card-body">
-        <h5 class="card-title">Total de Usuários:</h5>
-        <p class="card-text">{{ num_usuarios }}</p> 
-      </div>
-    </div>
-  </div>
+  {% endif %}
+  
 </div>
+{% if user.groups.all.0.name == 'Redator' or user.groups.all.0.name == 'Administrador' %}
+  <div class="row mt-3">
+    <div class="col-md-4">
+      <a href="{% url 'Postagem:Lista_postagem' %}" class="card text-white bg-primary mb-3" style="text-decoration: none;">
+        <div class="card-header">Postagens</div>
+        <div class="card-body">
+          <h5 class="card-title">Total de Postagens:</h5>
+          <p class="card-text">{{ num_postagem }}</p> 
+        </div>
+      </a>
+    </div>
+
+    <div class="col-md-4">
+      <div class="card text-white bg-success mb-3" style="text-decoration: none;">
+        <div class="card-header">Usuários</div>
+        <div class="card-body">
+          <h5 class="card-title">Total de Usuários:</h5>
+          <p class="card-text">{{ num_usuarios }}</p> 
+        </div>
+      </div>
+    </div>
+  </div>
+
+{% endif %}
+
 </div>
 {% endblock %}

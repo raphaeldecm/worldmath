@@ -43,7 +43,17 @@
             <p class="card-text">Total de Postagens: {{ num_postagem }}</p>
         </div>
     </div>
+    {% if messages %}
+    <div class="messages">
+      {% for message in messages %}
+      <div style="width: 100%; left: 5px;" class="alert alert-{{ message.tags }}">
+        {{ message }}
+      </div>
+      {% endfor %}
+    </div>
+    {% endif %}
 </div>
+
 <div style="left: 0;" class="form-container"> 
     <form method="get" action="{% url 'Postagem:Lista_postagem' %}" class="filter-form">
       <div class="form-group">

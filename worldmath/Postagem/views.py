@@ -61,7 +61,7 @@ class NovidadesView(generic.ListView):
         
         # Obtenha o objeto mais recente da categoria 'Matematicos'
         first_object = Postagem.objects.filter(categoria_postagem='Novidades').order_by('-created_at').first()
-        
+            
         context['first_object'] = first_object
         return context
 
@@ -81,6 +81,7 @@ class NovidadesView(generic.ListView):
             queryset = queryset.filter(Resumo__icontains=conteudo)
 
         return queryset
+        
 class ResultadoNovidadesView(generic.ListView):
     model = Postagem
     template_name = 'Resultado_Novidades.html'

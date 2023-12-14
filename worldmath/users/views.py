@@ -12,6 +12,7 @@ from users.permissions import RedatorPermission, AdministradorPermission
 from django.views import View
 from django.shortcuts import get_object_or_404
 from .forms import UserAdminCreationForm, UserSignupForm
+
 User = get_user_model()
 
 
@@ -31,7 +32,7 @@ user_detail_view = UserDetailView.as_view()
 
 class UserUpdateView(AdministradorPermission,LoginRequiredMixin, SuccessMessageMixin, UpdateView):
     model = User
-    fields = ["name"]
+    fields = ["name"] 
     success_message = _("Information successfully updated")
 
     def get_success_url(self):
@@ -104,3 +105,4 @@ class UserCreateView(LoginRequiredMixin, views.SuccessMessageMixin, CreateView):
     success_url = reverse_lazy("users:list")
     success_message = _("Usuário cadastrado com sucesso! Se quiser ser um Redator, entre em contato conosco.")
     template_name = "account/signup.html"
+

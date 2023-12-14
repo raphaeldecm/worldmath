@@ -149,10 +149,14 @@
                             <div class="card-body corpo">
                                 <div class="d-flex align-items-center justify-content-between mb-3">
                                     <h4 class="card-title">{{ postagem.titulo }}</h4>
+                                </div>                               
+                                 <div style="margin-top: -20px; margin-bottom: 15px;">
+                                    <p class="data">Por {{ postagem.created_by }}</p>
                                 </div>
                                 <div style="margin-top: -20px; margin-bottom: 15px;">
                                     <p class="data">{{ postagem.created_at }}</p>
                                 </div>
+
                                 <p class="card-text">{{ postagem.Resumo }}</p>
                                 <div style="display: flex; justify-content: end;  ;bottom: 10px;">
                                     <button style="border-radius: 10px;" class="btn btn-primary"><a style="color: white;" href="{% url 'Postagem:Detail_matematico' postagem.id %}">Postagem completa</a></button>
