@@ -102,5 +102,5 @@ class UserCreateView(LoginRequiredMixin, views.SuccessMessageMixin, CreateView):
     model = User
     form_class = UserSignupForm
     success_url = reverse_lazy("users:list")
-    success_message = _("Usuário cadastrado com sucesso!")
+    success_message = _("Usuário cadastrado com sucesso! Se quiser ser um Redator, entre em contato conosco.")
     template_name = "account/signup.html"
