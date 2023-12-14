@@ -45,24 +45,27 @@
                         </form>
                         {% else %}
                         {% for group in object.groups.all %}
-                        {% if group.name == "Redator" %}
-                        <form  style="margin-right: 5px;" method="post" action="{% url 'users:remover_grupo_administrador' object.id %}"
-                            class="d-inline">
-                            {% csrf_token %}
-                            <button type="submit" class="btn btn-danger btn-sm">
-                                Remover do grupo
-                            </button>
-                        </form>
+                        {% if group.name == "Administrador" %}
+                            <!-- Se o usuário estiver no grupo Administrador, não exibe nenhum botão -->
                         {% else %}
-                        <form method="post" action="{% url 'users:atualizar_grupo_administrador' object.id %}"
-                            class="d-inline">
-                            {% csrf_token %}
-                            <button type="submit" class="btn btn-success btn-sm">
-                                Tornar Redator
-                            </button>
-                        </form>
+                            {% if group.name == "Redator" %}
+                                <form style="margin-right: 5px;" method="post" action="{% url 'users:remover_grupo_administrador' object.id %}" class="d-inline">
+                                    {% csrf_token %}
+                                    <button type="submit" class="btn btn-danger btn-sm">
+                                        Remover do grupo
+                                    </button>
+                                </form>
+                            {% else %}
+                                <form method="post" action="{% url 'users:atualizar_grupo_administrador' object.id %}" class="d-inline">
+                                    {% csrf_token %}
+                                    <button type="submit" class="btn btn-success btn-sm">
+                                        Tornar Redator
+                                    </button>
+                                </form>
+                            {% endif %}
                         {% endif %}
-                        {% endfor %}
+                    {% endfor %}
+                    
                         {% endif %}
 
                     </div>
