@@ -52,7 +52,7 @@ DATABASES = {
 DATABASES["default"]["ATOMIC_REQUESTS"] = True
 # https://docs.djangoproject.com/en/stable/ref/settings/#std:setting-DEFAULT_AUTO_FIELD
 DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
-CSRF_TRUSTED_ORIGINS = ['http://localhost:83','http://127.0.0.1:83']
+CSRF_TRUSTED_ORIGINS = ['http://localhost:83','http://127.0.0.1:83','http://worldmath.kaiohfd.com.br','https://worldmath.kaiohfd.com.br']
 # URLS
 # ------------------------------------------------------------------------------
 # https://docs.djangoproject.com/en/dev/ref/settings/#root-urlconf
