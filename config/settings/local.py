@@ -12,7 +12,7 @@ DEBUG = True
 # )
 SECRET_KEY = "XQKjUmFWWWL0Hz8WUX10B6BlNNbzVtMC35DMlsNFCsQilZLQIlj0xT682dccddRL"
 # https://docs.djangoproject.com/en/dev/ref/settings/#allowed-hosts
-ALLOWED_HOSTS = ["localhost", "0.0.0.0", "127.0.0.1"]
+ALLOWED_HOSTS = ["localhost", "0.0.0.0", "127.0.0.1", 'worldmath.kaiohfd.com.br']
 
 # CACHES
 # ------------------------------------------------------------------------------
