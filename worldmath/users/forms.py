@@ -7,6 +7,7 @@ from django.utils.translation import gettext_lazy as _
 User = get_user_model()
 
 
+
 class UserAdminChangeForm(admin_forms.UserChangeForm):
     class Meta(admin_forms.UserChangeForm.Meta):
         model = User
@@ -40,4 +41,5 @@ class UserSocialSignupForm(SocialSignupForm):
     Default fields will be added automatically.
     See UserSignupForm otherwise.
     """
+
 
