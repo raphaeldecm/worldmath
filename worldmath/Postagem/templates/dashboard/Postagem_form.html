@@ -54,37 +54,47 @@
     </div>
 
     <script>
-        document.getElementById('id_categoria_postagem').addEventListener('change', function () {
-            var categoriaSelecionada = this.value;
-
-            // Oculta todos os campos específicos
+        document.addEventListener('DOMContentLoaded', function () {
+            // Oculta inicialmente os campos específicos
             document.getElementById('conteudo-container').style.display = 'none';
             document.getElementById('tipo-arquivo-container').style.display = 'none';
             document.getElementById('url-container').style.display = 'none';
             document.getElementById('imagem-container').style.display = 'none';
             document.getElementById('resumo-container').style.display = 'none';
-
-            // Exibe os campos específicos da categoria selecionada
-            if (categoriaSelecionada === 'Matematicos' || categoriaSelecionada === 'Historia') {
-                document.getElementById('imagem-container').style.display = 'block';
-                document.getElementById('resumo-container').style.display = 'block';
-
-            } else if (categoriaSelecionada === 'Exercicios') {
-                document.getElementById('conteudo-container').style.display = 'block';
-                document.getElementById('tipo-arquivo-container').style.display = 'block';
-                document.getElementById('url-container').style.display = 'block';
-
-            } else if (categoriaSelecionada === 'Novidades') {
-                document.getElementById('conteudo-container').style.display = 'block';
-                document.getElementById('imagem-container').style.display = 'block';
-                document.getElementById('resumo-container').style.display = 'block';
-            }
-        });
-
-        document.getElementById('submit-btn').addEventListener('click', function () {
-            document.getElementById('postagemForm').submit();
+    
+            document.getElementById('id_categoria_postagem').addEventListener('change', function () {
+                var categoriaSelecionada = this.value;
+    
+                // Oculta todos os campos específicos
+                document.getElementById('conteudo-container').style.display = 'none';
+                document.getElementById('tipo-arquivo-container').style.display = 'none';
+                document.getElementById('url-container').style.display = 'none';
+                document.getElementById('imagem-container').style.display = 'none';
+                document.getElementById('resumo-container').style.display = 'none';
+    
+                // Exibe os campos específicos da categoria selecionada
+                if (categoriaSelecionada === 'Matematicos' || categoriaSelecionada === 'Historia') {
+                    document.getElementById('imagem-container').style.display = 'block';
+                    document.getElementById('resumo-container').style.display = 'block';
+    
+                } else if (categoriaSelecionada === 'Exercicios') {
+                    document.getElementById('conteudo-container').style.display = 'block';
+                    document.getElementById('tipo-arquivo-container').style.display = 'block';
+                    document.getElementById('url-container').style.display = 'block';
+    
+                } else if (categoriaSelecionada === 'Novidades') {
+                    document.getElementById('conteudo-container').style.display = 'block';
+                    document.getElementById('imagem-container').style.display = 'block';
+                    document.getElementById('resumo-container').style.display = 'block';
+                }
+            });
+    
+            document.getElementById('submit-btn').addEventListener('click', function () {
+                document.getElementById('postagemForm').submit();
+            });
         });
     </script>
+    
 </main>
 
 {% endblock %}

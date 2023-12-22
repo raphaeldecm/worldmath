@@ -202,7 +202,7 @@
           {% csrf_token %}
 
           <div style="margin-bottom: 60px; margin: 0 auto;" class="logo-container">
-            <a href="#" class="logo-container a">
+            <a href="{% url 'Postagem:index' %}" class="logo-container a">
               <img src="{% static 'images/logo.png' %}" alt="Logo">
             </a>
           </div>

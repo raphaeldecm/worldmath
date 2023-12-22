@@ -45,7 +45,7 @@ DATABASES = {
     "NAME": "worldmath",
     "USER": "postgres",
     "PASSWORD": "123456",
-    "HOST": "postgres",
+    "HOST": "127.0.0.1",
     "PORT": "5432",
 }
 }   
