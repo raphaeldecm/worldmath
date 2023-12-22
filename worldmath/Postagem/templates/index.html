@@ -10,6 +10,10 @@
         --secondary: #261E5A;
     }
 
+    .btn-custom-blue {
+        background-color: blue;
+        /* Adicione outros estilos necessários */
+    }
     .card {
         cursor: pointer;
         position: relative;
@@ -71,6 +75,10 @@
     .card:hover .card-text {
         color: var(--primary);
     }
+    .navbar-brand img {
+        max-width: 100%;
+        height: auto;
+    }
 </style>
 
 
@@ -80,7 +88,7 @@
                 <div class="col-xl-6 col-lg-8">
                     <h1>Entre em uma aventura pelo mundo da matemática. </h1>
                     <p>Conheça as grandes mentes da matemática!</p>
-                    <a style="border-radius: 30px;" href="{% url 'Postagem:Historia' %}"><button type="button" style="border-radius: 30px;" class=""><strong>EMBARCAR</strong></button></a>
+                    <a style="border-radius: 30px;" href="{% url 'Postagem:Historia' %}"><button type="button" style="border-radius: 30px;" class="btn btn-custom-blue"><strong>EMBARCAR</strong></button></a>
                 </div>
                 <div class="col-xl-6 col-lg-8">
                     <img class="img-fluid" src="{% static 'images/MathematicsProf.png' %}" alt="Mathematics bro">
@@ -109,7 +117,7 @@
                             <p class="p-pitagoras">{{ first_object_matematicos.Resumo }}</p>
                             <div style="display: flex; justify-content: center;">
                                 <a href="{% url 'Postagem:Detail_matematico' first_object_matematicos.id %}">
-                                    <button type="button" class="conheca" style="margin-top: 60px;">Conheça mais</button>
+                                    <button type="button" class="conheca btn btn-custom-blue" style="margin-top: 60px;">Conheça mais</button>
                                 </a>
                             </div>
                             
@@ -126,7 +134,7 @@
                             <div>
                                 <h5 class="">Exercite sua mente com os nossos questionários.</h5>
                                 <div class="d-flex justify-content-center">
-                                    <a href="{% url 'Postagem:exercicios' %}"><button type="button" class="conheca">Baixar
+                                    <a href="{% url 'Postagem:exercicios' %}"><button type="button" class="conheca btn btn-custom-blue">Baixar
                                             agora!</button></a>
                                 </div>
                             </div>
@@ -148,7 +156,7 @@
                             <p class="card-text">{{ postagem.Resumo }}</p>
                         </div>
                         <div class="d-flex justify-content-end" style="margin-right: 10px; margin-bottom: 10px;">
-                            <a style="border-radius: 20px;" href="{% url 'Postagem:Detail_novidades' postagem.id %}" class="btn btn-primary">Postagem completa</a>
+                            <a style="border-radius: 20px;" href="{% url 'Postagem:Detail_novidades' postagem.id %}" class="btn btn-primary btn btn-custom-blue">Postagem completa</a>
                         </div>
                     </div>
                     {% endfor %}

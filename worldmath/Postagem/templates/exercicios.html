@@ -5,72 +5,82 @@
 {% block content %}
 <style>
     @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;700&display=swap');
-.quersaber{
-    background: rgba(0, 36, 64, 0.9);
-    border-radius: 20px;
-    color: #FFFFFF;
-    width: 95%;
-    margin: auto;
-    margin-top: 20px;
-}
 
-a{
-    list-style: none;
-    text-decoration: none;
-    color: #050927;
-}
+    .quersaber {
+        background: rgba(0, 36, 64, 0.9);
+        border-radius: 20px;
+        color: #FFFFFF;
+        width: 95%;
+        margin: auto;
+        margin-top: 20px;
+    }
 
-.bt-quero{
-    background: #FFFFFF;
-    border-radius: 30px;
-    border: none;
-    width: 150px;
-    height: 35px;
-    color: #050927;
-    font-weight: bold;
-    font-size: 16px;
-}
-.main{
-    background-color: #FFFFFF;
-    
-    margin-left: 210px;
-    margin-top: 30px;
-}
-.main img {
-    margin-left: 20px;
-}
-.tabela{
-    width: 90%;
-    margin: auto;
-    margin-top: 60px;
-    margin-bottom: 30px;
-    border: 1px solid #E4E4E4;
-    border-radius: 20px;
-    padding: 10px;
-}
-.euclides{
-    margin-bottom: 20px;
-}
-.euclides img{
-    margin-right: 30px;
-}
-.main p {
-    text-align: justify;
-}
-.mostrar{
-background: #002440;
-border-radius: 30px;
-border: none;
-color: #FFFFFF;
-width: 170px;
-height: 40px;
-font-weight: bold;
-margin: 40px 0;
-}
+    a {
+        list-style: none;
+        text-decoration: none;
+        color: #050927;
+    }
 
-h2{
-    font-weight: bold;
-}
+    .bt-quero {
+        background: #FFFFFF;
+        border-radius: 30px;
+        border: none;
+        width: 150px;
+        height: 35px;
+        color: #050927;
+        font-weight: bold;
+        font-size: 16px;
+    }
+
+    .main {
+        background-color: #FFFFFF;
+        margin-left: 210px;
+        margin-top: 30px;
+    }
+
+    .main img {
+        margin-left: 20px;
+    }
+
+    .tabela {
+        width: 80%;  /* Ajuste da largura da tabela */
+        margin: auto;
+        margin-top: 60px;
+        margin-bottom: 30px;
+        border: 1px solid #E4E4E4;
+        border-radius: 20px;
+        padding: 10px;
+    }
+
+    .filter-form {
+        display: flex;
+        justify-content: start;
+        align-items: center;
+        margin-bottom: 10px;
+        margin-top: 10px;
+        margin-left: 80px; /* Ajuste da margem esquerda */
+    }
+
+    .form-group {
+        margin-right: 20px;
+    }
+
+    .filter-label {
+        margin-right: 10px;
+    }
+
+    .filter-button {
+        padding: 6px 10px;
+        background-color: #007bff;
+        color: #fff;
+        border: none;
+        cursor: pointer;
+        align-self: flex-end;
+    }
+
+    h2 {
+        font-weight: bold;
+    }
 </style>
 <main>
     <section class="quersaber container-fluid">
@@ -89,48 +99,47 @@ h2{
         </div>
     </section>
     <section class="main">
-        
         <div style="left: 0; display: flex; flex-direction: row;">
             <h2>Faça o download dos nossos exercícios e aprenda praticando!</h2>
             <div>
-            <img class="img-fluid" width="60px" src="{% static 'images/baixar.png' %}" alt="">
-        </div>
+                <img class="img-fluid" width="60px" src="{% static 'images/baixar.png' %}" alt="">
+            </div>
         </div>
     </section>
-
+    <div style="left: 0; margin-top: 20px; margin-bottom: -20px;" class="form-container">
+        <form method="get" action="{% url 'Postagem:exercicios' %}" class="filter-form">
+            <div style="margin-left: 75px;" class="form-group">
+                <label style="margin-left: 5px;" for="modelo" class="filter-label"> Filtrar por Conteúdo:</label>
+                <input type="text" name="conteudo" id="conteudo" class="form-control money"
+                    value="{{ request.GET.conteudo }}">
+            </div>
+            <button  type="submit" class="btn btn-primary filter-button">Filtrar</button>
+        </form>
+    </div>
     <section class="tabela">
         <table class="table">
             <thead>
                 <tr>
-                    <th style="width: 30%;" scope="col">Conteúdo</th>
-                    <th style="width: 30%;" scope="col">Type</th>
+                    <th style="width: 35%;" scope="col">Conteúdo</th>
+                    <th style="width: 35%;" scope="col">Tipo</th>
                     <th style="width: 30%;" scope="col">Download</th>
-                    <th style="width: 10%;"></th>
                 </tr>
             </thead>
             <tbody>
                 {% for postagem in object_list %}
-               {% if postagem.categoria_postagem == 'Exercicios' %}
+                {% if postagem.categoria_postagem == 'Exercicios' %}
                 <tr>
                     <td>{{ postagem.conteudo }}</td>
                     <td>{{ postagem.tipo_arquivo }}</td>
-                    <td> <a target="_blank" href="{{ postagem.Url }}">Link</a></td>
-                    <td>
-                        <a target="_blank" href="{{ postagem.Url }}">
-                            <img class="img-fluid" width="40px" src="{% static 'images/baixar.png' %}" alt="">
-                        </a>
-                    </td>
+                    <td>  <a target="_blank" href="{{ postagem.Url }}">
+                        <img class="img-fluid" width="40px" src="{% static 'images/baixar.png' %}" alt="">
+                    </a></td>
                 </tr>
                 {% endif %}
                 {% endfor %}
             </tbody>
-
         </table>
-
-
     </section>
+    
 </main>
-
-</body>
-
 {% endblock %}

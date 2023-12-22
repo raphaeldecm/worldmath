@@ -2,8 +2,9 @@
 {% load static i18n %}
 {% get_current_language as LANGUAGE_CODE %}
 {% block content %}
-<main style="width: 100%; ">
+<main style="width: 100%; height: 100%">
     <style>
+
         @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;700&display=swap');
 
         :root {
@@ -130,8 +131,8 @@
             </div>
         </div>
     </section>
-    <section style="margin-top: 400px; display: flex; justify-content: center;">
-        <div class="gallery col-8 justify-content-center">
+    <section style="margin-top: 450px; display: flex; justify-content: center;">
+        <div class="gallery col-8">
 
             <div class="card-row">
                 {% for postagem in object_list %}

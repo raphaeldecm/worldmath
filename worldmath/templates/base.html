@@ -136,20 +136,18 @@
             </div>
             <div class="col-xl-2 col-lg-8 links" style="margin-left: -200px;">
                 <div class="border-links">
-                    <h4> <strong>Links</strong> </h4>
+                    <h4><strong>Links</strong></h4>
                 </div>
-
-                <li><a href="{% url 'Postagem:index' %}">Home</a></li>
-                <li><a href="{% url 'Postagem:galeria' %}">Matemáticos</a></li>
-                <li><a href="{% url 'Postagem:Historia' %}">História</a></li>
-                <li><a href="{% url 'Postagem:Novidades'  %}">Novidades</a></li>
-
+                <ul class="list-unstyled">
+                    <li><a href="{% url 'Postagem:index' %}">Home</a></li>
+                    <li><a href="{% url 'Postagem:galeria' %}">Matemáticos</a></li>
+                    <li><a href="{% url 'Postagem:Historia' %}">História</a></li>
+                    <li><a href="{% url 'Postagem:Novidades'  %}">Novidades</a></li>
+                </ul>
             </div>
             <div style="margin-right: -80px;" class="col-xl-2 col-lg-8 d-flex flex-column align-items-center">
-
-                <img class="img-fluid" src="{% static 'images/pngs 1.png' %}" alt="pngs">
+                <img class="img-fluid" src="{% static 'images/pngs1.png' %}" alt="pngs">
                 <p class="p-ifrn">Projetado e desenvolvido por alunos do IFRN</p>
-
             </div>
             <div class="col-xl-2 col-lg-8">
                 <h4 class="border-links"><strong> Contato</strong></h4>
@@ -164,9 +162,8 @@
                 </div>
             </div>
         </div>
-
     </footer>
-
+    
     <script>
         function toggleDropdown() {
             var dropdown = document.getElementById('customDropdown');

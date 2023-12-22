@@ -48,6 +48,15 @@ class ExerciciosView(generic.ListView):
     model = Postagem
     template_name = "exercicios.html"
 
+    def get_queryset(self):
+        queryset = super().get_queryset()
+        conteudo = self.request.GET.get('conteudo')
+    
+        if conteudo:
+            queryset = queryset.filter(titulo__icontains=conteudo)
+
+        return queryset 
+
 class HistoriaView(generic.ListView):
     model = Postagem
     template_name = "historia.html"
